@@ -40,7 +40,6 @@ public class Parser {
     List<JobEntry> entries = new ArrayList<>();
     Document doc = Jsoup.connect(url).get();
     
-    while (entries.size() < count) {
       Elements listings = doc.getElementsByClass("row").select("span.txt");
       
       for (Element element : listings) {
@@ -50,7 +49,7 @@ public class Parser {
         entries.add(new JobEntry(title, location, date));
         count ++;
       }     
-    }
+    
    
     return entries;
   }
