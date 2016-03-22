@@ -25,7 +25,7 @@ import spark.template.freemarker.FreeMarkerEngine;
 public class Main {
   public static void main(String[] args) {
     try {
-      Parser parser = new Parser("labor");
+      Parser parser = new Parser("education");
     } catch (IOException e) {
       System.out.println("Error fetching url");
     }
