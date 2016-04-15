@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
+import edu.brown.cs.aecooper.server.WebServer;
 import edu.brown.cs.jchoi21.parser.Parser;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
@@ -30,7 +31,7 @@ public class Main {
       System.out.println("Error fetching url");
     }
     
-    //new Main(args).run();
+    new Main(args).run();
   }
 
   private String[] args;
@@ -49,63 +50,16 @@ public class Main {
 
     db = options.valueOf(fileSpec);
     if (db == null) {
-      System.out.println("ERROR: Please specify a star file");
+      System.out.println("ERROR: Please specify a database file");
       System.exit(1);
     }
 
-    if (options.has("gui")) {
-      runSparkServer();
-    } else {
-      // Process commands
-    }
-  }
-
-  private static FreeMarkerEngine createEngine() {
-    Configuration config = new Configuration();
-    File templates = new File("src/main/resources/spark/template/freemarker");
-    try {
-      config.setDirectoryForTemplateLoading(templates);
-    } catch (IOException ioe) {
-      System.out.printf("ERROR: Unable use %s for template loading.\n", templates);
-      System.exit(1);
-    }
-    return new FreeMarkerEngine(config);
-  }
-
-  private void runSparkServer() {
-    Spark.externalStaticFileLocation("src/main/resources/static");
-    Spark.exception(Exception.class, new ExceptionPrinter());
-
-    FreeMarkerEngine freeMarker = createEngine();
-
-    // Setup Spark Routes
-    Spark.get("/stars", new FrontHandler(), freeMarker);
-  }
-
-  private class FrontHandler implements TemplateViewRoute {
-    @Override
-    public ModelAndView handle(Request req, Response res) {
-      Map<String, Object> variables =
-        ImmutableMap.of("title", "Stars: Query the database",
-                        "db", db);
-      return new ModelAndView(variables, "query.ftl");
-    }
+    new WebServer();
   }
 
 
-  private static class ExceptionPrinter implements ExceptionHandler {
-    @Override
-    public void handle(Exception e, Request req, Response res) {
-      res.status(500);
-      StringWriter stacktrace = new StringWriter();
-      try (PrintWriter pw = new PrintWriter(stacktrace)) {
-        pw.println("<pre>");
-        e.printStackTrace(pw);
-        pw.println("</pre>");
-      }
-      res.body(stacktrace.toString());
-    }
-  }
+
+
 
 
 }
