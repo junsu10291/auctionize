@@ -42,7 +42,7 @@ public class MapSetup {
     Spark.post("/jobs", new JobsHandler());
   }
 
-  private static Set<Job> generateJobs() {
+  public static Set<Job> generateJobs() {
     Set<Job> jobs = new HashSet<>();
     for (int i = 0; i < NUM_JOBS; i++) {
       String title = "Job " + i;

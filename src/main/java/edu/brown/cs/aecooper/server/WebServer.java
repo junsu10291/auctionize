@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
 import java.util.Map;
+import java.util.Set;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +17,8 @@ import com.google.gson.Gson;
 import edu.brown.cs.aecooper.server.WebServer.Authenticate;
 import edu.brown.cs.aecooper.server.WebServer.HomeHandler;
 import edu.brown.cs.aecooper.server.WebServer.ThrowsException;
+import edu.brown.cs.nbrennan.Job;
+import edu.brown.cs.nbrennan.MapSetup;
 import freemarker.template.Configuration;
 import spark.ExceptionHandler;
 import spark.ModelAndView;
@@ -46,6 +49,8 @@ public class WebServer {
 	    Spark.get("/throwexception", new ThrowsException());
 	    // Setup Spark Routes
 	    Spark.post("/authenticate", new Authenticate());
+	    Spark.get("/map", new MapHandler(), freeMarker);
+	    Spark.post("/jobs", new JobsHandler());
 	}
 	
 	/**
@@ -60,6 +65,22 @@ public class WebServer {
 		    }
 		  }
 	  
+	  
+	  private static class MapHandler implements TemplateViewRoute {
+		    @Override
+		    public ModelAndView handle(Request req, Response res) {
+		      Map<String, Object> variables = ImmutableMap.of();
+		      return new ModelAndView(variables, "map.ftl");
+		    }
+		  }
+		  
+	  private static class JobsHandler implements Route {
+	    @Override
+	    public Object handle(final Request req, final Response res) {
+	      Set<Job> jobs = MapSetup.generateJobs();
+	      return GSON.toJson(jobs);
+	    }
+	  }
 		public class HomeHandler implements TemplateViewRoute {
 			@Override
 		    public ModelAndView handle(Request req, Response res) {
