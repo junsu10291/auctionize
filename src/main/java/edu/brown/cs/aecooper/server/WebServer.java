@@ -8,7 +8,9 @@ import java.math.BigInteger;
 import java.util.Map;
 import java.util.Set;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import com.google.common.collect.ImmutableMap;
@@ -18,7 +20,6 @@ import edu.brown.cs.aecooper.server.WebServer.Authenticate;
 import edu.brown.cs.aecooper.server.WebServer.HomeHandler;
 import edu.brown.cs.aecooper.server.WebServer.ThrowsException;
 import edu.brown.cs.nbrennan.Job;
-import edu.brown.cs.nbrennan.MapSetup;
 import freemarker.template.Configuration;
 import spark.ExceptionHandler;
 import spark.ModelAndView;
@@ -35,6 +36,8 @@ public class WebServer {
 
 	private final static Gson GSON = new Gson();
 	private List<BigInteger> activeUsers;
+	private Map<String, Job> jobs;
+	
 	public WebServer(){
 		activeUsers = Collections.synchronizedList(new ArrayList<BigInteger>());
 		this.runSparkServer();
@@ -51,6 +54,7 @@ public class WebServer {
 	    Spark.post("/authenticate", new Authenticate());
 	    Spark.get("/map", new MapHandler(), freeMarker);
 	    Spark.post("/jobs", new JobsHandler());
+	    Spark.post("/path", new PathHandler());
 	}
 	
 	/**
@@ -77,8 +81,21 @@ public class WebServer {
 	  private static class JobsHandler implements Route {
 	    @Override
 	    public Object handle(final Request req, final Response res) {
-	      Set<Job> jobs = MapSetup.generateJobs();
-	      return GSON.toJson(jobs);
+	      //TODO: Get jobs from database and store in Map
+	     return null;
+	    }
+	  }
+	  
+	  private class PathHandler implements Route {
+	    @Override
+	    public Object handle(final Request req, final Response res) {
+	      List<Job> path = new ArrayList<>();
+	      Collection<Job> values = jobs.values();
+	      Iterator<Job> it = values.iterator();
+	      for (int i = 0; i < 5; i++) {
+	        path.add(it.next());
+	      }
+	      return GSON.toJson(path);
 	    }
 	  }
 		public class HomeHandler implements TemplateViewRoute {
