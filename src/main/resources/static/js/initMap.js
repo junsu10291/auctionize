@@ -1,29 +1,38 @@
 var map;
-var jobs;
-var markers = [];
-var time = 8*60;
+var jobs = {};
+var markers = {};
+var hours = new Date().getHours();
+var minutes = new Date().getMinutes();
 
 function initMap() {
-  var myLatLng = {lat: 41.826130, lng: -71.403};
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 17,
-    center: myLatLng
-  });
+  var loc = {lat: 41.826130, lng: -71.403};
   
-  $.post("/jobs", {}, function(responseJSON) {
-    jobs = JSON.parse(responseJSON);
-    for (var i = 0; i < jobs.length; i++) {
-      jobs[i].profit = Math.round(jobs[i].profit * 100) / 100;
-      makeJobMarker(jobs[i]);
-    }
-  });
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      loc = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 17,
+        center: loc
+      });
+      $.post("/jobs", {}, function(responseJSON) {
+        jobs = JSON.parse(responseJSON);
+        for (var key in jobs) {
+          newMarker(jobs[key], 1, true);
+        }
+      });
+    }, function() {});
+  }
 }
 
-function makeJobMarker(job) {
-  var jobTime = job.start.hours*60 + job.start.minutes;
-  var diff = jobTime - time;
-  var opacity = 1 - (1/12)*diff;
+function newMarker(job, opacity, drop) {
+  console.log(job.id);
+  var oldMarker = markers[job.id];
+  if (oldMarker != undefined) {
+    oldMarker.setMap(null);
+  }
   var marker = new google.maps.Marker({
     position: {lat: job.lat, lng: job.lng},
     map: map,
@@ -44,8 +53,10 @@ function makeJobMarker(job) {
     },
     title: "job"
   });
-  markers.push(marker);
-  marker.setAnimation(google.maps.Animation.DROP);
+  markers[job.id] = marker;
+  if (drop) {
+    marker.setAnimation(google.maps.Animation.DROP);
+  }
   var info = new google.maps.InfoWindow({
     content: "<style>p{text-align: center}"
             + "p.title{font-weight: bold;}</style>"
@@ -58,60 +69,53 @@ function makeJobMarker(job) {
   });
 }
 
-function directions() {
+function path() {
+  $.post("/path", {}, function(responseJSON) {
+    var path = JSON.parse(responseJSON);
+    directions(path);
+  });
+}
+
+function directions(path) {
   var directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
+  var waypoints = [];
+  for (var i = 1; i < path.length - 1; i++) {
+    waypoints.push({location: path[i], stopover: true});
+  }
   var directionsRequest = {
-      origin: jobs[0],
-      destination: jobs[4],
-      waypoints: [
-        {
-          location: jobs[1],
-          stopover: true
-        },{
-          location: jobs[2],
-          stopover: true
-        },{
-          location: jobs[3],
-          stopover: true
-        }],
+      origin: path[0],
+      destination: path[path.length - 1],
+      waypoints: waypoints,
       provideRouteAlternatives: true,
       travelMode: google.maps.TravelMode.WALKING,
       unitSystem: google.maps.UnitSystem.IMPERIAL
-    }
+  }
   directionsService.route(directionsRequest, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(result);
     }
   });
-  for (var i = 5; i < jobs.length; i++) {
-    var oldMarker = markers[i];
-    oldMarker.setMap(null);
-    var job = jobs[i];
-    var newMarker = new google.maps.Marker({
-      position: {lat: job.lat, lng: job.lng},
-      map: map,
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: job.profit/2,
-        fillColor: "red",
-        fillOpacity: 0.2,
-        strokeOpacity: 0.2,
-        strokeWeight: 1
-      },
-      title: "job"
-    });
-    var info = new google.maps.InfoWindow({
-      content: "<style>p{text-align: center}"
-              + "p.title{font-weight: bold;}</style>"
-              + "<p class=\"title\">" + job.title + "</p>"
-              + "<p>" + job.description + "</p>"
-              + "<p>Profit: $" + job.profit + "</p>"
-    });
-    newMarker.addListener('click', function() {
-      info.open(map, newMarker);
-    });
-    markers[i] = newMarker;
+  var ids = [];
+  for (var i = 0; i < path.length; i++) {
+    ids.push(path[i].id);
   }
+  console.log(ids);
+  for (var key in jobs) {
+    console.log(key);
+    console.log(!(inArray(key, ids)));
+    if (!(inArray(key, ids))) {
+      newMarker(jobs[key], 0.1, false);
+    }
+  }
+}
+
+function inArray(item, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (item == array[i]) {
+      return true;
+    }
+  }
+  return false;
 }
