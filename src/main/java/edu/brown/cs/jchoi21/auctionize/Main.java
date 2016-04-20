@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-import edu.brown.cs.jchoi21.parser.Parser;
+import edu.brown.cs.jchoi21.parser.JobEntry;
+import edu.brown.cs.jchoi21.parser.LatLng;
+import edu.brown.cs.jchoi21.profit.ProfitEstimator;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -24,11 +27,19 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class Main {
   public static void main(String[] args) {
-    try {
-      Parser parser = new Parser("education");
-    } catch (IOException e) {
-      System.out.println("Error fetching url");
-    }
+//    try {
+//      Parser parser = new Parser("labor");
+//    } catch (IOException e) {
+//      System.out.println("Error fetching url");
+//    }
+    
+    HashMap<String, String> blah = new HashMap<>();
+    blah.put("latitude", "41.818844");
+    blah.put("longitude", "-71.429531");
+    blah.put("pay", "14.00"); // per hour
+    blah.put("duration", "3");
+    
+    System.out.println("Profit / hour: " + ProfitEstimator.estimateProfit(new LatLng(41.843019f, -71.393997f), new JobEntry(blah)));
     
     //new Main(args).run();
   }

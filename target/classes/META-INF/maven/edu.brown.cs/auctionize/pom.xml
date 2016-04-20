@@ -6,7 +6,6 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.brown.cs</groupId>
   <artifactId>auctionize</artifactId>
-  <packaging>jar</packaging>
   <version>1.0</version>
  
   <properties>
@@ -25,6 +24,26 @@
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
       <version>1.8.3</version>
+    </dependency>
+
+    <dependency>
+       <groupId>com.squareup.okhttp</groupId>
+       <artifactId>okhttp</artifactId>
+       <version>2.2.0</version>
+    </dependency>
+
+    <dependency>
+      <!-- java wrapper for UBER -->
+      <groupId>com.victorsima</groupId>
+      <artifactId>uber-java-client</artifactId>
+      <version>0.0.3</version>
+    </dependency>
+
+    <dependency>
+      <!-- Uber api -->
+      <groupId>com.uber.sdk</groupId>
+      <artifactId>rides</artifactId>
+      <version>0.2.0</version>
     </dependency>
 
     <dependency>
