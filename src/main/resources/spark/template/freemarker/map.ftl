@@ -40,6 +40,10 @@
 	    height: 100%;
 	    font-size: 175%
 	  }
+    #status{
+      font-size: 125%;
+      color:white;
+    }
 	  .navButton a:hover:not(.active) {
 	    background-color: #111;
 	  }
@@ -63,9 +67,9 @@
   	<ul id="navBar">
   		<li class="navButton"><a class="active" href="#home">Home</a></li>
 		<li class="navButton"><a href="#about">About</a></li>
-		<li class="navButton"><a href="#profile">Profile</a></li>
+		<li id="profile" class="navButton"><a href="#profile">MyProfile</a></li>
 		<li class="navButton"> 
-			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true">
+			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge">
 		    </fb:login-button>
 		</li>
 		<li class="navButton"><div id="status"></div></li>
@@ -79,6 +83,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP_cgI8zBhAlb5qicByyn9vNjHzU0puYY&callback=initMap"
     async defer></script>
     <script src="js/login.js"></script>
+    <script src="js/home.js"></script>
   </body>
 </html>
 

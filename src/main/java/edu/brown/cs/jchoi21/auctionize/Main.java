@@ -9,7 +9,9 @@ import java.util.Map;
 import com.google.common.collect.ImmutableMap;
 
 import edu.brown.cs.aecooper.server.WebServer;
+import edu.brown.cs.jchoi21.parser.DatabaseCreator;
 import edu.brown.cs.jchoi21.parser.Parser;
+import edu.brown.cs.jchoi21.parser.Preprocessor;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -25,12 +27,7 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class Main {
   public static void main(String[] args) {
-    try {
-      Parser parser = new Parser("education");
-    } catch (IOException e) {
-      System.out.println("Error fetching url");
-    }
-    
+    DatabaseCreator.create();
     new Main(args).run();
   }
 
@@ -54,7 +51,7 @@ public class Main {
       System.exit(1);
     }
 
-    new WebServer();
+    //new WebServer();
   }
 
 
