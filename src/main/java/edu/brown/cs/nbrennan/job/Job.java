@@ -1,10 +1,10 @@
-package edu.brown.cs.nbrennan;
+package edu.brown.cs.nbrennan.job;
 
-import java.time.Duration;
 import java.time.LocalTime;
 
 public class Job {
 
+  public final String id;
   public final String title;
   public final String description;
   public final double lat;
@@ -13,8 +13,9 @@ public class Job {
   public final LocalTime end;
   public final double profit;
 
-  private Job(String title, String description, double lat, double lng,
-      LocalTime start, LocalTime end, double profit) {
+  private Job(String id, String title, String description, double lat,
+      double lng, LocalTime start, LocalTime end, double profit) {
+    this.id = id;
     this.title = title;
     this.description = description;
     this.lat = lat;
@@ -26,6 +27,7 @@ public class Job {
 
   public static class Builder {
 
+    private String id = "";
     private String title = "";
     private String description = "";
     private double lat = 0;
@@ -38,7 +40,12 @@ public class Job {
     }
 
     public Job build() {
-      return new Job(title, description, lat, lng, start, end, profit);
+      return new Job(id, title, description, lat, lng, start, end, profit);
+    }
+
+    public Builder id(String id) {
+      this.id = id;
+      return this;
     }
 
     public Builder title(String title) {
@@ -70,7 +77,7 @@ public class Job {
       this.end = end;
       return this;
     }
-    
+
     public Builder profit(double profit) {
       this.profit = profit;
       return this;

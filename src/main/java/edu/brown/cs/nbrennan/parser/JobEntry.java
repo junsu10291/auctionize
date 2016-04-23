@@ -1,4 +1,4 @@
-package edu.brown.cs.jchoi21.parser;
+package edu.brown.cs.nbrennan.parser;
 
 public class JobEntry {
   private String _title;

@@ -1,8 +1,8 @@
-package edu.brown.cs.wdencker.graph;
+package edu.brown.cs.nbrennan.graph;
 
 import java.util.List;
 
-import edu.brown.cs.jchoi21.parser.JobEntry;
+import edu.brown.cs.nbrennan.parser.JobEntry;
 
 public class JobGraph extends WeightedGraph<JobEntry, Double> {
   public JobGraph() {
