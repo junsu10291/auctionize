@@ -75,8 +75,18 @@
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
       console.log(response.id);
+
+      document.getElementById("profilePicture").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=large");
+      $("#profilePicture").show()
+      $("#userName").text(response.name)
+      $("#jobCategory").show()
+
       $.post("/authenticate", {userId : response.id}, function(respoonse){
 
       });
     });
   }
+
+
+
+
