@@ -1,4 +1,4 @@
-package edu.brown.cs.jchoi21.auctionize;
+package edu.brown.cs.nbrennan.auctionize;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,8 +8,8 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-import edu.brown.cs.jchoi21.parser.DatabaseCreator;
-import edu.brown.cs.jchoi21.parser.Preprocessor;
+
+import edu.brown.cs.nbrennan.parser.Parser;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -25,7 +25,12 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class Main {
   public static void main(String[] args) {
-    DatabaseCreator.create();
+    try {
+      Parser parser = new Parser("education");
+    } catch (IOException e) {
+      System.out.println("Error fetching url");
+    }
+    
     new Main(args).run();
   }
 
@@ -44,11 +49,14 @@ public class Main {
     OptionSet options = parser.parse(args);
 
     db = options.valueOf(fileSpec);
-//    if (db == null) {
-//      System.out.println("ERROR: Please specify a database file");
-//      System.exit(1);
-//    }
+    
 
-    //new WebServer();
+    new WebServer();
   }
+
+
+
+
+
+
 }

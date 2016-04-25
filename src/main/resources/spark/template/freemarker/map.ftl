@@ -42,6 +42,10 @@
 	    height: 100%;
 	    font-size: 175%
 	  }
+    #status{
+      font-size: 125%;
+      color:white;
+    }
 	  .navButton a:hover:not(.active) {
 	    background-color: #111;
 	  }
@@ -54,9 +58,14 @@
         width:20%;
         background:#000;
       }  
+      #timeline {
+		width:80%;
+		height: 20%;
+		float: right;
+      }
       #map {
 		width:80%;
-		height: 100%;
+		height: 80%;
 		float: right;
       }
     </style>
@@ -65,14 +74,15 @@
   	<ul id="navBar">
   		<li class="navButton"><a class="active" href="#home">Home</a></li>
 		<li class="navButton"><a href="#about">About</a></li>
-		<li class="navButton"><a href="#profile">Profile</a></li>
+		<li id="profile" class="navButton"><a href="#profile">MyProfile</a></li>
 		<li class="navButton"> 
-			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true">
+			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge">
 		    </fb:login-button>
 		</li>
 		<li class="navButton"><div id="status"></div></li>
   	</ul>
   	<div class="container">
+<<<<<<< HEAD
   	    <div id ="sidebar">
           <img id="profilePicture">
           <div id="userName"></div>
@@ -92,14 +102,22 @@
             </select>
           </div>
         </div>
+=======
+  	    <div id ="sidebar"></div>
+  	    <div id="timeline"></div>
+>>>>>>> c4bc202d8c7a5e84b2897a509730531d5bb12edd
     	<div id="map"></div>
     </div>
 
     <script src="js/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/timeline.js"></script>
     <script src="js/initMap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP_cgI8zBhAlb5qicByyn9vNjHzU0puYY&callback=initMap"
     async defer></script>
+    
     <script src="js/login.js"></script>
+<<<<<<< HEAD
     <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
     <script type="text/javascript">
       $(function(){
@@ -108,6 +126,9 @@
             placeholder_text_multiple: "Select Category"});
       });
     </script>
+=======
+    <script src="js/home.js"></script>
+>>>>>>> c4bc202d8c7a5e84b2897a509730531d5bb12edd
   </body>
 </html>
 

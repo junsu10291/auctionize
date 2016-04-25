@@ -1,4 +1,4 @@
-package edu.brown.cs.wdencker.graph;
+package edu.brown.cs.nbrennan.graph;
 
 /**
  * Class to represent an EdgeWeight in a graph.

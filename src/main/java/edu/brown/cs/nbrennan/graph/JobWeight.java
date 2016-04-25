@@ -1,6 +1,6 @@
-package edu.brown.cs.wdencker.graph;
+package edu.brown.cs.nbrennan.graph;
 
-import edu.brown.cs.jchoi21.parser.JobEntry;
+import edu.brown.cs.nbrennan.parser.JobEntry;
 
 public class JobWeight extends EdgeWeight<Double> {
   public JobEntry job1;
