@@ -83,7 +83,6 @@ var connected = 0;
       document.getElementById("profilePicture").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=large");
       $("#profilePicture").show()
       $("#userName").text(response.name)
-      $("#jobCategory").show()
 
       $.post("/authenticate", {userId : response.id}, function(respoonse){
 
