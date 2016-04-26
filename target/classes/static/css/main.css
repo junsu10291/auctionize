@@ -21,11 +21,88 @@ input[type="number"] {
 }
 
 #jobCategory {
+    display: none;
     color: white;
     text-align: center;
     margin-top: 30px;
 }
 
+#togglebar {
+    width: 1%;
+    margin-left: -4px;
+    height: 100%;
+    background-color: blue;
+    display: inline-block;
+}
+
+#togglebar:hover {
+    cursor: pointer;
+}
+
+#mapContainer {
+    width: 79.5%;
+    height: 100%;
+    display: inline-block;
+}
+
+#timeline {
+    height: 25%;
+}
+
+#map {
+    height: 75%;
+}
+
 li {
     list-style-type: none;
 }
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container { 
+    position:absolute; 
+    width: 100%;
+    height: 90%;
+}
+#navBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    height: 14%;
+}
+.navButton {
+    float: left;
+    height: 100%;
+    width: 150px;
+}
+.navButton a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+    font-size: 175%
+}
+.navButton a:hover:not(.active) {
+    background-color: #111;
+}
+.active {
+    background-color: #4CAF50;
+}
+
+#sidebar {
+    display: none;
+    position:relative;
+    top:-351px;
+    width:19%;
+    background:#000;
+    color:white;
+    height: 100%;
+}  

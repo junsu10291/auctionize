@@ -5,14 +5,15 @@ $( document ).ready(function() {
             width: "230px",
             placeholder_text_multiple: "Select Category"});
 
-    $( document ).click(function() {
+    $("#togglebar").click(function() {
         if (!collapsed) {
             $("#sidebar").hide();
-            $("#map").width("100%");
+            $("#mapContainer").width("99%");
             collapsed = true;
+            google.maps.event.trigger(map, 'resize');
         } else {
             $("#sidebar").show();
-            $("#map").width("80%");
+            $("#mapContainer").width("79.5%");
             collapsed = false;
         }
         

@@ -45,7 +45,7 @@ public class DatabaseCreator {
 				//System.out.println("profit: " + profit);
 				Job newJob = new Job.Builder().id(UUID.randomUUID().toString())
 												.title(job[0])
-												.description(job[1])
+												.category(job[1])
 												.start(startTime)
 												.end(endTime)
 												.lng(randomLatLon.get(0))
@@ -81,7 +81,7 @@ public class DatabaseCreator {
 	    	  prep = c.prepareStatement(sql);
 	    	  prep.setString(1,job.id);
 	    	  prep.setString(2, job.title);
-	    	  prep.setString(3, job.description);
+	    	  prep.setString(3, job.category);
 	    	  prep.setDouble(4, job.lat);
 	    	  prep.setDouble(5, job.lng);
 	    	  prep.setString(6, (job.start).toString());
