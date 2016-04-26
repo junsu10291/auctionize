@@ -102,6 +102,50 @@ public final class GraphSearch {
     }
   }
 
+  public static <V> List<Step<V, Double>> bellmanFord(V start, V finish,
+      WeightedGraph<V, Double> graph) {
+    Map<V, Double> distances = new HashMap<>();
+    Map<V, Entry<V, EdgeWeight<Double>>> previous = new HashMap<>();
+    for (V node : graph.getEdges(start).keySet()) {
+      distances.put(node, Double.POSITIVE_INFINITY);
+    }
+    distances.put(start, 0.0);
+    Map<V, Double> scratch = new HashMap<>();
+    for (int k = 1; k <= graph.size(); k++) {
+      scratch.putAll(distances);
+      for (V node : graph) {
+        for (Map.Entry<V, EdgeWeight<Double>> edge : graph.getEdges(node)
+            .entries()) {
+          double previousBest = scratch.get(edge.getKey());
+          double check = edge.getValue().getWeight() + distances.get(node);
+          if (check < previousBest) {
+            // This distance is better than the currently known for some vertex
+            scratch.put(edge.getKey(), check);
+            previous.put(edge.getKey(),
+                Maps.immutableEntry(node, edge.getValue()));
+          } else {
+            scratch.put(edge.getKey(), previousBest);
+          }
+        }
+      }
+      Map<V, Double> temp = distances;
+      distances = scratch;
+      scratch = temp;
+    }
+    List<Step<V, Double>> steps = new ArrayList<>();
+    V curr = finish;
+    Entry<V, EdgeWeight<Double>> step = previous.get(finish);
+    while (step != null) {
+      // Piece together the steps of the path
+      steps.add(new Step<V, Double>(step.getKey(), curr, step.getValue()));
+      curr = step.getKey();
+      step = previous.get(curr);
+    }
+    // Path currently in reverse order, reverse it
+    Collections.reverse(steps);
+    return steps;
+  }
+
   /*
    * Edge comaparator for the purposes of the PriorityQueue in Dijkstra's
    * algorithm.

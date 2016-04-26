@@ -1,6 +1,7 @@
 package edu.brown.cs.nbrennan.graph;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import com.google.common.collect.HashMultimap;
@@ -13,7 +14,7 @@ import com.google.common.collect.Multimap;
  * @param <V> A vertex type.
  * @param <E> An edge type, which should be Comparable.
  */
-public class WeightedGraph<V, E extends Comparable<E>> {
+public class WeightedGraph<V, E extends Comparable<E>> implements Iterable<V> {
   private Map<V, Multimap<V, EdgeWeight<E>>> graph;
 
   /**
@@ -144,4 +145,14 @@ public class WeightedGraph<V, E extends Comparable<E>> {
   public boolean isVertex(V vertex) {
     return graph.containsKey(vertex);
   }
+
+  public int size() {
+    return graph.keySet().size();
+  }
+
+  @Override
+  public Iterator<V> iterator() {
+    return graph.keySet().iterator();
+  }
+
 }
