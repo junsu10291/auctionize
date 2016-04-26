@@ -14,11 +14,12 @@ function initMap() {
         lng: position.coords.longitude
       };
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 17,
+        zoom: 15,
         center: loc
       });
       $.post("/jobs", {}, function(responseJSON) {
         jobs = JSON.parse(responseJSON);
+        console.log(jobs);
         for (var key in jobs) {
           newMarker(jobs[key], 1, true);
         }
@@ -28,11 +29,12 @@ function initMap() {
 }
 
 function newMarker(job, opacity, drop) {
-  console.log(job.id);
   var oldMarker = markers[job.id];
   if (oldMarker != undefined) {
     oldMarker.setMap(null);
   }
+  var size = (5/7)*job.profit + 50;
+  var flag = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
   var marker = new google.maps.Marker({
     position: {lat: job.lat, lng: job.lng},
     map: map,
@@ -42,16 +44,7 @@ function newMarker(job, opacity, drop) {
 //      origin: new google.maps.Point(0, 0),
 //      anchor: new google.maps.Point(0, 0),
 //      scaledSize: new google.maps.Size(job.profit*2, job.profit*2),
-//    },
-    icon: {
-      path: google.maps.SymbolPath.CIRCLE,
-      scale: job.profit/2,
-      fillColor: "red",
-      fillOpacity: opacity,
-      strokeOpacity: opacity,
-      strokeWeight: 1
-    },
-    title: "job"
+//    }
   });
   markers[job.id] = marker;
   if (drop) {
@@ -119,3 +112,4 @@ function inArray(item, array) {
   }
   return false;
 }
+
