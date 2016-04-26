@@ -5,6 +5,8 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/chosen.min.css">
     <style>
       html, body {
         height: 100%;
@@ -77,6 +79,7 @@
 		<li class="navButton"><div id="status"></div></li>
   	</ul>
   	<div class="container">
+
   	    <div id ="sidebar">
           <img id="profilePicture">
           <div id="userName"></div>
@@ -96,7 +99,8 @@
             </select>
           </div>  
         </div>
-  	    <div id="timeline"></div>
+
+	     <div id="timeline"></div>
   	   <div id="map"></div>
 
     <script src="js/jquery-2.1.1.js"></script>
