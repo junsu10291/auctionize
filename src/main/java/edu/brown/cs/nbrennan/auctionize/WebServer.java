@@ -90,7 +90,6 @@ public class WebServer {
   private class JobsHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
-      System.out.println("coming into jobs handler!!!");
       return GSON.toJson(jobs);
     }
   }
