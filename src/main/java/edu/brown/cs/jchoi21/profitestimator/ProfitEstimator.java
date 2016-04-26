@@ -1,7 +1,6 @@
 package edu.brown.cs.jchoi21.profitestimator;
 
 import java.util.List;
-import java.util.Map;
 
 import com.uber.sdk.rides.client.Response;
 import com.uber.sdk.rides.client.Session;
@@ -19,6 +18,11 @@ public class ProfitEstimator {
   public ProfitEstimator() {
   }
 
+  private static UberRidesSyncService service = UberRidesServices
+      .createSync(new Session.Builder()
+          .setServerToken("_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu")
+          .setEnvironment(Environment.PRODUCTION).build());
+
   public static double estimateProfit(LatLng latlng, Job job) {
     float startLat = (float) latlng.get_lat();
     float startLng = (float) latlng.get_lng();
@@ -28,15 +32,6 @@ public class ProfitEstimator {
     double pay = job.profit;
     double uberPriceEstimate = 0.0;
 
-    // create session
-    Session session = new Session.Builder()
-        .setServerToken("_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu")
-        .setEnvironment(Environment.PRODUCTION).build();
-
-    // create service
-    UberRidesSyncService service = UberRidesServices.createSync(session);
-
-    //
     try {
       Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
           startLng, jobLat, jobLng);
@@ -66,15 +61,6 @@ public class ProfitEstimator {
 
     int uberTimeEstimate = 0;
 
-    // create session
-    Session session = new Session.Builder()
-        .setServerToken("_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu")
-        .setEnvironment(Environment.PRODUCTION).build();
-
-    // create service
-    UberRidesSyncService service = UberRidesServices.createSync(session);
-
-    //
     try {
       Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
           startLng, jobLat, jobLng);

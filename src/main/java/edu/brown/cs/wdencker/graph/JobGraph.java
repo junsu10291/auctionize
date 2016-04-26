@@ -1,4 +1,4 @@
-package edu.brown.cs.nbrennan.graph;
+package edu.brown.cs.wdencker.graph;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -21,6 +21,25 @@ public class JobGraph extends WeightedGraph<Job, Double> {
           if (job2.start.isAfter(job1EndPlusTravel)) {
             addDirectedEdge(job1, job2, new JobWeight(job1, job2));
           }
+        }
+      }
+    }
+  }
+
+  @Override
+  public void addVertex(Job node) {
+    super.addVertex(node);
+    for (Job job : this) {
+      if (!node.equals(job)) {
+        LocalTime jobEndPlusTravel = job.end.plusSeconds(
+            ProfitEstimator.estimateTime(new LatLng(node.lat, node.lng), job));
+        if (node.start.isAfter(jobEndPlusTravel)) {
+          addDirectedEdge(job, node, new JobWeight(job, node));
+        }
+        LocalTime nodeEndPlusTravel = node.end.plusSeconds(
+            ProfitEstimator.estimateTime(new LatLng(job.lat, job.lng), node));
+        if (job.start.isAfter(nodeEndPlusTravel)) {
+          addDirectedEdge(node, job, new JobWeight(node, job));
         }
       }
     }
