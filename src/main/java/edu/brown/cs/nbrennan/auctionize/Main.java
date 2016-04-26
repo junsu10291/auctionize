@@ -4,11 +4,19 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.gson.Gson;
+import com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory;
 
-
+import edu.brown.cs.nbrennan.job.Job;
 import edu.brown.cs.nbrennan.parser.Parser;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
@@ -22,15 +30,16 @@ import spark.Spark;
 import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
 
-
 public class Main {
+  private static final Gson JSON = new Gson();
+
   public static void main(String[] args) {
     try {
       Parser parser = new Parser("education");
     } catch (IOException e) {
       System.out.println("Error fetching url");
     }
-    
+
     new Main(args).run();
   }
 
@@ -49,14 +58,35 @@ public class Main {
     OptionSet options = parser.parse(args);
 
     db = options.valueOf(fileSpec);
-    
 
-    new WebServer();
+    new WebServer(getJobs());
   }
 
-
-
-
-
-
+  private Map<String, Job> getJobs() {
+    Map<String, Job> jobs = new HashMap<>();
+    try (Connection conn = DriverManager
+        .getConnection("jdbc:sqlite:auctionize.db")) {
+      String query = "SELECT * from jobs;";
+      try (PreparedStatement ps = conn.prepareStatement(query)) {
+        try (ResultSet rs = ps.executeQuery()) {
+          while (rs.next()) {
+            String id = rs.getString(1);
+            Job job = new Job.Builder().id(id).title(rs.getString(2))
+                .category(rs.getString(3)).lat(rs.getDouble(4))
+                .lng(rs.getDouble(5)).start(rs.getTime(6).toLocalTime())
+                .end(rs.getTime(7).toLocalTime()).profit(rs.getDouble(8))
+                .build();
+            jobs.put(id, job);
+          }
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
+        }
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+    return jobs;
+  }
 }
