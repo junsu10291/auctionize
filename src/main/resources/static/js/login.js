@@ -77,16 +77,14 @@ var connected = 0;
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+      //document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
       console.log(response.id);
 
       document.getElementById("profilePicture").setAttribute("src", "http://graph.facebook.com/" + response.id + "/picture?type=large");
-      $("#profilePicture").show()
+      $("#profilePicture").css({"display":"block"});
       $("#userName").text(response.name)
-      $("#jobCategory").show()
-      $("#sidebar").css({"display":"inline-block"});
+      $("#jobCategory").css({"display":"table"});
       $.post("/authenticate", {userId : response.id}, function(respoonse){
-
       });
     });
   }

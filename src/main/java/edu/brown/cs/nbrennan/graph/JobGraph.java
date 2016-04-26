@@ -1,32 +1,28 @@
 package edu.brown.cs.nbrennan.graph;
 
+import java.time.LocalTime;
 import java.util.List;
 
-import edu.brown.cs.nbrennan.parser.JobEntry;
+import edu.brown.cs.jchoi21.profitestimator.LatLng;
+import edu.brown.cs.jchoi21.profitestimator.ProfitEstimator;
+import edu.brown.cs.nbrennan.job.Job;
 
-public class JobGraph extends WeightedGraph<JobEntry, Double> {
-  public JobGraph() {
+public class JobGraph extends WeightedGraph<Job, Double> {
+
+  public JobGraph(List<Job> jobs) {
     super();
-  }
-
-  public JobGraph(List<JobEntry> jobs) {
     for (int i = 0; i < jobs.size(); i++) {
       for (int j = 0; j < jobs.size(); j++) {
         if (i != j) {
-          JobEntry job1 = jobs.get(i);
-          JobEntry job2 = jobs.get(j);
-          addDirectedEdge(job1, job2, new JobWeight(job1, job2));
+          Job job1 = jobs.get(i);
+          Job job2 = jobs.get(j);
+          LocalTime job1EndPlusTravel = job1.end.plusSeconds(ProfitEstimator
+              .estimateTime(new LatLng(job2.lat, job2.lng), job1));
+          if (job2.start.isAfter(job1EndPlusTravel)) {
+            addDirectedEdge(job1, job2, new JobWeight(job1, job2));
+          }
         }
       }
     }
   }
-
-  @Override
-  public void addDirectedEdge(JobEntry from, JobEntry to,
-      EdgeWeight<Double> weight) {
-    if (from.get_date().compareTo(to.get_date()) < 0) {
-      super.addDirectedEdge(from, to, weight);
-    }
-  }
-
 }

@@ -18,6 +18,8 @@ input[type="number"] {
     text-align: center;
     color: white;
     margin-top: 10px;
+    width: 100%;
+    display: table;
 }
 
 #jobCategory {
@@ -25,13 +27,14 @@ input[type="number"] {
     color: white;
     text-align: center;
     margin-top: 30px;
+    width: 100%;
 }
 
 #togglebar {
     width: 1%;
     margin-left: -4px;
     height: 100%;
-    background-color: blue;
+    background-color: #00A1FF;
     display: inline-block;
 }
 
@@ -62,18 +65,15 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
 .container { 
-    position:absolute; 
     width: 100%;
-    height: 90%;
+    height: 91%;
 }
+
 #navBar {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
     background-color: #333;
-    height: 14%;
+    height: 9%;
 }
 .navButton {
     float: left;
@@ -86,8 +86,6 @@ html, body {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    width: 100%;
-    height: 100%;
     font-size: 175%
 }
 .navButton a:hover:not(.active) {
@@ -98,11 +96,31 @@ html, body {
 }
 
 #sidebar {
-    display: none;
     position:relative;
-    top:-351px;
     width:19%;
     background:#000;
-    color:white;
     height: 100%;
+    display: inline-block;
 }  
+
+#pageContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.fb_iframe_widget {
+    display: table !important;
+    width: 100%;
+    text-align: center;
+}
+
+#floatingPanel {
+    position: absolute;
+    width:100px;
+    height:29px;
+    top: 223px;
+    left:724px;
+    z-index: 1;
+    display: none;
+}

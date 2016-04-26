@@ -15,6 +15,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 
+import edu.brown.cs.nbrennan.graph.JobGraph;
 import edu.brown.cs.nbrennan.job.Job;
 import freemarker.template.Configuration;
 import spark.ExceptionHandler;
@@ -32,10 +33,12 @@ public class WebServer {
   private final static Gson GSON = new Gson();
   private List<BigInteger> activeUsers;
   private Map<String, Job> jobs;
+  private JobGraph graph;
 
   public WebServer(Map<String, Job> jobs) {
     this.jobs = jobs;
     activeUsers = Collections.synchronizedList(new ArrayList<BigInteger>());
+    this.graph = new JobGraph(new ArrayList<>(jobs.values()));
     this.runSparkServer();
   }
 
@@ -87,6 +90,7 @@ public class WebServer {
   private class JobsHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
+      System.out.println("coming into jobs handler!!!");
       return GSON.toJson(jobs);
     }
   }
