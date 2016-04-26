@@ -36,20 +36,20 @@ function initMap() {
         });
         drawingManager.setMap(map);
 
-      google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-        regionDrawable = false;
-        $("#floatingPanel").show();
-        region = event.overlay;
-        drawingManager.setOptions({
-          drawingControl: false,
-          drawingMode: null
-        });
+        google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+          regionDrawable = false;
+          $("#floatingPanel").show();
+          region = event.overlay;
+          drawingManager.setOptions({
+            drawingControl: false,
+            drawingMode: null
+          });
 
-        if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
-          var bounds = event.overlay.getBounds();
-          regionNorthWestBound = [bounds.R.j, bounds.j.j];
-          regionSouthEastBound = [bounds.R.R, bounds.j.R];
-        }
+          if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
+            var bounds = event.overlay.getBounds();
+            regionNorthWestBound = [bounds.R.j, bounds.j.j];
+            regionSouthEastBound = [bounds.R.R, bounds.j.R];
+          }
         });
 
       $.post("/jobs", {}, function(responseJSON) {
@@ -76,6 +76,9 @@ function removeRegion() {
 function filterCategory(category) {
   $.each(jobs, function(index, value){
     //do something
+    if (value.category == category) {
+
+    }
   });
 }
 

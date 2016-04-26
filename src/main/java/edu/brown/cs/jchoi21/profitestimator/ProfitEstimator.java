@@ -15,37 +15,34 @@ import com.uber.sdk.rides.client.model.PriceEstimatesResponse;
 
 import edu.brown.cs.nbrennan.job.Job;
 
-
 public class ProfitEstimator {
   public ProfitEstimator() {
   }
-  
-  public static double estimateProfit(LatLng latlng, Job job) {     
+
+  public static double estimateProfit(LatLng latlng, Job job) {
     float startLat = (float) latlng.get_lat();
     float startLng = (float) latlng.get_lng();
     float jobLat = (float) job.lat;
     float jobLng = (float) job.lng;
-    
-    double pay = job.profit;    
+
+    double pay = job.profit;
     double uberPriceEstimate = 0.0;
-    
-    
-    
+
     // create session
     Session session = new Session.Builder()
-            .setServerToken("_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu")
-            .setEnvironment(Environment.PRODUCTION)
-            .build();
-    
+        .setServerToken("_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu")
+        .setEnvironment(Environment.PRODUCTION).build();
+
     // create service
     UberRidesSyncService service = UberRidesServices.createSync(session);
-    
+
     //
     try {
-      Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat, startLng, jobLat, jobLng);
+      Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
+          startLng, jobLat, jobLng);
       PriceEstimatesResponse pricesEstimateRes = hi.getBody();
       List<PriceEstimate> prices = pricesEstimateRes.getPrices();
-      
+
       for (PriceEstimate priceEstimate : prices) {
         if (priceEstimate.getDisplayName().equals("uberX")) {
           uberPriceEstimate = priceEstimate.getHighEstimate();
@@ -55,10 +52,45 @@ public class ProfitEstimator {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    
+
     double profit = pay - uberPriceEstimate;
-        
+
     return profit;
   }
-  
+
+  public static int estimateTime(LatLng latlng, Job job) {
+    float startLat = (float) latlng.get_lat();
+    float startLng = (float) latlng.get_lng();
+    float jobLat = (float) job.lat;
+    float jobLng = (float) job.lng;
+
+    int uberTimeEstimate = 0;
+
+    // create session
+    Session session = new Session.Builder()
+        .setServerToken("_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu")
+        .setEnvironment(Environment.PRODUCTION).build();
+
+    // create service
+    UberRidesSyncService service = UberRidesServices.createSync(session);
+
+    //
+    try {
+      Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
+          startLng, jobLat, jobLng);
+      PriceEstimatesResponse pricesEstimateRes = hi.getBody();
+      List<PriceEstimate> prices = pricesEstimateRes.getPrices();
+
+      for (PriceEstimate priceEstimate : prices) {
+        if (priceEstimate.getDisplayName().equals("uberX")) {
+          uberTimeEstimate = priceEstimate.getDuration();
+        }
+      }
+    } catch (ApiException | NetworkException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    return uberTimeEstimate;
+  }
+
 }

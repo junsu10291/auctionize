@@ -113,6 +113,7 @@ html, body {
     display: table !important;
     width: 100%;
     text-align: center;
+<<<<<<< HEAD
 }
 
 #floatingPanel {
@@ -123,4 +124,6 @@ html, body {
     left:724px;
     z-index: 1;
     display: none;
+=======
+>>>>>>> c8e429615892dde58f3602814743a3c7f7f48435
 }
