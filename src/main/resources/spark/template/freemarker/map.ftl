@@ -9,43 +9,37 @@
     <link rel="stylesheet" href="css/chosen.min.css">
   </head>
   <body>
-  	<ul id="navBar">
-  		<li class="navButton"><a class="active" href="#home">Home</a></li>
-		<li class="navButton"><a href="#about">About</a></li>
-		<li id="profile" class="navButton"><a href="#profile">MyProfile</a></li>
-		<li class="navButton"> 
-			<fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge">
-		    </fb:login-button>
-		</li>
-		<li class="navButton"><div id="status"></div></li>
-  	</ul>
-  	<div class="container">
-
-  	    <div id ="sidebar">
-          <img id="profilePicture">
-          <div id="userName"></div>
-          <div id="jobCategory">
-            <select class="chzn-select" multiple="true" name="faculty">
-              <option value="landscaping">Landscaping</option>
-              <option value="cleaner">Cleaner</option>
-              <option value="courier">Courier</option>
-              <option value="painting">Painting</option>
-              <option value="modeling">Modeling</option>
-              <option value="moving">Moving</option>
-              <option value="construction">Construction</option>
-              <option value="pet">Pet</option>
-              <option value="babysitting">Babysitting</option>
-              <option value="assembler">Assember</option>
-              <option value="misc">Miscellaneous</option>
-            </select>
-          </div>  
+    <div id="pageContainer">
+    	<div id="navBar">
+    		<div class="navButton"><a class="active" href="#home">Home</a></div>
+    	</div>
+    	<div class="container">
+    	    <div id ="sidebar">
+            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge"></fb:login-button>
+            <img id="profilePicture">
+            <div id="userName"></div>
+            <div id="jobCategory">
+              <select class="chzn-select" multiple="true" name="faculty">
+                <option value="landscaping">Landscaping</option>
+                <option value="cleaner">Cleaner</option>
+                <option value="courier">Courier</option>
+                <option value="painting">Painting</option>
+                <option value="modeling">Modeling</option>
+                <option value="moving">Moving</option>
+                <option value="construction">Construction</option>
+                <option value="pet">Pet</option>
+                <option value="babysitting">Babysitting</option>
+                <option value="assembler">Assember</option>
+                <option value="misc">Miscellaneous</option>
+              </select>
+            </div>  
+          </div>
+          <div id ="togglebar"></div>
+        <div id="mapContainer">
+          <div id="timeline"></div>
+          <div id="map"></div>
         </div>
-        <div id ="togglebar"></div>
-      <div id="mapContainer">
-        <div id="timeline"></div>
-        <div id="map"></div>
-      </div>
-	     
+	   </div>
 
     <script src="js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
