@@ -6,18 +6,18 @@ public class Job {
 
   public final String id;
   public final String title;
-  public final String description;
+  public final String category;
   public final double lat;
   public final double lng;
   public final LocalTime start;
   public final LocalTime end;
   public final double profit;
 
-  private Job(String id, String title, String description, double lat,
+  private Job(String id, String title, String category, double lat,
       double lng, LocalTime start, LocalTime end, double profit) {
     this.id = id;
     this.title = title;
-    this.description = description;
+    this.category = category;
     this.lat = lat;
     this.lng = lng;
     this.start = start;
@@ -29,7 +29,7 @@ public class Job {
 
     private String id = "";
     private String title = "";
-    private String description = "";
+    private String category = "";
     private double lat = 0;
     private double lng = 0;
     private LocalTime start = LocalTime.of(0, 0);
@@ -40,7 +40,7 @@ public class Job {
     }
 
     public Job build() {
-      return new Job(id, title, description, lat, lng, start, end, profit);
+      return new Job(id, title, category, lat, lng, start, end, profit);
     }
 
     public Builder id(String id) {
@@ -53,8 +53,8 @@ public class Job {
       return this;
     }
 
-    public Builder description(String description) {
-      this.description = description;
+    public Builder category(String category) {
+      this.category = category;
       return this;
     }
 
