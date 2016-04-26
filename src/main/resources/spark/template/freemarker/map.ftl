@@ -9,9 +9,11 @@
     <link rel="stylesheet" href="css/chosen.min.css">
   </head>
   <body>
+
     <div id="pageContainer">
     	<div id="navBar">
     		<div class="navButton"><a class="active" href="#home">Home</a></div>
+        <div class="navButton" id="post"><a href="/post">Post</a></div>
     	</div>
     	<div class="container">
     	    <div id ="sidebar">
@@ -40,6 +42,7 @@
           <div id="map"></div>
         </div>
 	   </div>
+   </div>
 
     <script src="js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
