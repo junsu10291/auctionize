@@ -113,4 +113,17 @@ html, body {
     display: table !important;
     width: 100%;
     text-align: center;
+<<<<<<< HEAD
+}
+
+#floatingPanel {
+    position: absolute;
+    width:100px;
+    height:29px;
+    top: 223px;
+    left:724px;
+    z-index: 1;
+    display: none;
+=======
+>>>>>>> c8e429615892dde58f3602814743a3c7f7f48435
 }

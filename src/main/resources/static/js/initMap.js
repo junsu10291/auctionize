@@ -3,6 +3,12 @@ var jobs = {};
 var markers = {};
 var hours = new Date().getHours();
 var minutes = new Date().getMinutes();
+var drawingManager;
+var region;
+var regionDrawable = true;
+var regionNorthWestBound = [];
+var regionSouthEastBound = [];
+var markerJobDict = {};
 
 function initMap() {
   var loc = {lat: 41.826130, lng: -71.403};
@@ -14,12 +20,40 @@ function initMap() {
         lng: position.coords.longitude
       };
       map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
+        zoom: 17,
         center: loc
       });
+
+      drawingManager = new google.maps.drawing.DrawingManager({
+          drawingMode: null,
+          drawingControl: true,
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: [
+              google.maps.drawing.OverlayType.RECTANGLE
+            ]
+          },
+        });
+        drawingManager.setMap(map);
+
+        google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+          regionDrawable = false;
+          $("#floatingPanel").show();
+          region = event.overlay;
+          drawingManager.setOptions({
+            drawingControl: false,
+            drawingMode: null
+          });
+
+          if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
+            var bounds = event.overlay.getBounds();
+            regionNorthWestBound = [bounds.R.j, bounds.j.j];
+            regionSouthEastBound = [bounds.R.R, bounds.j.R];
+          }
+        });
+
       $.post("/jobs", {}, function(responseJSON) {
         jobs = JSON.parse(responseJSON);
-        console.log(jobs);
         for (var key in jobs) {
           newMarker(jobs[key], 1, true);
         }
@@ -28,13 +62,33 @@ function initMap() {
   }
 }
 
+function removeRegion() {
+  region.setMap(null);
+  regionDrawable = true;
+
+  $("#floatingPanel").hide();
+
+  drawingManager.setOptions({
+    drawingControl: true
+  });
+}
+
+function filterCategory(category) {
+  $.each(jobs, function(index, value){
+    //do something
+    if (value.category == category) {
+
+    }
+  });
+}
+
 function newMarker(job, opacity, drop) {
+
+  console.log(job);
   var oldMarker = markers[job.id];
   if (oldMarker != undefined) {
     oldMarker.setMap(null);
   }
-  var size = (5/7)*job.profit + 50;
-  var flag = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
   var marker = new google.maps.Marker({
     position: {lat: job.lat, lng: job.lng},
     map: map,
@@ -44,7 +98,16 @@ function newMarker(job, opacity, drop) {
 //      origin: new google.maps.Point(0, 0),
 //      anchor: new google.maps.Point(0, 0),
 //      scaledSize: new google.maps.Size(job.profit*2, job.profit*2),
-//    }
+//    },
+    icon: {
+      path: google.maps.SymbolPath.CIRCLE,
+      scale: job.profit/2,
+      fillColor: "red",
+      fillOpacity: opacity,
+      strokeOpacity: opacity,
+      strokeWeight: 1
+    },
+    title: "job"
   });
   markers[job.id] = marker;
   if (drop) {
@@ -68,7 +131,6 @@ function path() {
     directions(path);
   });
 }
-
 
 function directions(path) {
   var directionsService = new google.maps.DirectionsService();
@@ -113,4 +175,3 @@ function inArray(item, array) {
   }
   return false;
 }
-

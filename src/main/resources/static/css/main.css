@@ -114,3 +114,13 @@ html, body {
     width: 100%;
     text-align: center;
 }
+
+#floatingPanel {
+    position: absolute;
+    width:100px;
+    height:29px;
+    top: 223px;
+    left:724px;
+    z-index: 1;
+    display: none;
+}

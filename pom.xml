@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.brown.cs</groupId>
   <artifactId>auctionize</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
   <version>1.0</version>
  
   <properties>
