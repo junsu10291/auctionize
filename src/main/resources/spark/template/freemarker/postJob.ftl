@@ -15,6 +15,8 @@
         position:absolute; 
         width: 100%;
         height: 90%;
+        background-color: #1a1a1a;
+        color: white;
       }
       #navBar {
         list-style-type: none;
@@ -63,11 +65,15 @@
     height: 75%;
     float: right;
       }
+      #postForm{
+        width: 50%;
+        margin: 0 auto; 
+      }
     </style>
   </head>
   <body>
     <ul id="navBar">
-      <li class="navButton"><a class="active" href="#home">Home</a></li>
+      <li class="navButton"><a class="active" href="/map">Home</a></li>
     <li class="navButton"><a href="#about">About</a></li>
     <li class="navButton"><a href="/post">Post</a></li>
     <li class="navButton"> 
@@ -77,7 +83,23 @@
     <li class="navButton"><div id="status"></div></li>
     </ul>
     <div class="container">
-       
+      <div id="postForm">
+        <h1>Post your job!</h2>
+       <input type="text" placeholder="Enter job title"> </input>
+       <select class="chzn-select" name="faculty">
+              <option value="landscaping">Landscaping</option>
+              <option value="cleaner">Cleaner</option>
+              <option value="courier">Courier</option>
+              <option value="painting">Painting</option>
+              <option value="modeling">Modeling</option>
+              <option value="moving">Moving</option>
+              <option value="construction">Construction</option>
+              <option value="pet">Pet</option>
+              <option value="babysitting">Babysitting</option>
+              <option value="assembler">Assember</option>
+              <option value="misc">Miscellaneous</option>
+            </select>
+      </div>
     </div>
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/login.js"></script>

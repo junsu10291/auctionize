@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableMap;
 
 import edu.brown.cs.jchoi21.parser.DatabaseCreator;
 import edu.brown.cs.jchoi21.parser.Preprocessor;
+import edu.brown.cs.nbrennan.auctionize.WebServer;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -25,7 +26,7 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 public class Main {
   public static void main(String[] args) {
-    DatabaseCreator.create();
+    //DatabaseCreator.create();
     new Main(args).run();
   }
 
@@ -49,6 +50,6 @@ public class Main {
 //      System.exit(1);
 //    }
 
-    //new WebServer();
+    new WebServer();
   }
 }

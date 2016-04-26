@@ -52,7 +52,7 @@ public class WebServer {
 	    Spark.get("/map", new MapHandler(), freeMarker);
 	    Spark.post("/jobs", new JobsHandler());
 	    Spark.post("/path", new PathHandler());
-	    Spark.get("/map", new PostHandler(), freeMarker);
+	    Spark.get("/post", new PostHandler(), freeMarker);
 	}
 	
 	/**

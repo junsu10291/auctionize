@@ -8,7 +8,7 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 
-
+import edu.brown.cs.jchoi21.parser.DatabaseCreator;
 import edu.brown.cs.nbrennan.parser.Parser;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
@@ -50,8 +50,8 @@ public class Main {
 
     db = options.valueOf(fileSpec);
     
-
-    new WebServer();
+    DatabaseCreator.create();
+    //new WebServer();
   }
 
 

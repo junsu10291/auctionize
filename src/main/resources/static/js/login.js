@@ -84,7 +84,6 @@ var connected = 0;
       $("#profilePicture").show()
       $("#userName").text(response.name)
       $("#jobCategory").show()
-
       $.post("/authenticate", {userId : response.id}, function(respoonse){
 
       });
