@@ -77,17 +77,9 @@
     <li class="navButton"><div id="status"></div></li>
     </ul>
     <div class="container">
-        <div id ="sidebar"></div>
-        <div id="timeline"></div>
-      <div id="map"></div>
+       
     </div>
     <script src="js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="js/timeline.js"></script>
-    <script src="js/initMap.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP_cgI8zBhAlb5qicByyn9vNjHzU0puYY&callback=initMap"
-    async defer></script>
-    
     <script src="js/login.js"></script>
   </body>
 </html>
