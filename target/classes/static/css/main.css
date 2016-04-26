@@ -1,3 +1,32 @@
 input[type="number"] {
   width: 3em;
 }
+
+#profilePicture {
+    width: 150px;
+    height: 150px;
+    margin-left: 48px;
+    margin-top: 22px;
+    border-radius: 40px;
+    border: 1px solid white;
+    display: none;
+}
+
+#userName {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    margin-top: 10px;
+}
+
+#jobCategory {
+    display: none;
+    color: white;
+    text-align: center;
+    margin-top: 30px;
+}
+
+li {
+    list-style-type: none;
+}

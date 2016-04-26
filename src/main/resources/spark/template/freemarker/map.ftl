@@ -5,6 +5,8 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/chosen.min.css">
     <style>
       html, body {
         height: 100%;
@@ -80,10 +82,33 @@
 		<li class="navButton"><div id="status"></div></li>
   	</ul>
   	<div class="container">
+<<<<<<< HEAD
+  	    <div id ="sidebar">
+          <img id="profilePicture">
+          <div id="userName"></div>
+          <div id="jobCategory">
+            <select class="chzn-select" multiple="true" name="faculty">
+              <option value="landscaping">Landscaping</option>
+              <option value="cleaner">Cleaner</option>
+              <option value="courier">Courier</option>
+              <option value="painting">Painting</option>
+              <option value="modeling">Modeling</option>
+              <option value="moving">Moving</option>
+              <option value="construction">Construction</option>
+              <option value="pet">Pet</option>
+              <option value="babysitting">Babysitting</option>
+              <option value="assembler">Assember</option>
+              <option value="misc">Miscellaneous</option>
+            </select>
+          </div>
+        </div>
+=======
   	    <div id ="sidebar"></div>
   	    <div id="timeline"></div>
+>>>>>>> c4bc202d8c7a5e84b2897a509730531d5bb12edd
     	<div id="map"></div>
     </div>
+
     <script src="js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="js/timeline.js"></script>
@@ -92,7 +117,18 @@
     async defer></script>
     
     <script src="js/login.js"></script>
+<<<<<<< HEAD
+    <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+          $(".chzn-select").chosen({
+            width: "230px",
+            placeholder_text_multiple: "Select Category"});
+      });
+    </script>
+=======
     <script src="js/home.js"></script>
+>>>>>>> c4bc202d8c7a5e84b2897a509730531d5bb12edd
   </body>
 </html>
 

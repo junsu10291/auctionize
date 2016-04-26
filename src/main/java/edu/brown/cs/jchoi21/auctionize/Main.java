@@ -44,17 +44,11 @@ public class Main {
     OptionSet options = parser.parse(args);
 
     db = options.valueOf(fileSpec);
-    if (db == null) {
-      System.out.println("ERROR: Please specify a database file");
-      System.exit(1);
-    }
+//    if (db == null) {
+//      System.out.println("ERROR: Please specify a database file");
+//      System.exit(1);
+//    }
 
     //new WebServer();
   }
-
-
-
-
-
-
 }

@@ -8,11 +8,12 @@
     <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
+    <div>
     <h1>Auctionize Login</h1>
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true">
     </fb:login-button>
     <div id="status"></div>
-    <script src="js/jquery-2.1.1.js"></script>
+
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
   </body>
