@@ -52,6 +52,7 @@ public class WebServer {
 	    Spark.get("/map", new MapHandler(), freeMarker);
 	    Spark.post("/jobs", new JobsHandler());
 	    Spark.post("/path", new PathHandler());
+	    Spark.get("/map", new PostHandler(), freeMarker);
 	}
 	
 	/**
@@ -73,8 +74,16 @@ public class WebServer {
 		      Map<String, Object> variables = ImmutableMap.of();
 		      return new ModelAndView(variables, "map.ftl");
 		    }
-		  }
+	  }
 		  
+	  private static class PostHandler implements TemplateViewRoute {
+		    @Override
+		    public ModelAndView handle(Request req, Response res) {
+		      Map<String, Object> variables = ImmutableMap.of();
+		      return new ModelAndView(variables, "postJob.ftl");
+		    }
+	  }
+	  
 	  private static class JobsHandler implements Route {
 	    @Override
 	    public Object handle(final Request req, final Response res) {
