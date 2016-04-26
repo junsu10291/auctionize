@@ -5,8 +5,6 @@
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/chosen.min.css">
     <style>
       html, body {
         height: 100%;
@@ -19,54 +17,51 @@
         height: 90%;
       }
       #navBar {
-      	list-style-type: none;
-	    margin: 0;
-	    padding: 0;
-	    overflow: hidden;
-	    background-color: #333;
-	    float: top;
-	    height: 10%;
+        list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      float: top;
+      height: 10%;
       }
       .navButton {
-    	float: left;
-    	height: 100%;
-    	width: 150px;
-	  }
-	  .navButton a {
-	    display: block;
-	    color: white;
-	    text-align: center;
-	    padding: 14px 16px;
-	    text-decoration: none;
-	    width: 100%;
-	    height: 100%;
-	    font-size: 175%
-	  }
-    #status{
-      font-size: 125%;
-      color:white;
+      float: left;
+      height: 100%;
+      width: 150px;
     }
-	  .navButton a:hover:not(.active) {
-	    background-color: #111;
-	  }
-	  .active {
-	    background-color: #4CAF50;
-	  }
+    .navButton a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      width: 100%;
+      height: 100%;
+      font-size: 175%
+    }
+    .navButton a:hover:not(.active) {
+      background-color: #111;
+    }
+    .active {
+      background-color: #4CAF50;
+    }
       #sidebar {
         position:absolute;
         top:0; bottom:0; left:0;
         width:20%;
         background:#000;
+        color:white;
       }  
       #timeline {
-		width:80%;
-		height: 20%;
-		float: right;
+    width:80%;
+    height: 25%;
+    float: right;
       }
       #map {
-		width:80%;
-		height: 80%;
-		float: right;
+    width:80%;
+    height: 75%;
+    float: right;
       }
     </style>
   </head>
@@ -104,9 +99,6 @@
   	    <div id="timeline"></div>
   	   <div id="map"></div>
 
-
-    </div>
-
     <script src="js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="js/timeline.js"></script>
@@ -116,6 +108,7 @@
     <script src="js/login.js"></script>
     <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
     <script src="js/home.js"></script>
+
   </body>
 </html>
 
