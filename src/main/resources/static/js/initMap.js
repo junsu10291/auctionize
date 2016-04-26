@@ -69,6 +69,7 @@ function path() {
   });
 }
 
+
 function directions(path) {
   var directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
