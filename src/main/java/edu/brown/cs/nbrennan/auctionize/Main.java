@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,7 +18,10 @@ import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory;
 
+import edu.brown.cs.jchoi21.parser.DatabaseCreator;
+
 import edu.brown.cs.nbrennan.job.Job;
+
 import edu.brown.cs.nbrennan.parser.Parser;
 import freemarker.template.Configuration;
 import joptsimple.OptionParser;
@@ -58,12 +63,12 @@ public class Main {
     OptionSet options = parser.parse(args);
 
     db = options.valueOf(fileSpec);
-
     new WebServer(getJobs());
   }
 
   private Map<String, Job> getJobs() {
     Map<String, Job> jobs = new HashMap<>();
+    DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("H:mm");
     try (Connection conn = DriverManager
         .getConnection("jdbc:sqlite:auctionize.db")) {
       String query = "SELECT * from jobs;";
@@ -73,8 +78,8 @@ public class Main {
             String id = rs.getString(1);
             Job job = new Job.Builder().id(id).title(rs.getString(2))
                 .category(rs.getString(3)).lat(rs.getDouble(4))
-                .lng(rs.getDouble(5)).start(rs.getTime(6).toLocalTime())
-                .end(rs.getTime(7).toLocalTime()).profit(rs.getDouble(8))
+                .lng(rs.getDouble(5)).start(LocalTime.parse(rs.getString(6), timeFormat))
+                .end(LocalTime.parse(rs.getString(7), timeFormat)).profit(rs.getDouble(8))
                 .build();
             jobs.put(id, job);
           }

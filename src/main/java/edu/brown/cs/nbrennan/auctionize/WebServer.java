@@ -42,6 +42,7 @@ public class WebServer {
     this.runSparkServer();
   }
 
+
   private void runSparkServer() {
     Spark.externalStaticFileLocation("src/main/resources/static");
     Spark.exception(Exception.class, new ExceptionPrinter());
@@ -76,6 +77,14 @@ public class WebServer {
     }
   }
 
+  static class PostHandler implements TemplateViewRoute {
+    @Override
+    public ModelAndView handle(Request req, Response res) {
+      Map<String, Object> variables = ImmutableMap.of();
+      return new ModelAndView(variables, "postJob.ftl");
+    }
+  }
+  
   private class JobsHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
