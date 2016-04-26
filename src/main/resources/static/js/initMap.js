@@ -3,6 +3,12 @@ var jobs = {};
 var markers = {};
 var hours = new Date().getHours();
 var minutes = new Date().getMinutes();
+var drawingManager;
+var region;
+var regionDrawable = true;
+var regionNorthWestBound = [];
+var regionSouthEastBound = [];
+var markerJobDict = {};
 
 function initMap() {
   var loc = {lat: 41.826130, lng: -71.403};
@@ -17,6 +23,35 @@ function initMap() {
         zoom: 17,
         center: loc
       });
+
+      drawingManager = new google.maps.drawing.DrawingManager({
+          drawingMode: null,
+          drawingControl: true,
+          drawingControlOptions: {
+            position: google.maps.ControlPosition.TOP_CENTER,
+            drawingModes: [
+              google.maps.drawing.OverlayType.RECTANGLE
+            ]
+          },
+        });
+        drawingManager.setMap(map);
+
+      google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+        regionDrawable = false;
+        $("#floatingPanel").show();
+        region = event.overlay;
+        drawingManager.setOptions({
+          drawingControl: false,
+          drawingMode: null
+        });
+
+        if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
+          var bounds = event.overlay.getBounds();
+          regionNorthWestBound = [bounds.R.j, bounds.j.j];
+          regionSouthEastBound = [bounds.R.R, bounds.j.R];
+        }
+        });
+
       $.post("/jobs", {}, function(responseJSON) {
         jobs = JSON.parse(responseJSON);
         for (var key in jobs) {
@@ -27,8 +62,26 @@ function initMap() {
   }
 }
 
+function removeRegion() {
+  region.setMap(null);
+  regionDrawable = true;
+
+  $("#floatingPanel").hide();
+
+  drawingManager.setOptions({
+    drawingControl: true
+  });
+}
+
+function filterCategory(category) {
+  $.each(jobs, function(index, value){
+    //do something
+  });
+}
+
 function newMarker(job, opacity, drop) {
-  console.log(job.id);
+
+  console.log(job);
   var oldMarker = markers[job.id];
   if (oldMarker != undefined) {
     oldMarker.setMap(null);
