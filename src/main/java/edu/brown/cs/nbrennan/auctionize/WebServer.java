@@ -50,8 +50,10 @@ public class WebServer {
     // Setup Spark Routes
     Spark.post("/authenticate", new Authenticate());
     Spark.get("/map", new MapHandler(), freeMarker);
+    Spark.get("/post", new PostHandler(), freeMarker);
     Spark.post("/jobs", new JobsHandler());
     Spark.post("/path", new PathHandler());
+    Spark.post("/postJob", new NewJob());
   }
 
   /**
@@ -88,7 +90,14 @@ public class WebServer {
       return GSON.toJson(jobs);
     }
   }
-
+  
+  private class NewJob implements Route {
+    @Override
+    public Object handle(final Request req, final Response res) {
+      return GSON.toJson(jobs);
+    }
+  }
+  
   private class PathHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
