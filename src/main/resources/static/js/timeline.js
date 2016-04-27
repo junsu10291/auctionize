@@ -8,7 +8,7 @@ function drawChart() {
   dataTable.addColumn({ type: 'date', id: 'End' });
   var rows = [];
   var ids = [];
-  var pathTitle = "Most Profitable Path"
+  var pathTitle = "Jobs";
   for (var i = 0; i < path.length; i++) {
     var jobId = path[i];
     var job = jobs[jobId];
@@ -17,8 +17,8 @@ function drawChart() {
     ids.push(jobId);
   }
   dataTable.addRows(rows);
-
-  chart.draw(dataTable);
+  var options = {timeline: {showRowLabels: false}};
+  chart.draw(dataTable, options);
 //  google.visualization.events.addListener(chart, 'select', function(e) {
 //    var row = chart.getSelection()[0].row;
 //    document.getElementById("sidebar").innerHTML = jobs[ids[row]];
