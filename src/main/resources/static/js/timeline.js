@@ -8,7 +8,7 @@ function drawChart() {
   dataTable.addColumn({ type: 'date', id: 'End' });
   var rows = [];
   var ids = [];
-  var pathTitle = "Jobs";
+  var pathTitle = "Time";
   for (var i = 0; i < path.length; i++) {
     var jobId = path[i];
     var job = jobs[jobId];

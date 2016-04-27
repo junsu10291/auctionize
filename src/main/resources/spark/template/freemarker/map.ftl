@@ -13,10 +13,10 @@
     <div id="pageContainer">
     	<div id="navBar">
     		<div class="navButton"><a class="active" href="#home">Home</a></div>
-        <div class="navButton" id="post"><a href="/post">Post</a></div>
-        <div class="logout"> 
-          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge"></fb:login-button>
-        </div>
+	        <div class="navButton" id="post"><a href="/post">Post</a></div>
+	        <div class="logout"> 
+	          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge"></fb:login-button>
+	        </div>
     	</div>
     	<div class="container">
     	    <div id ="sidebar">
@@ -59,13 +59,13 @@
             <div id="dayofjobsButton">
               <a href="#" class="myButton" onclick="getPath()">Day of Jobs</a>
             </div>
+            
           </div>
           <div id ="togglebar"></div>
         <div id="mapContainer">
           <div id="floatingPanel">
             <input onclick="removeRegion();" type=button value="Remove Region">
           </div>
-          
           <div id="timeline"></div>
           <div id="map"></div>
         </div>
