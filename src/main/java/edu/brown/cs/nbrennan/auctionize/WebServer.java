@@ -5,7 +5,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.math.BigInteger;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.UUID;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -15,6 +18,7 @@ import java.util.List;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 
+import edu.brown.cs.jchoi21.parser.DatabaseCreator;
 import edu.brown.cs.nbrennan.graph.JobGraph;
 import edu.brown.cs.nbrennan.job.Job;
 import freemarker.template.Configuration;
@@ -38,7 +42,7 @@ public class WebServer {
   public WebServer(Map<String, Job> jobs) {
     this.jobs = jobs;
     activeUsers = Collections.synchronizedList(new ArrayList<BigInteger>());
-    this.graph = new JobGraph(new ArrayList<>(jobs.values()));
+    //this.graph = new JobGraph(new ArrayList<>(jobs.values()));
     this.runSparkServer();
   }
 
@@ -98,7 +102,31 @@ public class WebServer {
   private class NewJob implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
-      return GSON.toJson(jobs);
+    	System.out.println("yo");
+    	QueryParamsMap qm = req.queryMap();
+    	String title = qm.value("title");
+    	String category = qm.value("type");
+    	String start = qm.value("start");
+    	String end = qm.value("end");
+    	Double lat = Double.valueOf(qm.value("lat"));
+    	Double lon = Double.valueOf(qm.value("lon"));
+    	Double profit = Double.valueOf(qm.value("pay"));
+    	DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("H:mm");
+    	String id = UUID.randomUUID().toString();
+    	Job newJob = new Job.Builder().id(id)
+				.title(title)
+				.category(category)
+				.start(LocalTime.parse(start, timeFormat))
+				.end(LocalTime.parse(end, timeFormat))
+				.lng(lat)
+				.lat(lon)
+				.profit(profit)
+				.build();
+    	jobs.put(id, newJob);
+    	ArrayList<Job> jobs = new ArrayList<>(1);
+    	jobs.add(newJob);
+    	DatabaseCreator.insertJobstoDB(jobs, "auctionize.db");
+    	return GSON.toJson("success");
     }
   }
   

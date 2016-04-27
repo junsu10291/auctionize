@@ -97,17 +97,19 @@
           <span>Categories:</span>
           <select id="categories" class="chzn-select" name="faculty">
             <option value="" disabled selected>Select job type</option>
-            <option value="landscaping">Landscaping</option>
-            <option value="cleaner">Cleaner</option>
-            <option value="courier">Courier</option>
-            <option value="painting">Painting</option>
-            <option value="modeling">Modeling</option>
-            <option value="moving">Moving</option>
-            <option value="construction">Construction</option>
-            <option value="pet">Pet</option>
-            <option value="babysitting">Babysitting</option>
-            <option value="assembler">Assember</option>
-            <option value="misc">Miscellaneous</option>
+            <option value="YARD">Landscaping</option>
+            <option value="CLEAN">Cleaner</option>
+            <option value="COURIER">Courier</option>
+            <option value="PAINT">Painting</option>
+            <option value="ACT">Modeling</option>
+            <option value="MOVE">Moving</option>
+            <option value="CONSTRUCT">Construction</option>
+            <option value="PET">Pet</option>
+            <option value="BABY">Babysitting</option>
+            <option value="HANDY">Handywork</option>
+            <option value="DRIVE">Driving</option>
+            <option value="ASSEMBLE">Assember</option>
+            <option value="MISC">Miscellaneous</option>
           </select>
         </div>
         <div id="location">

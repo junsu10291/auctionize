@@ -63,7 +63,7 @@ public class DatabaseCreator {
 		insertJobstoDB(jobs,"auctionize.db");
 	}
 
-	private static void insertJobstoDB(ArrayList<Job> jobs, String db) {
+	public static void insertJobstoDB(ArrayList<Job> jobs, String db) {
 	    Connection c = null;
 	    PreparedStatement prep = null;
 	    try {

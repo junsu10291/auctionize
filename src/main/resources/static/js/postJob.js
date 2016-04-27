@@ -55,7 +55,7 @@ function checkAndPost(){
     end : $('select[id=endTime]').val(),
     pay : $('#pay').val()
   }
-  //console.log(postParams);
+  console.log(postParams);
   
   $.post("/postJob",postParams,function(responseObject){
     var responseJSON = JSON.parse(responseObject);
