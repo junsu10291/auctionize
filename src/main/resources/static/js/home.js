@@ -11,10 +11,12 @@ $( document ).ready(function() {
             $("#mapContainer").width("99%");
             collapsed = true;
             google.maps.event.trigger(map, 'resize');
+            drawChart();
         } else {
             $("#sidebar").show();
             $("#mapContainer").width("76.5%");
             collapsed = false;
+            drawChart();
         }
     });
 
