@@ -38,7 +38,7 @@ public class WebServer {
   public WebServer(Map<String, Job> jobs) {
     this.jobs = jobs;
     activeUsers = Collections.synchronizedList(new ArrayList<BigInteger>());
-    this.graph = new JobGraph(new ArrayList<>(jobs.values()));
+    //this.graph = new JobGraph(new ArrayList<>(jobs.values()));
     this.runSparkServer();
   }
 

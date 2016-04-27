@@ -10,6 +10,7 @@ var regionNorthWestBound = [];
 var regionSouthEastBound = [];
 var markerJobDict = {};
 
+
 function initMap() {
   var loc = {lat: 41.826130, lng: -71.403};
   
@@ -71,13 +72,24 @@ function removeRegion() {
   drawingManager.setOptions({
     drawingControl: true
   });
+
+
 }
 
-function filterCategory(category) {
+function addCategory(category) {
   $.each(jobs, function(index, value){
-    //do something
     if (value.category == category) {
+      var marker = markers[index];
+      marker.setMap(map);
+    }
+  });  
+}
 
+function removeCategory(category) {
+  $.each(jobs, function(index, value){
+    if (value.category == category) {
+      var marker = markers[index];
+      marker.setMap(null);
     }
   });
 }
@@ -117,7 +129,7 @@ function newMarker(job, opacity, drop) {
     content: "<style>p{text-align: center}"
             + "p.title{font-weight: bold;}</style>"
             + "<p class=\"title\">" + job.title + "</p>"
-            + "<p>" + job.description + "</p>"
+            + "<p>" + job.category + "</p>"
             + "<p>Profit: $" + job.profit + "</p>"
   });
   marker.addListener('click', function() {

@@ -22,17 +22,19 @@
             <div id="userName"></div>
             <div id="jobCategory">
               <select class="chzn-select" multiple="true" name="faculty">
-                <option value="landscaping" selected>Landscaping</option>
-                <option value="cleaner" selected>Cleaner</option>
-                <option value="courier" selected>Courier</option>
-                <option value="painting" selected>Painting</option>
-                <option value="modeling" selected>Modeling</option>
-                <option value="moving" selected>Moving</option>
-                <option value="construction" selected>Construction</option>
-                <option value="pet" selected>Pet</option>
-                <option value="babysitting" selected>Babysitting</option>
-                <option value="assembler" selected>Assember</option>
-                <option value="misc" selected>Miscellaneous</option>
+                <option value="YARD" selected>Landscaping</option>
+                <option value="CLEAN" selected>Cleaner</option>
+                <option value="COURIER" selected>Courier</option>
+                <option value="PAINT" selected>Painting</option>
+                <option value="ACT" selected>Modeling</option>
+                <option value="MOVE" selected>Moving</option>
+                <option value="CONSTRUCT" selected>Construction</option>
+                <option value="HANDY" selected> Handyman</option>
+                <option value="DRIVE" selected> Driver </option>
+                <option value="PET" selected>Pet</option>
+                <option value="BABY" selected>Babysitting</option>
+                <option value="ASSEMBLE" selected>Assember</option>
+                <option value="MISC" selected>Miscellaneous</option>
               </select>
             </div>  
           </div>

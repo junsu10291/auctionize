@@ -16,13 +16,20 @@ $( document ).ready(function() {
             $("#mapContainer").width("79.5%");
             collapsed = false;
         }
-        
-    //     $( "#sidebar" ).animate({
-    //     "margin-left": "-=300",
-    // }, 500, function() {
-        
-    // });
-});
+    });
+
+    $('.chzn-select').on('change', function(evt, params) {
+        if (params.deselected != null) {
+            removeCategory(params.deselected);
+        }
+
+        if (params.selected != null) {
+            addCategory(params.selected);
+        }
+    });
+
+    categoriesFilterSet.add("ASSEMBLE").add("YARD").add("MISC").add("CLEAN").add("CONSTRUCT").add("MOVE")
+    .add("HANDY").add("DRIVE").add("PAINT").add("ACT").add("COURIER").add("PET").add("BABY");
 });
 
 $("#profile").on('click', function(){
