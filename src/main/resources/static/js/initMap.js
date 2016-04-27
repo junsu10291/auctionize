@@ -96,7 +96,7 @@ function removeCategory(category) {
 
 function newMarker(job, opacity, drop) {
 
-  console.log(job);
+  //console.log(job);
   var oldMarker = markers[job.id];
   if (oldMarker != undefined) {
     oldMarker.setMap(null);

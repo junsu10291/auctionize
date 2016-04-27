@@ -49,12 +49,13 @@
 	   </div>
    </div>
 
+
     <script src="js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="js/timeline.js"></script>
     <script src="js/initMap.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP_cgI8zBhAlb5qicByyn9vNjHzU0puYY&libraries=drawing&callback=initMap"
     async defer></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="js/timeline.js"></script>
     <script src="js/login.js"></script>
     <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
     <script src="js/home.js"></script>

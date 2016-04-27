@@ -27,9 +27,6 @@ $( document ).ready(function() {
             addCategory(params.selected);
         }
     });
-
-    categoriesFilterSet.add("ASSEMBLE").add("YARD").add("MISC").add("CLEAN").add("CONSTRUCT").add("MOVE")
-    .add("HANDY").add("DRIVE").add("PAINT").add("ACT").add("COURIER").add("PET").add("BABY");
 });
 
 $("#profile").on('click', function(){
