@@ -135,33 +135,34 @@ function getPath() {
   var params = {
       homeLat: loc.lat, 
       homeLng: loc.lng, 
-      startHours: new Date().getHours, 
-      startMinutes: new Date().getMinutes, 
+      startHours: 8, 
+      startMinutes: 0, 
       endHours: 23, 
       endMinutes: 0
   };
+  console.log(params);
 //  Actual code, commented out because /path isn't working yet
-//  $.post("/path", params, function(responseJSON) {
-//    path = JSON.parse(responseJSON);
-//    directions();
-//    drawChart();
-//  });
-  directions();
-  drawChart();
+  $.post("/path", params, function(responseJSON) {
+    path = JSON.parse(responseJSON);
+    console.log(path);
+    directions();
+    drawChart();
+  });
+//  directions();
+//  drawChart();
 }
 
 function directions() {
   var directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
-  var path = paths[0];
   var waypoints = [];
   for (var i = 1; i < path.length - 1; i++) {
-    waypoints.push({location: path[i], stopover: true});
+    waypoints.push({location: jobs[path[i]], stopover: true});
   }
   var directionsRequest = {
-      origin: path[0],
-      destination: path[path.length - 1],
+      origin: jobs[path[0]],
+      destination: jobs[path[path.length - 1]],
       waypoints: waypoints,
       provideRouteAlternatives: true,
       travelMode: google.maps.TravelMode.WALKING,
@@ -172,18 +173,12 @@ function directions() {
       directionsDisplay.setDirections(result);
     }
   });
-  var ids = [];
-  for (var i = 0; i < path.length; i++) {
-    ids.push(path[i].id);
-  }
-  console.log(ids);
-  for (var key in jobs) {
-    console.log(key);
-    console.log(!(inArray(key, ids)));
-    if (!(inArray(key, ids))) {
-      newMarker(jobs[key], 0.1, false);
-    }
-  }
+//  for (var key in jobs) {
+//    console.log(!(inArray(key, ids)));
+//    if (!(inArray(key, ids))) {
+//      newMarker(jobs[key], 0.1, false);
+//    }
+//  }
 }
 
 function inArray(item, array) {
@@ -194,3 +189,4 @@ function inArray(item, array) {
   }
   return false;
 }
+

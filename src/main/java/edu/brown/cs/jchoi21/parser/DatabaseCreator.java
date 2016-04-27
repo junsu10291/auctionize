@@ -23,7 +23,7 @@ import edu.brown.cs.nbrennan.job.Job;
 
 public class DatabaseCreator {
 	public static void create(){
-		String csvFile = "JobDataFinal.txt";
+		String csvFile = "JobDataFinal2.txt";
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = "\t";
@@ -63,7 +63,7 @@ public class DatabaseCreator {
 		insertJobstoDB(jobs,"auctionize.db");
 	}
 
-	private static void insertJobstoDB(ArrayList<Job> jobs, String db) {
+	public static void insertJobstoDB(ArrayList<Job> jobs, String db) {
 	    Connection c = null;
 	    PreparedStatement prep = null;
 	    try {
