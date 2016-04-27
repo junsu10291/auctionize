@@ -34,3 +34,8 @@ function drawChart() {
 function toDate(localTime) {
   return new Date(0, 0, 0, localTime.hour, localTime.minute, 0);
 }
+
+function localtimeToString(localTime) {
+  var str = toDate(localTime).toLocaleTimeString();
+  return str;
+}

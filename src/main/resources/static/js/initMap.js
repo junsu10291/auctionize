@@ -120,11 +120,15 @@ function newMarker(job, opacity, drop) {
   if (drop) {
     marker.setAnimation(google.maps.Animation.DROP);
   }
+  var startTimeString = localtimeToString(job.start);
+  var endTimeString = localtimeToString(job.end);
   var info = new google.maps.InfoWindow({
-    content: "<style>p{text-align: center}"
+    content: "<style>/*p{text-align: center}*/"
             + "p.title{font-weight: bold;}</style>"
             + "<p class=\"title\">" + job.title + "</p>"
-            + "<p>" + job.description + "</p>"
+            + "<p>Category: " + job.category + "</p>"
+            + "<p>Start: " + startTimeString + "</p>"
+            + "<p>End: " + endTimeString + "</p>"
             + "<p>Profit: $" + job.profit + "</p>"
   });
   marker.addListener('click', function() {
