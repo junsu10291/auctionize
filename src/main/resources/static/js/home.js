@@ -2,7 +2,7 @@ var collapsed = false;
 
 $( document ).ready(function() {
     $(".chzn-select").chosen({
-            width: "230px",
+            width: "250px",
             placeholder_text_multiple: "Select Category"});
 
     $("#togglebar").click(function() {
@@ -13,7 +13,7 @@ $( document ).ready(function() {
             google.maps.event.trigger(map, 'resize');
         } else {
             $("#sidebar").show();
-            $("#mapContainer").width("79.5%");
+            $("#mapContainer").width("76.5%");
             collapsed = false;
         }
     });
