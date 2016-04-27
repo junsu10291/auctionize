@@ -14,35 +14,58 @@
     	<div id="navBar">
     		<div class="navButton"><a class="active" href="#home">Home</a></div>
         <div class="navButton" id="post"><a href="/post">Post</a></div>
+        <div class="logout"> 
+          <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge"></fb:login-button>
+        </div>
     	</div>
     	<div class="container">
     	    <div id ="sidebar">
-            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" data-auto-logout-link="true" data-size="xlarge"></fb:login-button>
+            
             <img id="profilePicture">
             <div id="userName"></div>
             <div id="jobCategory">
               <select class="chzn-select" multiple="true" name="faculty">
-                <option value="YARD" selected>Landscaping</option>
-                <option value="CLEAN" selected>Cleaner</option>
-                <option value="COURIER" selected>Courier</option>
-                <option value="PAINT" selected>Painting</option>
-                <option value="ACT" selected>Modeling</option>
-                <option value="MOVE" selected>Moving</option>
-                <option value="CONSTRUCT" selected>Construction</option>
-                <option value="HANDY" selected> Handyman</option>
-                <option value="DRIVE" selected> Driver </option>
-                <option value="PET" selected>Pet</option>
-                <option value="BABY" selected>Babysitting</option>
-                <option value="ASSEMBLE" selected>Assember</option>
-                <option value="MISC" selected>Miscellaneous</option>
+                <option value="YARD" selected>YARD</option>
+                <option value="CLEAN" selected>CLEAN</option>
+                <option value="COURIER" selected>COURIER</option>
+                <option value="PAINT" selected>PAINT</option>
+                <option value="ACT" selected>ACT</option>
+                <option value="MOVE" selected>MOVE</option>
+                <option value="CONSTRUCT" selected>CONSTRUCT</option>
+                <option value="HANDY" selected> HANDY</option>
+                <option value="DRIVE" selected> DRIVE </option>
+                <option value="PET" selected>PET</option>
+                <option value="BABY" selected>BABY</option>
+                <option value="ASSEMBLE" selected>ASSEMBLE</option>
+                <option value="MISC" selected>MISC</option>
               </select>
             </div>  
+
+<!--             <div>
+              <input type="radio" name="radio" id="radio1" class="radio" checked/>
+              <label for="radio1">First Option</label>
+   
+
+              <input type="radio" name="radio" id="radio2" class="radio"/>
+              <label for="radio2">Second Option</label>
+
+              <input type="radio" name="radio" id="radio3" class="radio"/>
+              <label for="radio3">Third Option</label>
+
+              <input type="radio" name="radio" id="radio4" class="radio"/>
+              <label for="radio4">Fourth Option</label>
+            </div> -->
+
+            <div id="dayofjobsButton">
+              <a href="#" class="myButton" onclick="getPath()">Day of Jobs</a>
+            </div>
           </div>
           <div id ="togglebar"></div>
         <div id="mapContainer">
           <div id="floatingPanel">
             <input onclick="removeRegion();" type=button value="Remove Region">
           </div>
+          
           <div id="timeline"></div>
           <div id="map"></div>
         </div>
