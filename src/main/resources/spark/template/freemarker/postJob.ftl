@@ -73,6 +73,9 @@
         padding-top: 12.5%; 
         padding-bottom: 12.5%;
       }
+      #postForm > *{
+        text-align: center;
+      }
     </style>
   </head>
   <body>

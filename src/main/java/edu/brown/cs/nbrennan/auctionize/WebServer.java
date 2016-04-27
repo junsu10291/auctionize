@@ -19,8 +19,12 @@ import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 
 import edu.brown.cs.jchoi21.parser.DatabaseCreator;
-import edu.brown.cs.nbrennan.graph.JobGraph;
+import edu.brown.cs.wdencker.graph.JobGraph;
+
 import edu.brown.cs.nbrennan.job.Job;
+import edu.brown.cs.wdencker.graph.GraphSearch;
+import edu.brown.cs.wdencker.graph.JobGraph;
+import edu.brown.cs.wdencker.graph.Step;
 import freemarker.template.Configuration;
 import spark.ExceptionHandler;
 import spark.ModelAndView;
@@ -45,7 +49,6 @@ public class WebServer {
     //this.graph = new JobGraph(new ArrayList<>(jobs.values()));
     this.runSparkServer();
   }
-
 
   private void runSparkServer() {
     Spark.externalStaticFileLocation("src/main/resources/static");
@@ -90,11 +93,10 @@ public class WebServer {
       return new ModelAndView(variables, "postJob.ftl");
     }
   }
-  
+
   private class JobsHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
-      System.out.println("coming into jobs handler!!!");
       return GSON.toJson(jobs);
     }
   }
@@ -133,13 +135,29 @@ public class WebServer {
   private class PathHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
-      List<Job> path = new ArrayList<>();
-      Collection<Job> values = jobs.values();
-      Iterator<Job> it = values.iterator();
-      for (int i = 0; i < 5; i++) {
-        path.add(it.next());
+      QueryParamsMap qm = req.queryMap();
+      double homeLat = Double.parseDouble(qm.value("homeLat"));
+      double homeLng = Double.parseDouble(qm.value("homeLng"));
+      LocalTime start = LocalTime.of(Integer.parseInt(qm.value("startHours")),
+          Integer.parseInt(qm.value("startMinutes")));
+      LocalTime end = LocalTime.of(Integer.parseInt(qm.value("endHours")),
+          Integer.parseInt(qm.value("endMinutes")));
+      Job homeStart = new Job.Builder().lat(homeLat).lng(homeLng).start(start)
+          .end(start).id("homeStart").profit(0.0).build();
+      Job homeEnd = new Job.Builder().lat(homeLat).lng(homeLng).start(end)
+          .end(end).id("homeEnd").profit(0.0).build();
+      graph.addVertex(homeStart);
+      graph.addVertex(homeEnd);
+      List<Step<Job, Double>> steps = GraphSearch.bellmanFord(homeStart,
+          homeEnd, graph);
+      List<String> ids = new ArrayList<>();
+      for (Step<Job, Double> step : steps) {
+        ids.add(step.getTo().id);
       }
-      return GSON.toJson(path);
+      ids.remove(ids.size() - 1);
+      graph.removeVertex(homeStart);
+      graph.removeVertex(homeEnd);
+      return GSON.toJson(ids);
     }
   }
 

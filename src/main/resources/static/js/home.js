@@ -16,13 +16,17 @@ $( document ).ready(function() {
             $("#mapContainer").width("79.5%");
             collapsed = false;
         }
-        
-    //     $( "#sidebar" ).animate({
-    //     "margin-left": "-=300",
-    // }, 500, function() {
-        
-    // });
-});
+    });
+
+    $('.chzn-select').on('change', function(evt, params) {
+        if (params.deselected != null) {
+            removeCategory(params.deselected);
+        }
+
+        if (params.selected != null) {
+            addCategory(params.selected);
+        }
+    });
 });
 
 $("#profile").on('click', function(){

@@ -23,7 +23,7 @@ import edu.brown.cs.nbrennan.job.Job;
 
 public class DatabaseCreator {
 	public static void create(){
-		String csvFile = "JobDataFinal.txt";
+		String csvFile = "JobDataFinal2.txt";
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = "\t";
