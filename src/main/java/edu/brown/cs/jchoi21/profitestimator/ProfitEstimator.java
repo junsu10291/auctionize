@@ -24,59 +24,68 @@ public class ProfitEstimator {
           .setEnvironment(Environment.PRODUCTION).build());
 
   public static double estimateProfit(LatLng latlng, Job job) {
-    float startLat = (float) latlng.get_lat();
-    float startLng = (float) latlng.get_lng();
-    float jobLat = (float) job.lat;
-    float jobLng = (float) job.lng;
-
-    double pay = job.profit;
-    double uberPriceEstimate = 0.0;
-
-    try {
-      Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
-          startLng, jobLat, jobLng);
-      PriceEstimatesResponse pricesEstimateRes = hi.getBody();
-      List<PriceEstimate> prices = pricesEstimateRes.getPrices();
-
-      for (PriceEstimate priceEstimate : prices) {
-        if (priceEstimate.getDisplayName().equals("uberX")) {
-          uberPriceEstimate = priceEstimate.getHighEstimate();
-        }
-      }
-    } catch (ApiException | NetworkException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    if (job.id.equals("homeStart") || job.id.equals("homeEnd")){
+//      float startLat = (float) latlng.get_lat();
+//      float startLng = (float) latlng.get_lng();
+//      float jobLat = (float) job.lat;
+//      float jobLng = (float) job.lng;
+//
+//      double pay = job.profit;
+//      double uberPriceEstimate = 0.0;
+//
+//      try {
+//        Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
+//            startLng, jobLat, jobLng);
+//        PriceEstimatesResponse pricesEstimateRes = hi.getBody();
+//        List<PriceEstimate> prices = pricesEstimateRes.getPrices();
+//
+//        for (PriceEstimate priceEstimate : prices) {
+//          if (priceEstimate.getDisplayName().equals("uberX")) {
+//            uberPriceEstimate = priceEstimate.getHighEstimate();
+//          }
+//        }
+//      } catch (ApiException | NetworkException e) {
+//        // TODO Auto-generated catch block
+//        e.printStackTrace();
+//      }
+//
+//      double profit = pay - uberPriceEstimate;
+//
+//      return profit;
+      return job.profit;
+    } else {
+      return job.profit;
     }
-
-    double profit = pay - uberPriceEstimate;
-
-    return profit;
   }
 
   public static int estimateTime(LatLng latlng, Job job) {
-    float startLat = (float) latlng.get_lat();
-    float startLng = (float) latlng.get_lng();
-    float jobLat = (float) job.lat;
-    float jobLng = (float) job.lng;
-
-    int uberTimeEstimate = 0;
-
-    try {
-      Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
-          startLng, jobLat, jobLng);
-      PriceEstimatesResponse pricesEstimateRes = hi.getBody();
-      List<PriceEstimate> prices = pricesEstimateRes.getPrices();
-
-      for (PriceEstimate priceEstimate : prices) {
-        if (priceEstimate.getDisplayName().equals("uberX")) {
-          uberTimeEstimate = priceEstimate.getDuration();
-        }
-      }
-    } catch (ApiException | NetworkException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    if (job.id.equals("homeStart") || job.id.equals("homeEnd")){
+//      float startLat = (float) latlng.get_lat();
+//      float startLng = (float) latlng.get_lng();
+//      float jobLat = (float) job.lat;
+//      float jobLng = (float) job.lng;
+//
+//      int uberTimeEstimate = 0;
+//
+//      try {
+//        Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
+//            startLng, jobLat, jobLng);
+//        PriceEstimatesResponse pricesEstimateRes = hi.getBody();
+//        List<PriceEstimate> prices = pricesEstimateRes.getPrices();
+//
+//        for (PriceEstimate priceEstimate : prices) {
+//          if (priceEstimate.getDisplayName().equals("uberX")) {
+//            uberTimeEstimate = priceEstimate.getDuration();
+//          }
+//        }
+//      } catch (ApiException | NetworkException e) {
+//        // TODO Auto-generated catch block
+//        e.printStackTrace();
+//      }
+//      return uberTimeEstimate;
+      return 0;
+    } else {
+      return 0;
     }
-    return uberTimeEstimate;
   }
-
 }
