@@ -94,6 +94,7 @@ function removeCategory(category) {
 }
 
 function newMarker(job, opacity, drop) {
+
   var oldMarker = markers[job.id];
   if (oldMarker != undefined) {
     oldMarker.setMap(null);
@@ -126,9 +127,6 @@ function newMarker(job, opacity, drop) {
     info.open(map, marker);
   });
 }
-
-
-
 
 var path = ["394e1ed3-934e-4e16-8eef-ce5b8bfd7e72", 
               "f064bb52-e58e-41d0-8feb-849c76b7d866"];
