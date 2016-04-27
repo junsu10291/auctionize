@@ -145,7 +145,7 @@ function getPath() {
   $.post("/path", params, function(responseJSON) {
     path = JSON.parse(responseJSON);
     console.log(path);
-//    directions();
+    directions();
     drawChart();
   });
 //  directions();
@@ -158,11 +158,11 @@ function directions() {
   directionsDisplay.setMap(map);
   var waypoints = [];
   for (var i = 1; i < path.length - 1; i++) {
-    waypoints.push({location: path[i], stopover: true});
+    waypoints.push({location: jobs[path[i]], stopover: true});
   }
   var directionsRequest = {
-      origin: path[0],
-      destination: path[path.length - 1],
+      origin: jobs[path[0]],
+      destination: jobs[path[path.length - 1]],
       waypoints: waypoints,
       provideRouteAlternatives: true,
       travelMode: google.maps.TravelMode.WALKING,
@@ -173,17 +173,12 @@ function directions() {
       directionsDisplay.setDirections(result);
     }
   });
-  var ids = [];
-  for (var i = 0; i < path.length; i++) {
-    ids.push(path[i].id);
-  }
-  console.log(ids);
-  for (var key in jobs) {
-    console.log(!(inArray(key, ids)));
-    if (!(inArray(key, ids))) {
-      newMarker(jobs[key], 0.1, false);
-    }
-  }
+//  for (var key in jobs) {
+//    console.log(!(inArray(key, ids)));
+//    if (!(inArray(key, ids))) {
+//      newMarker(jobs[key], 0.1, false);
+//    }
+//  }
 }
 
 function inArray(item, array) {
