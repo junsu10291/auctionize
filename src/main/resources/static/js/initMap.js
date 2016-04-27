@@ -132,8 +132,7 @@ function newMarker(job, opacity, drop) {
   });
 }
 
-var path = ["394e1ed3-934e-4e16-8eef-ce5b8bfd7e72", 
-              "f064bb52-e58e-41d0-8feb-849c76b7d866"];
+var path = [];
 
 function getPath() {
   var params = {
@@ -144,11 +143,9 @@ function getPath() {
       endHours: 23, 
       endMinutes: 0
   };
-  console.log(params);
 //  Actual code, commented out because /path isn't working yet
   $.post("/path", params, function(responseJSON) {
     path = JSON.parse(responseJSON);
-    console.log(path);
     directions();
     drawChart();
   });

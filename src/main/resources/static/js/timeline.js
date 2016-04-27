@@ -1,3 +1,4 @@
+
 function drawChart() {
   var container = document.getElementById('timeline');
   chart = new google.visualization.Timeline(container);
@@ -7,14 +8,19 @@ function drawChart() {
   dataTable.addColumn({ type: 'date', id: 'Start' });
   dataTable.addColumn({ type: 'date', id: 'End' });
   var rows = [];
-  var ids = [];
-  var pathTitle = "Time";
-  for (var i = 0; i < path.length; i++) {
-    var jobId = path[i];
-    var job = jobs[jobId];
-    var row = [pathTitle, job.title, toDate(job.start), toDate(job.end)];
+  var label = "Time";
+  if (path.length == 0) {
+    var start = new Date(0, 0, 0, 8, 0, 0);
+    var end = new Date(0, 0, 0, 24, 0, 0);
+    var row = [label, "Your jobs will appear here", start, end];
     rows.push(row);
-    ids.push(jobId);
+  } else {
+    for (var i = 0; i < path.length; i++) {
+      var jobId = path[i];
+      var job = jobs[jobId];
+      var row = [label, job.title, toDate(job.start), toDate(job.end)];
+      rows.push(row);
+    }
   }
   dataTable.addRows(rows);
   var options = {timeline: {showRowLabels: false}};
