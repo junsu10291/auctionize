@@ -135,11 +135,12 @@ function getPath() {
   var params = {
       homeLat: loc.lat, 
       homeLng: loc.lng, 
-      startHours: new Date().getHours(), 
-      startMinutes: new Date().getMinutes(), 
+      startHours: 8, 
+      startMinutes: 0, 
       endHours: 23, 
       endMinutes: 0
   };
+  console.log(params);
 //  Actual code, commented out because /path isn't working yet
   $.post("/path", params, function(responseJSON) {
     path = JSON.parse(responseJSON);

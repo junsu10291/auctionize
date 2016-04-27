@@ -46,7 +46,7 @@ public class WebServer {
   public WebServer(Map<String, Job> jobs) {
     this.jobs = jobs;
     activeUsers = Collections.synchronizedList(new ArrayList<BigInteger>());
-    //this.graph = new JobGraph(new ArrayList<>(jobs.values()));
+    this.graph = new JobGraph(new ArrayList<>(jobs.values()));
     this.runSparkServer();
   }
 
@@ -135,6 +135,7 @@ public class WebServer {
   private class PathHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
+      System.out.println("here");
       QueryParamsMap qm = req.queryMap();
       double homeLat = Double.parseDouble(qm.value("homeLat"));
       double homeLng = Double.parseDouble(qm.value("homeLng"));
