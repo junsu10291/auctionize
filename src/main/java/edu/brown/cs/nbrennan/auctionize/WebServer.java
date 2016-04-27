@@ -41,7 +41,7 @@ public class WebServer {
   public WebServer(Map<String, Job> jobs) {
     this.jobs = jobs;
     activeUsers = Collections.synchronizedList(new ArrayList<BigInteger>());
-    //this.graph = new JobGraph(new ArrayList<>(jobs.values()));
+    this.graph = new JobGraph(new ArrayList<>(jobs.values()));
     this.runSparkServer();
   }
 
@@ -105,9 +105,9 @@ public class WebServer {
       LocalTime end = LocalTime.of(Integer.parseInt(qm.value("endHours")),
           Integer.parseInt(qm.value("endMinutes")));
       Job homeStart = new Job.Builder().lat(homeLat).lng(homeLng).start(start)
-          .end(start).id("homeStart").build();
+          .end(start).id("homeStart").profit(0.0).build();
       Job homeEnd = new Job.Builder().lat(homeLat).lng(homeLng).start(end)
-          .end(end).id("homeEnd").build();
+          .end(end).id("homeEnd").profit(0.0).build();
       graph.addVertex(homeStart);
       graph.addVertex(homeEnd);
       List<Step<Job, Double>> steps = GraphSearch.bellmanFord(homeStart,
