@@ -137,26 +137,26 @@ function getPath() {
   var params = {
       homeLat: loc.lat, 
       homeLng: loc.lng, 
-      startHours: new Date().getHours, 
-      startMinutes: new Date().getMinutes, 
+      startHours: new Date().getHours(), 
+      startMinutes: new Date().getMinutes(), 
       endHours: 23, 
       endMinutes: 0
   };
 //  Actual code, commented out because /path isn't working yet
-//  $.post("/path", params, function(responseJSON) {
-//    path = JSON.parse(responseJSON);
+  $.post("/path", params, function(responseJSON) {
+    path = JSON.parse(responseJSON);
+    console.log(path);
 //    directions();
-//    drawChart();
-//  });
-  directions();
-  drawChart();
+    drawChart();
+  });
+//  directions();
+//  drawChart();
 }
 
 function directions() {
   var directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
-  var path = paths[0];
   var waypoints = [];
   for (var i = 1; i < path.length - 1; i++) {
     waypoints.push({location: path[i], stopover: true});
@@ -180,7 +180,6 @@ function directions() {
   }
   console.log(ids);
   for (var key in jobs) {
-    console.log(key);
     console.log(!(inArray(key, ids)));
     if (!(inArray(key, ids))) {
       newMarker(jobs[key], 0.1, false);
@@ -196,3 +195,4 @@ function inArray(item, array) {
   }
   return false;
 }
+
