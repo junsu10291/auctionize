@@ -3,6 +3,10 @@ var jobs = {};
 var markers = {};
 var loc = {lat: 41.826130, lng: -71.403};
 
+var directionsDisplay;
+var OPAQUE = 1;
+var TRANSPARENT = 0;
+
 var drawingManager;
 var region;
 var regionDrawable = true;
@@ -53,7 +57,7 @@ function initMap() {
       $.post("/jobs", {}, function(responseJSON) {
         jobs = JSON.parse(responseJSON);
         for (var key in jobs) {
-          newMarker(jobs[key], 1, true);
+          newMarker(jobs[key], 1, false);
         }
         google.charts.load("current", {packages:["timeline"]});
         google.charts.setOnLoadCallback(drawChart);
@@ -173,12 +177,7 @@ function directions() {
       directionsDisplay.setDirections(result);
     }
   });
-//  for (var key in jobs) {
-//    console.log(!(inArray(key, ids)));
-//    if (!(inArray(key, ids))) {
-//      newMarker(jobs[key], 0.1, false);
-//    }
-//  }
+  setMarkerOpacity(TRANSPARENT);
 }
 
 function inArray(item, array) {
@@ -188,5 +187,16 @@ function inArray(item, array) {
     }
   }
   return false;
+}
+
+function clearDirections() {
+  directionsDisplay.setMap(null);
+  setMarkerOpacity(OPAQUE);
+}
+
+function setMarkerOpacity(opacity) {
+  for (var key in markers) {
+    markers[key].setOpacity(opacity);
+  }
 }
 
