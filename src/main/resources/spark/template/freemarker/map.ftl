@@ -10,6 +10,17 @@
   </head>
   <body>
 
+    <div id="tutorialCover"></div>
+    <div id="tutorialIntroWrapper">
+      <div id="tutorialIntro">
+          <a href="#" class="tutButton" onclick="beginTut()">Start Tutorial</a>
+          <a href="#" id="skipTut" class="tutButton" onclick="skipTut()">Skip Tutorial</a>
+      </div>
+    </div>
+    <div class="timelineBubble upBubble bubble"> This is the timeline blahblahblah woohoo!!!! </div>
+    <div class="categoriesBubble upBubble bubble"> This is the categories bubble :-) ㅗㅗㅗㅗㅗ </div>
+    <div class="dayofJobsBubble downBubble bubble">Day of Jobs Description</div>
+
     <div id="pageContainer">
     	<div id="navBar">
     		<div class="navButton"><a class="active" href="#home">Home</a></div>
@@ -19,8 +30,7 @@
 	        </div>
     	</div>
     	<div class="container">
-    	    <div id ="sidebar">
-            
+    	    <div id ="sidebar"> 
             <img id="profilePicture">
             <div id="userName"></div>
             <div id="jobCategory">
@@ -40,21 +50,6 @@
                 <option value="MISC" selected>MISC</option>
               </select>
             </div>  
-
-<!--             <div>
-              <input type="radio" name="radio" id="radio1" class="radio" checked/>
-              <label for="radio1">First Option</label>
-   
-
-              <input type="radio" name="radio" id="radio2" class="radio"/>
-              <label for="radio2">Second Option</label>
-
-              <input type="radio" name="radio" id="radio3" class="radio"/>
-              <label for="radio3">Third Option</label>
-
-              <input type="radio" name="radio" id="radio4" class="radio"/>
-              <label for="radio4">Fourth Option</label>
-            </div> -->
 
             <div id="dayofjobsButton">
               <a href="#" class="myButton" onclick="getPath()">Day of Jobs</a>

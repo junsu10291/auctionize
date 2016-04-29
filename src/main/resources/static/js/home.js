@@ -1,4 +1,6 @@
 var collapsed = false;
+var begin = false;
+var tut = 0;
 
 $( document ).ready(function() {
     $(".chzn-select").chosen({
@@ -28,7 +30,7 @@ $( document ).ready(function() {
         if (params.selected != null) {
             addCategory(params.selected);
         }
-    });
+    });    
 });
 
 $("#profile").on('click', function(){
@@ -38,4 +40,38 @@ $("#profile").on('click', function(){
 		console.log("login!");
 	}
 });
+
+$("#tutorialCover").on('click', function(){
+    if (begin) {
+        tutNext();
+    }
+});
+
+function skipTut() {
+    $( "#tutorialCover" ).fadeOut( "slow", function() {});
+    $( "#tutorialIntroWrapper" ).fadeOut( "slow", function() {});
+}
+
+function beginTut() {
+    $( "#tutorialIntroWrapper" ).fadeOut( "slow", function() {});
+    $( ".timelineBubble" ).fadeIn( "slow", function() {});
+    $("#tutorialCover").css({"cursor":"pointer"});
+    begin = true;
+    tut = 1;
+}
+
+function tutNext() {
+    if (tut == 1) {
+        $( ".timelineBubble" ).fadeOut( "slow", function() {});
+        $( ".categoriesBubble" ).fadeIn( "slow", function() {});
+        tut = 2;
+    } else if (tut == 2) {
+        $( ".categoriesBubble" ).fadeOut( "slow", function() {});
+        $( ".dayofJobsBubble" ).fadeIn( "slow", function() {});
+        tut = 3;
+    } else if (tut == 3) {
+        $( ".dayofJobsBubble" ).fadeOut( "slow", function() {});
+        skipTut();
+    }
+}
 
