@@ -3,7 +3,9 @@ var jobs = {};
 var markers = {};
 var loc = {lat: 41.826130, lng: -71.403};
 
+var homeMarker;
 var directionsDisplay;
+var FLAG = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
 var OPAQUE = 1;
 var TRANSPARENT = 0;
 
@@ -54,10 +56,25 @@ function initMap() {
           }
         });
 
+      homeMarker = new google.maps.Marker({
+        position: loc,
+        map: map,
+        icon: FLAG,
+        draggable: true,
+        title: "HOME"
+      });
+      var info = new google.maps.InfoWindow({
+        content: "<style>/*p{text-align: center}*/"
+                + "p.title{font-weight: bold;}</style>"
+                + "<p class=\"title\">HOME</p>"
+      });
+      homeMarker.addListener('click', function() {
+        info.open(map, homeMarker);
+      });
       $.post("/jobs", {}, function(responseJSON) {
         jobs = JSON.parse(responseJSON);
         for (var key in jobs) {
-          newMarker(jobs[key], 1, false);
+          newMarker(jobs[key], OPAQUE, false);
         }
         google.charts.load("current", {packages:["timeline"]});
         google.charts.setOnLoadCallback(drawChart);
@@ -104,7 +121,6 @@ function newMarker(job, opacity, drop) {
     oldMarker.setMap(null);
   }
   var size = (5/7)*job.profit + 50;
-  var flag = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
   var marker = new google.maps.Marker({
     position: {lat: job.lat, lng: job.lng},
     map: map,
@@ -139,9 +155,10 @@ function newMarker(job, opacity, drop) {
 var path = [];
 
 function getPath() {
+  var homePosition = homeMarker.getPosition();
   var params = {
-      homeLat: loc.lat, 
-      homeLng: loc.lng, 
+      homeLat: homePosition.lat(), 
+      homeLng: homePosition.lng(), 
       startHours: 8, 
       startMinutes: 0, 
       endHours: 23, 
@@ -200,4 +217,3 @@ function setMarkerOpacity(opacity) {
     markers[key].setOpacity(opacity);
   }
 }
-
