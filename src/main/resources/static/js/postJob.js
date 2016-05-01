@@ -59,7 +59,10 @@ function checkAndPost(){
   
   $.post("/postJob",postParams,function(responseObject){
     var responseJSON = JSON.parse(responseObject);
-    console.log(responseJSON);
+    if(responseJSON=="success"){
+      console.log("reload now");
+      location.reload();
+    }
   });
   
 

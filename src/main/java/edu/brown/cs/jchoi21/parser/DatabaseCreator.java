@@ -71,11 +71,8 @@ public class DatabaseCreator {
 	      c = DriverManager.getConnection("jdbc:sqlite:" + db);
 	      c.setAutoCommit(false);
 	      System.out.println("Opened database successfully");
-	      
 	      String sql;
 	      for(Job job : jobs){
-	    	  System.out.println("start: " + job.start);
-	    	  System.out.println("start in Time: " + Time.valueOf(job.start));
 	    	  sql = "INSERT INTO JOBS (id, title, type, lat, lon, start, end, profit) " +
 	    			  "VALUES (?,?,?,?,?,?,?,?);";
 	    	  prep = c.prepareStatement(sql);
@@ -90,20 +87,7 @@ public class DatabaseCreator {
 	    	  prep.executeUpdate();
 	      }
 	      c.commit();
-	      System.out.println("*******");
-	      sql = "select * from jobs where type='PET';";
-	      prep = c.prepareStatement(sql);
-	      DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("H:mm");
-	      try (ResultSet rs = prep.executeQuery()) {
-	    	  while(rs.next()){
-		    	  LocalTime start = LocalTime.parse(rs.getString("start"), timeFormat);;
-		    	  System.out.println(start);
-		      }
-	        }
-	     
 	      prep.close();
-	      
-	      
 	      c.close();
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );

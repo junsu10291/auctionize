@@ -106,6 +106,8 @@ public class WebServer {
     public Object handle(final Request req, final Response res) {
     	System.out.println("yo");
     	QueryParamsMap qm = req.queryMap();
+    	System.out.println("lat: " + qm.value("lat") +
+    			"lon: " + qm.value("lon"));
     	String title = qm.value("title");
     	String category = qm.value("type");
     	String start = qm.value("start");
@@ -120,14 +122,15 @@ public class WebServer {
 				.category(category)
 				.start(LocalTime.parse(start, timeFormat))
 				.end(LocalTime.parse(end, timeFormat))
-				.lng(lat)
-				.lat(lon)
+				.lng(lon)
+				.lat(lat)
 				.profit(profit)
 				.build();
     	jobs.put(id, newJob);
-    	ArrayList<Job> jobs = new ArrayList<>(1);
-    	jobs.add(newJob);
-    	DatabaseCreator.insertJobstoDB(jobs, "auctionize.db");
+    	ArrayList<Job> jobsList = new ArrayList<>(1);
+    	jobsList.add(newJob);
+    	DatabaseCreator.insertJobstoDB(jobsList, "auctionize.db");
+    	
     	return GSON.toJson("success");
     }
   }

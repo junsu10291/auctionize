@@ -65,16 +65,18 @@
     height: 75%;
     float: right;
       }
-      #postForm{
-        width: 50%;
-        height: 75%;
-        padding-left: 25%;
-        padding-right: 25%;
-        padding-top: 12.5%; 
-        padding-bottom: 12.5%;
-      }
-      #postForm > *{
+      h1 {
         text-align: center;
+      }
+      #postForm{
+        width:50%;
+        height: 100%;
+        padding-left: 27.5%;
+        padding-right: 12.5%;
+      }
+      #postForm > div{
+        height: 12.5%;
+        font-size:35px;
       }
     </style>
   </head>
@@ -90,8 +92,8 @@
     <li class="navButton"><div id="status"></div></li>
     </ul>
     <div class="container">
+      <h1>Post your job!</h2>
       <div id="postForm">
-        <h1>Post your job!</h2>
         <div id="jobTitle">
           <span>Job Description:</span>
           <input id="title" type="text"></input>
@@ -117,11 +119,12 @@
         </div>
         <div id="location">
           <span>Latitude: </span>
-          <span id="lat"></span>
-          <span> | Longitude: </span>
+          <span id="lat"></span><br>
+          <span>Longitude: </span>
           <span id="lon"></span>
         </div>
         <div id="times">
+          <span>Start: </span>
           <select id="startTime">
             <option value="" disabled selected>Start</option>
             <option value="9:00">9:00</option>
@@ -145,7 +148,8 @@
             <option value="6:00">6:00</option>
             <option value="6:30">6:30</option>
             <option value="7:00">7:00</option>
-          </select>
+          </select><br>
+          <span>End:</span>
           <select id="endTime">
             <option value="" disabled selected>End</option>
             <option value="10:00">10:00</option>
