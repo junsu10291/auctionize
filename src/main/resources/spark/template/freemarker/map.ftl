@@ -61,7 +61,15 @@
           <div id="floatingPanel">
             <input onclick="removeRegion();" type=button value="Remove Region">
           </div>
-          <div id="timeline"></div>
+          <div id="timelineContainer">
+            <div id="sliders">
+              <span>Select start and end times</span><br>
+              <input type="range" id="startTime" class="slider" value="10"><br>
+              <input type="range" id="endTime" class="slider" value="90">
+            </div> 
+            <div id="timeline">
+          </div> 
+          </div>
           <div id="map"></div>
         </div>
 	   </div>

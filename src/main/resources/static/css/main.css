@@ -53,13 +53,17 @@ input[type="number"] {
     display: inline-block;
     position:relative;
 }
-
-#timeline {
-    height: 20%;
+.slider{
+    width: 95%;
 }
-
+#timelineContainer {
+    height: 30%;
+}
+#timeline{
+    width: 95%;
+}
 #map {
-    height: 80%;
+    height: 70%;
 }
 
 li {

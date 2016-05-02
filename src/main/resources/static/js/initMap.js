@@ -154,22 +154,49 @@ function newMarker(job, opacity, drop) {
 
 var path = [];
 
+function timeFromVal(value){
+  console.log(value);
+  var rawTime = (value/100)*16 + 8;
+  var rawMinutes = rawTime % 1;
+  var hour;
+  var minutes = 0;
+  if(rawMinutes >= 0.25 && rawMinutes <= 0.75){
+    minutes = 30;
+    hour = Math.floor(rawTime);
+  }else if(rawMinutes < 0.25){
+    hour = Math.floor(rawTime);
+  }else{
+    hour = Math.ceil(rawTime);
+  }
+  return {hours : hour, mins : minutes};
+}
+
 function getPath() {
   var homePosition = homeMarker.getPosition();
+  var startTime = timeFromVal($("#startTime").val());
+  var endTime = timeFromVal($("#endTime").val());
   var params = {
       homeLat: homePosition.lat(), 
       homeLng: homePosition.lng(), 
-      startHours: 8, 
+      startHours: startTime.hours, 
+      startMinutes: startTime.mins, 
+      endHours: endTime.hours, 
+      endMinutes: endTime.mins,
+      /*startHours: 8, 
       startMinutes: 0, 
       endHours: 23, 
-      endMinutes: 0
+      endMinutes: 0,*/
+      included: jobs
   };
+  console.log(params);
 //  Actual code, commented out because /path isn't working yet
+  
   $.post("/path", params, function(responseJSON) {
     path = JSON.parse(responseJSON);
     directions();
     drawChart();
   });
+  
 //  directions();
 //  drawChart();
 }

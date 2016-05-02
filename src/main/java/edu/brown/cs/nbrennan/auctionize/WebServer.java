@@ -152,8 +152,10 @@ public class WebServer {
           .end(end).id("homeEnd").profit(0.0).build();
       graph.addVertex(homeStart);
       graph.addVertex(homeEnd);
+      System.out.println("at bellmanFord");
       List<Step<Job, Double>> steps = GraphSearch.bellmanFord(homeStart,
           homeEnd, graph);
+      System.out.println("post bellmanFord");
       List<String> ids = new ArrayList<>();
       for (Step<Job, Double> step : steps) {
         ids.add(step.getTo().id);
