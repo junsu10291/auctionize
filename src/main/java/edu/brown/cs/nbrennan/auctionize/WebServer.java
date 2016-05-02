@@ -138,7 +138,6 @@ public class WebServer {
   private class PathHandler implements Route {
     @Override
     public Object handle(final Request req, final Response res) {
-      System.out.println("here");
       QueryParamsMap qm = req.queryMap();
       double homeLat = Double.parseDouble(qm.value("homeLat"));
       double homeLng = Double.parseDouble(qm.value("homeLng"));
@@ -150,6 +149,12 @@ public class WebServer {
           .end(start).id("homeStart").profit(0.0).build();
       Job homeEnd = new Job.Builder().lat(homeLat).lng(homeLng).start(end)
           .end(end).id("homeEnd").profit(0.0).build();
+      String[] jobIDs = GSON.fromJson(qm.value("included"), String[].class);
+      List<Job> includedJobs = new ArrayList<>();
+      for (String id : jobIDs){
+        includedJobs.add(jobs.get(id));
+      }
+      graph = new JobGraph(includedJobs);
       graph.addVertex(homeStart);
       graph.addVertex(homeEnd);
       System.out.println("at bellmanFord");
