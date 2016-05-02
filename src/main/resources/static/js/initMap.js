@@ -86,6 +86,7 @@ function initMap() {
         jobs = JSON.parse(responseJSON);
         for (var key in jobs) {
           newMarker(jobs[key], OPAQUE, false);
+          include[key] = true;
         }
         google.charts.load("current", {packages:["timeline"]});
         google.charts.setOnLoadCallback(drawChart);
@@ -126,14 +127,14 @@ function removeCategory(category) {
 //display the given job on the map, and set its inlude value to true
 //(so that it will be included in path alorithm)
 function inlcude(id) {
-markers[id].setMap(map);
-include[id] = true;
+  markers[id].setMap(map);
+  include[id] = true;
 }
 
 //opposite of include
 function remove(id) {
-markers[id].setMap(null);
-include[id] = false;
+  markers[id].setMap(null);
+  include[id] = false;
 }
 
 function newMarker(job, opacity, drop) {
@@ -176,7 +177,6 @@ function newMarker(job, opacity, drop) {
 
 
 function timeFromVal(value){
-  console.log(value);
   var rawTime = (value/100)*16 + 8;
   var rawMinutes = rawTime % 1;
   var hour;
@@ -195,6 +195,8 @@ function timeFromVal(value){
 function getPath() {
   var startTime = timeFromVal($("#startTime").val());
   var endTime = timeFromVal($("#endTime").val());
+  console.log(startTime);
+  console.log(endTime);
   var home = getHomeLatLng();
   var params = {
       startHours: startTime.hours, 
@@ -205,15 +207,11 @@ function getPath() {
       homeLng: home.lng,
       included: getIncluded()
   };
-  console.log(params);
   $.post("/path", params, function(responseJSON) {
     path = JSON.parse(responseJSON);
     directions();
     drawChart();
   });
-  
-//  directions();
-//  drawChart();
 }
 
 function directions() {
@@ -239,7 +237,7 @@ function directions() {
       directionsDisplay.setDirections(result);
     }
   });
-  setMarkerOpacity(TRANSPARENT);
+  hideMarkers();
 }
 
 function inArray(item, array) {
@@ -253,12 +251,18 @@ function inArray(item, array) {
 
 function clearDirections() {
   directionsDisplay.setMap(null);
-  setMarkerOpacity(OPAQUE);
+  showMarkers();
 }
 
-function setMarkerOpacity(opacity) {
-  for (var key in markers) {
-    markers[key].setOpacity(opacity);
+function hideMarkers() {
+  for (var key in include) {
+    markers[key].setOpacity(TRANSPARENT);
+  }
+}
+
+function showMarkers() {
+  for (var key in include) {
+    markers[key].setOpacity(OPAQUE);
   }
 }
 
