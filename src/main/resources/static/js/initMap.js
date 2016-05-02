@@ -155,14 +155,15 @@ function newMarker(job, opacity, drop) {
 var path = [];
 
 function getPath() {
-  var homePosition = homeMarker.getPosition();
+  var home = getHomeLatLng();
   var params = {
-      homeLat: homePosition.lat(), 
-      homeLng: homePosition.lng(), 
+      homeLat: home.lat, 
+      homeLng: home.lng, 
       startHours: 8, 
       startMinutes: 0, 
       endHours: 23, 
-      endMinutes: 0
+      endMinutes: 0,
+      included: []
   };
 //  Actual code, commented out because /path isn't working yet
   $.post("/path", params, function(responseJSON) {
@@ -179,12 +180,13 @@ function directions() {
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsDisplay.setMap(map);
   var waypoints = [];
-  for (var i = 1; i < path.length - 1; i++) {
+  for (var i = 0; i < path.length; i++) {
     waypoints.push({location: jobs[path[i]], stopover: true});
   }
+  var home = getHomeLatLng();
   var directionsRequest = {
-      origin: jobs[path[0]],
-      destination: jobs[path[path.length - 1]],
+      origin: home,
+      destination: home,
       waypoints: waypoints,
       provideRouteAlternatives: true,
       travelMode: google.maps.TravelMode.WALKING,
@@ -192,6 +194,7 @@ function directions() {
   }
   directionsService.route(directionsRequest, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
+      console.log(result);
       directionsDisplay.setDirections(result);
     }
   });
@@ -216,4 +219,8 @@ function setMarkerOpacity(opacity) {
   for (var key in markers) {
     markers[key].setOpacity(opacity);
   }
+}
+
+function getHomeLatLng() {
+  return {lat: homeMarker.getPosition().lat(), lng: homeMarker.getPosition().lng()};
 }
