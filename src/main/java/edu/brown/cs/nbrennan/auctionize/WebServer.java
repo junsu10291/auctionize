@@ -149,7 +149,7 @@ public class WebServer {
           .end(start).id("homeStart").profit(0.0).build();
       Job homeEnd = new Job.Builder().lat(homeLat).lng(homeLng).start(end)
           .end(end).id("homeEnd").profit(0.0).build();
-      String[] jobIDs = qm.values();
+      String[] jobIDs = GSON.fromJson(qm.value("included"), String[].class);
       List<Job> includedJobs = new ArrayList<>();
       for (String id : jobIDs){
         includedJobs.add(jobs.get(id));
