@@ -203,7 +203,7 @@ function getPath() {
       endMinutes: endTime.mins,
       homeLat: home.lat, 
       homeLng: home.lng,
-      included: getIncluded();
+      included: getIncluded()
   };
   console.log(params);
   $.post("/path", params, function(responseJSON) {
