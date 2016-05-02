@@ -1,6 +1,19 @@
 var map;
+
+// map of id to job
 var jobs = {};
+
+// map of id to marker
 var markers = {};
+
+// map of id to boolean (whether or not the given job should be displayed
+//   on the map and included in the day of jobs algorithm
+//   based on categories and time sliders)
+var include = {};
+
+// an array of job ids that represent the path for the day of jobs
+var path = [];
+
 var loc = {lat: 41.826130, lng: -71.403};
 
 var homeMarker;
@@ -29,32 +42,30 @@ function initMap() {
       });
 
       drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: null,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: [
-              google.maps.drawing.OverlayType.RECTANGLE
-            ]
-          },
-        });
-        drawingManager.setMap(map);
+        drawingMode: null,
+        drawingControl: true,
+        drawingControlOptions: {
+          position: google.maps.ControlPosition.TOP_CENTER,
+          drawingModes: [google.maps.drawing.OverlayType.RECTANGLE]
+        },
+      });
+      drawingManager.setMap(map);
 
-        google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
-          regionDrawable = false;
-          $("#floatingPanel").show();
-          region = event.overlay;
-          drawingManager.setOptions({
-            drawingControl: false,
-            drawingMode: null
-          });
-
-          if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
-            var bounds = event.overlay.getBounds();
-            regionNorthWestBound = [bounds.R.j, bounds.j.j];
-            regionSouthEastBound = [bounds.R.R, bounds.j.R];
-          }
+      google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
+        regionDrawable = false;
+        $("#floatingPanel").show();
+        region = event.overlay;
+        drawingManager.setOptions({
+          drawingControl: false,
+          drawingMode: null
         });
+
+        if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
+          var bounds = event.overlay.getBounds();
+          regionNorthWestBound = [bounds.R.j, bounds.j.j];
+          regionSouthEastBound = [bounds.R.R, bounds.j.R];
+        }
+      });
 
       homeMarker = new google.maps.Marker({
         position: loc,
@@ -92,8 +103,6 @@ function removeRegion() {
   drawingManager.setOptions({
     drawingControl: true
   });
-
-
 }
 
 function addCategory(category) {
@@ -114,8 +123,20 @@ function removeCategory(category) {
   });
 }
 
-function newMarker(job, opacity, drop) {
+//display the given job on the map, and set its inlude value to true
+//(so that it will be included in path alorithm)
+function inlcude(id) {
+markers[id].setMap(map);
+include[id] = true;
+}
 
+//opposite of include
+function remove(id) {
+markers[id].setMap(null);
+include[id] = false;
+}
+
+function newMarker(job, opacity, drop) {
   var oldMarker = markers[job.id];
   if (oldMarker != undefined) {
     oldMarker.setMap(null);
@@ -152,7 +173,7 @@ function newMarker(job, opacity, drop) {
   });
 }
 
-var path = [];
+
 
 function timeFromVal(value){
   console.log(value);
@@ -182,7 +203,7 @@ function getPath() {
       endMinutes: endTime.mins,
       homeLat: home.lat, 
       homeLng: home.lng,
-      included: jobs
+      included: getIncluded();
   };
   console.log(params);
   $.post("/path", params, function(responseJSON) {
@@ -243,4 +264,12 @@ function setMarkerOpacity(opacity) {
 
 function getHomeLatLng() {
   return {lat: homeMarker.getPosition().lat(), lng: homeMarker.getPosition().lng()};
+}
+
+function getIncluded() {
+  var included = [];
+  for (var key in include) {
+    included.push(key);
+  }
+  return included;
 }
