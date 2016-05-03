@@ -43,8 +43,8 @@ $( document ).ready(function() {
       var response = JSON.parse(responseJSON);
       console.log(response);
       if (!response) {
-        $( "#tutorialCover" ).fadeOut("fast");
-        $( "#tutorialIntroWrapper" ).fadeOut("fast");
+        $( "#tutorialCover" ).remove();
+        $( "#tutorialIntroWrapper" ).remove();
       }
     });
 });
