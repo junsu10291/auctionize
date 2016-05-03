@@ -221,8 +221,6 @@ function getPath() {
 
 function directions() {
     var directionsService = new google.maps.DirectionsService();
-    directionsDisplay = new google.maps.DirectionsRenderer();
-    directionsDisplay.setMap(map);
     var waypoints = [];
     for (var i = 0; i < path.length; i++) {
         waypoints.push({
@@ -242,7 +240,12 @@ function directions() {
     directionsService.route(directionsRequest, function (result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             console.log(result);
-            directionsDisplay.setDirections(result);
+            var directionsDisplay = new google.maps.DirectionsRenderer({
+              map: map,
+              directions: result,
+              draggable: true,
+              suppressMarkers: true
+            });
         }
     });
     hideMarkers();
@@ -264,7 +267,9 @@ function clearDirections() {
 
 function hideMarkers() {
     for (var key in include) {
-        markers[key].setOpacity(TRANSPARENT);
+        if (!(inArray(key, path))) {
+          markers[key].setOpacity(TRANSPARENT);
+        }
     }
 }
 
