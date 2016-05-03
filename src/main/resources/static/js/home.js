@@ -29,19 +29,12 @@ $( document ).ready(function() {
     });
 
     $('.chzn-select').on('change', function(evt, params) {
-        if (params.deselected != null) {
-            removeCategory(params.deselected);
-        }
-
-        if (params.selected != null) {
-            addCategory(params.selected);
-        }
+        updateInclude();
     });    
     
     // get tutorialStatus
     $.post("/getTutorialStatus", {}, function(responseJSON) {
       var response = JSON.parse(responseJSON);
-      console.log(response);
       if (!response) {
         $( "#tutorialCover" ).remove();
         $( "#tutorialIntroWrapper" ).remove();

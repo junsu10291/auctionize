@@ -85,6 +85,7 @@
     <script src="js/login.js"></script>
     <script type="text/javascript" src="js/chosen.jquery.min.js"></script>
     <script src="js/home.js"></script>
+    <script src="js/updateInclude.js"></script>
 </body>
 
 </html>

@@ -188,22 +188,20 @@ function timeFromVal(value) {
         hour = Math.ceil(rawTime);
     }
     return {
-        hours: hour,
-        mins: minutes
+        hour: hour,
+        minute: minutes
     };
 }
 
 function getPath() {
     var startTime = timeFromVal($("#startTime").val());
     var endTime = timeFromVal($("#endTime").val());
-    console.log(startTime);
-    console.log(endTime);
     var home = getHomeLatLng();
     var params = {
-        startHours: startTime.hours,
-        startMinutes: startTime.mins,
-        endHours: endTime.hours,
-        endMinutes: endTime.mins,
+        startHours: startTime.hour,
+        startMinutes: startTime.minute,
+        endHours: endTime.hour,
+        endMinutes: endTime.minute,
         homeLat: home.lat,
         homeLng: home.lng,
         included: JSON.stringify(getIncluded())
@@ -243,7 +241,6 @@ function directions() {
     }
     directionsService.route(directionsRequest, function (result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
-            console.log(result);
             directionsDisplay = new google.maps.DirectionsRenderer({
               map: map,
               directions: result,
@@ -252,7 +249,7 @@ function directions() {
             });
         }
     });
-    hideMarkers();
+    showMarkers(path);
 }
 
 function inArray(item, array) {
@@ -265,23 +262,42 @@ function inArray(item, array) {
 }
 
 function clearDirections() {
-    directionsDisplay.setMap(null);
-    showMarkers();
+    if (directionsDisplay != undefined) {
+      // if directions are already being displayed, get rid of them
+      directionsDisplay.setMap(null);
+    }
+    showMarkers(getIncluded());
 }
 
-function hideMarkers() {
-    for (var key in include) {
-        if (!(inArray(key, path))) {
-          markers[key].setOpacity(TRANSPARENT);
-        }
+function hideAllMarkers() {
+    for (var key in markers) {
+        markers[key].setMap(null);
     }
 }
 
-function showMarkers() {
-    for (var key in include) {
-        markers[key].setOpacity(OPAQUE);
+function showMarkers(idArray) {
+    hideAllMarkers();
+    for(var i = 0; i < idArray.length; i++) {
+        var id = idArray[i];
+        markers[id].setMap(map);
     }
 }
+
+function updateMarkers() {
+  for (var key in markers) {
+    var included = include[key];
+    var marker = markers[key];
+    var markerMap = marker.getMap();
+    if (included && markerMap == null) {
+      // if the marker should be displayed, but it isn't
+      marker.setMap(map); //display the marker
+    } else if (!included && markerMap == map) {
+      // if the marker shouldn't be displayed, but it is
+      marker.setMap(null); // remove the marker
+    }
+  }
+}
+
 
 function getHomeLatLng() {
     return {
