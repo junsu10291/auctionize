@@ -1,6 +1,12 @@
 var collapsed = false;
 var begin = false;
-var tut = 0;
+var tutStep = 1;
+
+// array of tutorial buubles
+var tutBubbles = [$( "#tutorialIntroWrapper" ),
+                  $( ".timelineBubble" ),
+                  $( ".categoriesBubble" ),
+                  $( ".dayofJobsBubble" )];
 
 $( document ).ready(function() {
     $(".chzn-select").chosen({
@@ -31,20 +37,30 @@ $( document ).ready(function() {
             addCategory(params.selected);
         }
     });    
+    
+    // get tutorialStatus
+    $.post("/getTutorialStatus", {}, function(responseJSON) {
+      var response = JSON.parse(responseJSON);
+      console.log(response);
+      if (!response) {
+        $( "#tutorialCover" ).fadeOut("fast");
+        $( "#tutorialIntroWrapper" ).fadeOut("fast");
+      }
+    });
 });
 
 $("#profile").on('click', function(){
-	if(connected == 1){
-		console.log("go to profile");
-	}else{
-		console.log("login!");
-	}
+  if(connected == 1){
+    console.log("go to profile");
+  }else{
+    console.log("login!");
+  }
 });
 
 $("#tutorialCover").on('click', function(){
-    if (begin) {
-        tutNext();
-    }
+  if (begin) {
+    tutNext();
+  }
 });
 
 function skipTut() {
@@ -53,25 +69,21 @@ function skipTut() {
 }
 
 function beginTut() {
-    $( "#tutorialIntroWrapper" ).fadeOut( "slow", function() {});
-    $( ".timelineBubble" ).fadeIn( "slow", function() {});
     $("#tutorialCover").css({"cursor":"pointer"});
     begin = true;
-    tut = 1;
+    tutNext();
 }
 
 function tutNext() {
-    if (tut == 1) {
-        $( ".timelineBubble" ).fadeOut( "slow", function() {});
-        $( ".categoriesBubble" ).fadeIn( "slow", function() {});
-        tut = 2;
-    } else if (tut == 2) {
-        $( ".categoriesBubble" ).fadeOut( "slow", function() {});
-        $( ".dayofJobsBubble" ).fadeIn( "slow", function() {});
-        tut = 3;
-    } else if (tut == 3) {
-        $( ".dayofJobsBubble" ).fadeOut( "slow", function() {});
-        skipTut();
-    }
+   if (tutStep < tutBubbles.length) {
+     tutBubbles[tutStep - 1].fadeOut( "slow", function() {});
+     tutBubbles[tutStep].fadeIn( "slow", function() {});
+     tutStep += 1;
+   } else {
+     console.log("done");
+     tutBubbles[tutBubbles.length - 1].fadeOut( "slow", function() {});
+     skipTut();
+   }
 }
+
 

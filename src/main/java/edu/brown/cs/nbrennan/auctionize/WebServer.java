@@ -42,6 +42,10 @@ public class WebServer {
   private List<BigInteger> activeUsers;
   private Map<String, Job> jobs;
   private JobGraph graph;
+  
+  // true if the tutorial should be displayed (first time loading the page)
+  // false otherwise
+  private boolean tutorialStatus = true;
 
   public WebServer(Map<String, Job> jobs) {
     this.jobs = jobs;
@@ -64,6 +68,7 @@ public class WebServer {
     Spark.post("/jobs", new JobsHandler());
     Spark.post("/path", new PathHandler());
     Spark.post("/postJob", new NewJob());
+    Spark.post("/getTutorialStatus", new getTutorialStatusHandler());
   }
 
   /**
@@ -198,6 +203,15 @@ public class WebServer {
       }
       res.redirect("/home");
       return res;
+    }
+  }
+  
+  private class getTutorialStatusHandler implements Route {
+    @Override
+    public Object handle(final Request req, final Response res) {
+      boolean oldStatus = tutorialStatus;
+      tutorialStatus = false;
+      return oldStatus;
     }
   }
 
