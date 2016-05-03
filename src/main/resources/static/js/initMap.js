@@ -112,8 +112,7 @@ function removeRegion() {
 function addCategory(category) {
     $.each(jobs, function (index, value) {
         if (value.category == category) {
-            var marker = markers[index];
-            marker.setMap(map);
+            include(index);
         }
     });
 }
@@ -121,8 +120,7 @@ function addCategory(category) {
 function removeCategory(category) {
     $.each(jobs, function (index, value) {
         if (value.category == category) {
-            var marker = markers[index];
-            marker.setMap(null);
+             remove(index);
         }
     });
 }
