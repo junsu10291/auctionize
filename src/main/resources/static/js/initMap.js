@@ -112,7 +112,7 @@ function removeRegion() {
 function addCategory(category) {
     $.each(jobs, function (index, value) {
         if (value.category == category) {
-            include(index);
+            includeJob(index);
         }
     });
 }
@@ -120,20 +120,20 @@ function addCategory(category) {
 function removeCategory(category) {
     $.each(jobs, function (index, value) {
         if (value.category == category) {
-             remove(index);
+             removeJob(index);
         }
     });
 }
 
 //display the given job on the map, and set its inlude value to true
 //(so that it will be included in path alorithm)
-function inlcude(id) {
+function inlcudeJob(id) {
     markers[id].setMap(map);
     include[id] = true;
 }
 
 //opposite of include
-function remove(id) {
+function removeJob(id) {
     markers[id].setMap(null);
     include[id] = false;
 }
@@ -220,6 +220,10 @@ function getPath() {
 }
 
 function directions() {
+    if (directionsDisplay != undefined) {
+      // if directions are already being displayed, get rid of them
+      directionsDisplay.setMap(null);
+    }
     var directionsService = new google.maps.DirectionsService();
     var waypoints = [];
     for (var i = 0; i < path.length; i++) {
@@ -240,7 +244,7 @@ function directions() {
     directionsService.route(directionsRequest, function (result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             console.log(result);
-            var directionsDisplay = new google.maps.DirectionsRenderer({
+            directionsDisplay = new google.maps.DirectionsRenderer({
               map: map,
               directions: result,
               draggable: true,
@@ -289,7 +293,9 @@ function getHomeLatLng() {
 function getIncluded() {
     var included = [];
     for (var key in include) {
-        included.push(key);
+        if (include[key]) {
+          included.push(key);
+        }
     }
     return included;
 }
