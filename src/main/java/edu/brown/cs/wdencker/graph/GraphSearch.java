@@ -106,7 +106,7 @@ public final class GraphSearch {
       WeightedGraph<V, Double> graph) {
     Map<V, Double> distances = new HashMap<>();
     Map<V, Entry<V, EdgeWeight<Double>>> previous = new HashMap<>();
-    for (V node : graph.getEdges(start).keySet()) {
+    for (V node : graph) {
       distances.put(node, Double.POSITIVE_INFINITY);
     }
     distances.put(start, 0.0);
