@@ -9,10 +9,11 @@ var tutBubbles = [$( "#tutorialIntroWrapper" ),
                   $( ".dayofJobsBubble" )];
 
 $( document ).ready(function() {
+    /*
     $(".chzn-select").chosen({
             width: "250px",
             placeholder_text_multiple: "Select Category"});
-
+    */
     $("#togglebar").click(function() {
         if (!collapsed) {
             $("#sidebar").hide();
@@ -29,22 +30,15 @@ $( document ).ready(function() {
     });
 
     $('.chzn-select').on('change', function(evt, params) {
-        if (params.deselected != null) {
-            removeCategory(params.deselected);
-        }
-
-        if (params.selected != null) {
-            addCategory(params.selected);
-        }
+        updateInclude();
     });    
     
     // get tutorialStatus
     $.post("/getTutorialStatus", {}, function(responseJSON) {
       var response = JSON.parse(responseJSON);
-      console.log(response);
       if (!response) {
-        $( "#tutorialCover" ).fadeOut("fast");
-        $( "#tutorialIntroWrapper" ).fadeOut("fast");
+        $( "#tutorialCover" ).remove();
+        $( "#tutorialIntroWrapper" ).remove();
       }
     });
 });
