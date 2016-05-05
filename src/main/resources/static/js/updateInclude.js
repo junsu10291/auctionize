@@ -11,7 +11,7 @@ function updateInclude() {
   resetInclude();
   var startTime = timeFromVal($("#startTime").val());
   var endTime = timeFromVal($("#endTime").val());
-  var selectedCategories = $(".chzn-select").val();
+  var selectedCategories = $(".chzn-select").children("input:checked").map(function(){return this.value;});
   for (var key in include) {
     var job = jobs[key];
     if (jobWithinRange(job, startTime, endTime) && inArray(job.category, selectedCategories)) {

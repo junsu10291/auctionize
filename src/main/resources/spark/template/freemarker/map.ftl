@@ -35,21 +35,21 @@
                 <img id="profilePicture">
                 <div id="userName"></div>
                 <div id="jobCategory">
-                    <select class="chzn-select" multiple="true" name="faculty">
-                        <option value="YARD" selected>YARD</option>
-                        <option value="CLEAN" selected>CLEAN</option>
-                        <option value="COURIER" selected>COURIER</option>
-                        <option value="PAINT" selected>PAINT</option>
-                        <option value="ACT" selected>ACT</option>
-                        <option value="MOVE" selected>MOVE</option>
-                        <option value="CONSTRUCT" selected>CONSTRUCT</option>
-                        <option value="HANDY" selected> HANDY</option>
-                        <option value="DRIVE" selected> DRIVE </option>
-                        <option value="PET" selected>PET</option>
-                        <option value="BABY" selected>BABY</option>
-                        <option value="ASSEMBLE" selected>ASSEMBLE</option>
-                        <option value="MISC" selected>MISC</option>
-                    </select>
+                    <div class="chzn-select" name="faculty">
+                        <input type="checkbox" value="YARD" checked>YARD</input>
+                        <input type="checkbox" value="CLEAN" checked>CLEAN</input>
+                        <input type="checkbox" value="COURIER" checked>COURIER</input>
+                        <input type="checkbox" value="PAINT" checked>PAINT</input>
+                        <input type="checkbox" value="ACT" checked>ACT</input>
+                        <input type="checkbox" value="MOVE" checked>MOVE</input>
+                        <input type="checkbox" value="CONSTRUCT" checked>CONSTRUCT</input>
+                        <input type="checkbox" value="HANDY" checked> HANDY</input>
+                        <input type="checkbox" value="DRIVE" checked> DRIVE </input>
+                        <input type="checkbox" value="PET" checked>PET</input>
+                        <input type="checkbox" value="BABY" checked>BABY</input>
+                        <input type="checkbox" value="ASSEMBLE" checked>ASSEMBLE</input>
+                        <input type="checkbox" value="MISC" checked>MISC</input>
+                    </div>
                 </div>
 
                 <div id="dayofjobsButton">

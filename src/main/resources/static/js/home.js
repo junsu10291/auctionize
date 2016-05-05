@@ -9,10 +9,11 @@ var tutBubbles = [$( "#tutorialIntroWrapper" ),
                   $( ".dayofJobsBubble" )];
 
 $( document ).ready(function() {
+    /*
     $(".chzn-select").chosen({
             width: "250px",
             placeholder_text_multiple: "Select Category"});
-
+    */
     $("#togglebar").click(function() {
         if (!collapsed) {
             $("#sidebar").hide();
