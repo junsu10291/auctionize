@@ -1,8 +1,8 @@
-$("#startTime").on("input change", function() {
+$("#startTime").on("change", function() {
   updateInclude();
 });
 
-$("#endTime").on("input change", function() {
+$("#endTime").on("change", function() {
   updateInclude();
 });
 
@@ -12,6 +12,9 @@ function updateInclude() {
   var startTime = timeFromVal($("#startTime").val());
   var endTime = timeFromVal($("#endTime").val());
   var selectedCategories = $(".chzn-select").val();
+  if (selectedCategories == null) {
+    selectedCategories = [];
+  }
   for (var key in include) {
     var job = jobs[key];
     if (jobWithinRange(job, startTime, endTime) && inArray(job.category, selectedCategories)) {
