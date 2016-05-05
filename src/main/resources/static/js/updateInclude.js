@@ -1,8 +1,8 @@
-$("#startTime").on("input change", function() {
+$("#startTime").on("change", function() {
   updateInclude();
 });
 
-$("#endTime").on("input change", function() {
+$("#endTime").on("change", function() {
   updateInclude();
 });
 
@@ -11,6 +11,7 @@ function updateInclude() {
   resetInclude();
   var startTime = timeFromVal($("#startTime").val());
   var endTime = timeFromVal($("#endTime").val());
+
   var selectedCategories = $(".chzn-select").children("input:checked").map(function(){return this.value;});
   for (var key in include) {
     var job = jobs[key];
