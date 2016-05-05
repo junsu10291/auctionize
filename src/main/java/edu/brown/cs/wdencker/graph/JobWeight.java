@@ -19,7 +19,7 @@ public class JobWeight extends EdgeWeight<Double> {
   }
 
   private static double getJobWeight(Job job1, Job job2) {
-    return ProfitEstimator.estimateProfit(new LatLng(job1.lat, job1.lng), job2) * -1;
+    return ProfitEstimator.estimateProfitWithUber(new LatLng(job1.lat, job1.lng), job2) * -1;
   }
 
 }

@@ -1,16 +1,11 @@
 package edu.brown.cs.jchoi21.profitestimator;
 
-import java.util.List;
-
-import com.uber.sdk.rides.client.Response;
-import com.uber.sdk.rides.client.Session;
-import com.uber.sdk.rides.client.Session.Environment;
-import com.uber.sdk.rides.client.UberRidesServices;
-import com.uber.sdk.rides.client.UberRidesSyncService;
-import com.uber.sdk.rides.client.error.ApiException;
-import com.uber.sdk.rides.client.error.NetworkException;
-import com.uber.sdk.rides.client.model.PriceEstimate;
-import com.uber.sdk.rides.client.model.PriceEstimatesResponse;
+import static java.lang.Math.atan2;
+import static java.lang.Math.cos;
+import static java.lang.Math.pow;
+import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.toRadians;
 
 import edu.brown.cs.nbrennan.job.Job;
 
@@ -18,74 +13,29 @@ public class ProfitEstimator {
   public ProfitEstimator() {
   }
 
-  private static UberRidesSyncService service = UberRidesServices
-      .createSync(new Session.Builder()
-          .setServerToken("_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu")
-          .setEnvironment(Environment.PRODUCTION).build());
+  // Uber token :"_jOzhJLJy-WM0eV74N9d3CA4vZqGkJd4R4-KFlFu"
+  private static final int EARTH_RADIUS_MI = 3959;
 
-  public static double estimateProfit(LatLng latlng, Job job) {
-    if (job.id.equals("homeStart") || job.id.equals("homeEnd")){
-//      float startLat = (float) latlng.get_lat();
-//      float startLng = (float) latlng.get_lng();
-//      float jobLat = (float) job.lat;
-//      float jobLng = (float) job.lng;
-//
-//      double pay = job.profit;
-//      double uberPriceEstimate = 0.0;
-//
-//      try {
-//        Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
-//            startLng, jobLat, jobLng);
-//        PriceEstimatesResponse pricesEstimateRes = hi.getBody();
-//        List<PriceEstimate> prices = pricesEstimateRes.getPrices();
-//
-//        for (PriceEstimate priceEstimate : prices) {
-//          if (priceEstimate.getDisplayName().equals("uberX")) {
-//            uberPriceEstimate = priceEstimate.getHighEstimate();
-//          }
-//        }
-//      } catch (ApiException | NetworkException e) {
-//        // TODO Auto-generated catch block
-//        e.printStackTrace();
-//      }
-//
-//      double profit = pay - uberPriceEstimate;
-//
-//      return profit;
-      return job.profit;
-    } else {
-      return job.profit;
-    }
+  public static double estimateProfitWithUber(LatLng latlng, Job job) {
+    return job.profit - estimateUberCost(haversineDistance(latlng.get_lat(),
+        latlng.get_lng(), job.lat, job.lng));
   }
 
-  public static int estimateTime(LatLng latlng, Job job) {
-    if (job.id.equals("homeStart") || job.id.equals("homeEnd")){
-//      float startLat = (float) latlng.get_lat();
-//      float startLng = (float) latlng.get_lng();
-//      float jobLat = (float) job.lat;
-//      float jobLng = (float) job.lng;
-//
-//      int uberTimeEstimate = 0;
-//
-//      try {
-//        Response<PriceEstimatesResponse> hi = service.getPriceEstimates(startLat,
-//            startLng, jobLat, jobLng);
-//        PriceEstimatesResponse pricesEstimateRes = hi.getBody();
-//        List<PriceEstimate> prices = pricesEstimateRes.getPrices();
-//
-//        for (PriceEstimate priceEstimate : prices) {
-//          if (priceEstimate.getDisplayName().equals("uberX")) {
-//            uberTimeEstimate = priceEstimate.getDuration();
-//          }
-//        }
-//      } catch (ApiException | NetworkException e) {
-//        // TODO Auto-generated catch block
-//        e.printStackTrace();
-//      }
-//      return uberTimeEstimate;
-      return 0;
-    } else {
-      return 0;
-    }
+  private static double estimateUberCost(double distInMiles) {
+    return 3.0 + (2.2 * distInMiles);
+  }
+
+  private static double haversineDistance(double lat1, double lng1, double lat2,
+      double lng2) {
+    double dLatSin = sin(toRadians(lat2 - lat1) / 2);
+    double dLngSin = sin(toRadians(lng2 - lng1) / 2);
+    double a = pow(dLatSin, 2)
+        + pow(dLngSin, 2) * cos(toRadians(lat1)) * cos(toRadians(lat2));
+    return EARTH_RADIUS_MI * 2 * atan2(sqrt(a), sqrt(1 - a));
+  }
+
+  public static int estimateTimeDriving(LatLng latlng, Job job) {
+    return (int) (60 * 1.5 * haversineDistance(latlng.get_lat(),
+        latlng.get_lng(), job.lat, job.lng));
   }
 }

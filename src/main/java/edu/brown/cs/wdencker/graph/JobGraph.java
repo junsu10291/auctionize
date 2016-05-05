@@ -17,7 +17,7 @@ public class JobGraph extends WeightedGraph<Job, Double> {
           Job job1 = jobs.get(i);
           Job job2 = jobs.get(j);
           LocalTime job1EndPlusTravel = job1.end.plusSeconds(ProfitEstimator
-              .estimateTime(new LatLng(job2.lat, job2.lng), job1));
+              .estimateTimeDriving(new LatLng(job2.lat, job2.lng), job1));
           if (job2.start.isAfter(job1EndPlusTravel)) {
             addDirectedEdge(job1, job2, new JobWeight(job1, job2));
           }
@@ -32,12 +32,12 @@ public class JobGraph extends WeightedGraph<Job, Double> {
     for (Job job : this) {
       if (!node.equals(job)) {
         LocalTime jobEndPlusTravel = job.end.plusSeconds(
-            ProfitEstimator.estimateTime(new LatLng(node.lat, node.lng), job));
+            ProfitEstimator.estimateTimeDriving(new LatLng(node.lat, node.lng), job));
         if (node.start.isAfter(jobEndPlusTravel)) {
           addDirectedEdge(job, node, new JobWeight(job, node));
         }
         LocalTime nodeEndPlusTravel = node.end.plusSeconds(
-            ProfitEstimator.estimateTime(new LatLng(job.lat, job.lng), node));
+            ProfitEstimator.estimateTimeDriving(new LatLng(job.lat, job.lng), node));
         if (job.start.isAfter(nodeEndPlusTravel)) {
           addDirectedEdge(node, job, new JobWeight(node, job));
         }
