@@ -78,7 +78,7 @@ public class WebServer {
     @Override
     public ModelAndView handle(Request req, Response res) {
       Map<String, Object> variables = ImmutableMap.of("title",
-          "Auctionize: It's Straight Cash Homie!");
+          "Working Weekend");
       return new ModelAndView(variables, "main.ftl");
     }
   }

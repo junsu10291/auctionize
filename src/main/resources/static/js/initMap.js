@@ -44,31 +44,7 @@ function initMap() {
                 center: loc
             });
 
-            drawingManager = new google.maps.drawing.DrawingManager({
-                drawingMode: null,
-                drawingControl: true,
-                drawingControlOptions: {
-                    position: google.maps.ControlPosition.TOP_CENTER,
-                    drawingModes: [google.maps.drawing.OverlayType.RECTANGLE]
-                },
-            });
-            drawingManager.setMap(map);
-
-            google.maps.event.addListener(drawingManager, 'overlaycomplete', function (event) {
-                regionDrawable = false;
-                $("#floatingPanel").show();
-                region = event.overlay;
-                drawingManager.setOptions({
-                    drawingControl: false,
-                    drawingMode: null
-                });
-
-                if (event.type == google.maps.drawing.OverlayType.RECTANGLE) {
-                    var bounds = event.overlay.getBounds();
-                    regionNorthWestBound = [bounds.R.j, bounds.j.j];
-                    regionSouthEastBound = [bounds.R.R, bounds.j.R];
-                }
-            });
+            
 
             homeMarker = new google.maps.Marker({
                 position: loc,
@@ -165,7 +141,7 @@ function newMarker(job, opacity, drop) {
     var startTimeString = localtimeToString(job.start);
     var endTimeString = localtimeToString(job.end);
     var info = new google.maps.InfoWindow({
-        content: "<style>/*p{text-align: center}*/" + "p.title{font-weight: bold;}</style>" + "<p class=\"title\">" + job.title + "</p>" + "<p>Category: " + job.category + "</p>" + "<p>Start: " + startTimeString + "</p>" + "<p>End: " + endTimeString + "</p>" + "<p>Profit: $" + job.profit + "</p>"
+        content: jobInfoHTML(job)
     });
     marker.addListener('click', function () {
         info.open(map, marker);
@@ -314,4 +290,36 @@ function getIncluded() {
         }
     }
     return included;
+}
+
+function localtimeToString(localTime) {
+  var str = toDate(localTime).toLocaleTimeString();
+  var len = str.length;
+  last3chars = str.substring(len - 3, len);
+  str = str.substring(0, len - 6);
+  str = str + last3chars;
+  return str;
+}
+
+function jobInfoHTML(job) {
+  var style = "p.title {font-weight: bold;}"
+  + "p {"
+  + "  margin: 10px 10px;"
+  + "  text-align: center;"
+  + "  font-family: Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif;"
+  + "  font-size: 14px;"
+  + "  font-style: normal;"
+  + "  font-variant: normal;"
+  + "  font-weight: 400;"
+  + "  line-height: 23px;"
+  + "}";
+  var startTimeString = localtimeToString(job.start);
+  var endTimeString = localtimeToString(job.end);
+  
+  return "<style>" + style + "</style>"
+      + "<p class=\"title\">" + job.title + "</p>"
+      + "<p>Category: " + job.category + "</p>"
+      + "<p>Start: " + startTimeString + "</p>"
+      + "<p>End: " + endTimeString + "</p>"
+      + "<p>Profit: $" + job.profit + "</p>";
 }

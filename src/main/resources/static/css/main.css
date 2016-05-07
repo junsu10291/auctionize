@@ -1,520 +1,57 @@
-input[type="number"] {
-  width: 3em;
+html {
+	height: 100%;
 }
 
-#profilePicture {
-    width: 150px;
-    height: 150px;
-    margin-left: 48px;
-    margin-top: 22px;
-    border-radius: 40px;
-    border: 1px solid white;
-    display: none;
-    position: relative;
-    top: 1.5%;
-    left: 6.5%;
+body {
+  padding-top: 50px;
+  height: 100%;
 }
 
-#userName {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    color: white;
-    margin-top: 10px;
-    width: 100%;
-    display: table;
-    position: relative;
-    top: 2%;
+.container {
+	height: 100%;
 }
 
-#jobCategory {
-    display: none;
-    color: white;
-    text-align: center;
-    margin-top: 30px;
-    width: 100%;
+#content-container {
+	padding: 10px;
 }
 
-#togglebar {
-    width: 1%;
-    margin-left: -4px;
-    height: 100%;
-    background-color: #00A1FF;
-    display: inline-block;
+
+#timeline-row {
+	height: 91px;
 }
 
-#togglebar:hover {
-    cursor: pointer;
+#dayofjobs-row {
+	padding: 10px;
 }
 
-#mapContainer {
-    width: 76.5%;
-    height: 100%;
-    display: inline-block;
-    position:relative;
+#map-row {
+	height: 58%;
 }
-.slider{
-    width: 95%;
+
+
+
+#timeline {
+	height: 100%;
 }
-#timelineContainer {
-    height: 27%;
-}
-#timeline{
-    margin-top: 10px;
-    width: 95%;
-    height: 91px;
-}
+
 #map {
-    height: 70%;
+	height: 100%;
 }
 
-li {
-    list-style-type: none;
+#slider-id {
+	width: 100%;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+#slider-id .slider-selection {
+	background: green;
 }
 
-.container { 
-    width: 100%;
-    height: 91%;
+#dayofjobs-btn {
+	height: 100%;
+	width: 100%;
 }
 
-#navBar {
-    background-color: #333;
-    height: 9%;
-}
-.navButton {
-    float: left;
-    height: 100%;
-    width: 150px;
-}
-.navButton a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 175%
-}
-.navButton a:hover:not(.active) {
-    background-color: #111;
-}
-.active {
-    background-color: #4CAF50;
+.btn-col {
+	padding: 10px;
 }
 
-#sidebar {
-    position:relative;
-    width:22%;
-    background:#000;
-    height: 100%;
-    display: inline-block;
-}  
-
-#pageContainer {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.fb_iframe_widget {
-    display: table !important;
-    width: 100%;
-    text-align: center;
-}
-
-#floatingPanel {
-    position: absolute;
-    width:100px;
-    height:29px;
-    top: 32.9%;
-    left: 56.5%;
-    z-index: 1;
-    display: none;
-}
-
-.logout {
-    float: right;
-    position: relative;
-    top: 19%;
-}
-
-.myButton {
-    -moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
-    -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
-    box-shadow: 0px 0px 0px 2px #9fb4f2;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
-    background:-moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:-webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:-o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:-ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
-    background-color:#7892c2;
-    -moz-border-radius:25px;
-    -webkit-border-radius:25px;
-    border-radius:25px;
-    border:1px solid #4e6096;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:22px;
-    font-weight:bold;
-    padding:12px 37px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #283966;
-}
-.myButton:hover {
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
-    background:-moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:-webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:-o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:-ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
-    background-color:#476e9e;
-}
-
-.myButton:active {
-    position:relative;
-    top:1px;
-}
-
-.tutButton {
-    -moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
-    -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
-    box-shadow: 0px 0px 0px 2px #9fb4f2;
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
-    background:-moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:-webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:-o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:-ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
-    background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
-    background-color:#7892c2;
-    -moz-border-radius:25px;
-    -webkit-border-radius:25px;
-    border-radius:10px;
-    border:1px solid #4e6096;
-    display:inline-block;
-    cursor:pointer;
-    color:#ffffff;
-    font-family:Arial;
-    font-size:17px;
-    font-weight:bold;
-    padding:12px 37px;
-    text-decoration:none;
-    text-shadow:0px 1px 0px #283966;
-}
-.tutButton:hover {
-    background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #476e9e), color-stop(1, #7892c2));
-    background:-moz-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:-webkit-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:-o-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:-ms-linear-gradient(top, #476e9e 5%, #7892c2 100%);
-    background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
-    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#476e9e', endColorstr='#7892c2',GradientType=0);
-    background-color:#476e9e;
-}
-
-.tutButton:active {
-    position:relative;
-    top:1px;
-}
-
-#skipTut {
-    margin-left: 10px;
-}
-
-#dayofjobsButton {
-    display: table;
-    position: relative;
-    top: 27%;
-    left: 12%;
-}
-
-label {
-  width: 200px;
-  border-radius: 3px;
-  border: 1px solid #D1D3D4
-}
-
-/* hide input */
-input.radio:empty {
-    margin-left: -999px;
-}
-
-/* style label */
-input.radio:empty ~ label {
-    position: relative;
-    float: left;
-    line-height: 2.5em;
-    text-indent: 3.25em;
-    margin-top: 2em;
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-input.radio:empty ~ label:before {
-    position: absolute;
-    display: block;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    content: '';
-    width: 2.5em;
-    background: #D1D3D4;
-    border-radius: 3px 0 0 3px;
-}
-
-/* toggle hover */
-input.radio:hover:not(:checked) ~ label:before {
-    content:'\2714';
-    text-indent: .9em;
-    color: #C2C2C2;
-}
-
-input.radio:hover:not(:checked) ~ label {
-    color: #888;
-}
-
-/* toggle on */
-input.radio:checked ~ label:before {
-    content:'\2714';
-    text-indent: .9em;
-    color: #9CE2AE;
-    background-color: #4DCB6D;
-}
-
-input.radio:checked ~ label {
-    color: #777;
-}
-
-/* radio focus */
-input.radio:focus ~ label:before {
-    box-shadow: 0 0 0 3px #999;
-}
-
-#tutorialCover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    opacity: 0.6;
-    z-index: 1;
-}
-
-#tutorialIntro {
-    text-align: center;
-    top: 25%;
-    position: relative;
-}
-
-#tutorialIntroWrapper {
-    position:absolute;
-    z-index:1;
-    top: 43%;
-    left: 34%;
-    width: 46%;
-    height: 8%;
-    background-color: rgba(0, 0, 0, 0.67);
-    width: 37%;
-    height: 15%;
-    border-radius: 10px;
-}
-
-.bubble {
-    position: absolute;
-    z-index: 1;
-    width: 20%;
-    height: 10%;
-    padding: 0px;
-    background: #B0C1CC;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    border-radius: 10px;
-    border: #6E7F7F solid 4px;
-    opacity: 0.9;
-    font-family: Arial;
-    font-size: 17px;
-    font-weight: bold;
-    padding: 10px 22px;
-    color: #ffffff;
-    word-break: break-all;
-}
-
-.timelineBubble 
-{
-    left: 50%;
-    top: 22%;   
-    display: none;
-}
-
-.categoriesBubble 
-{
-    left: 1%;
-    top: 68%;
-    display: none;
-}
-
-.dayofJobsBubble 
-{
-    left: 1%;
-    top: 71.5%;
-    display: none;
-}
-
-.upBubble:after 
-{
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 0 20px 15px;
-    border-color: #B0C1CC transparent;
-    display: block;
-    width: 0;
-    z-index: 1;
-    top: -15px;
-    left: 111px;
-}
-
-.upBubble:before 
-{
-    content: '';
-    position: absolute;
-    border-style: solid;
-    border-width: 0 23px 18px;
-    border-color: #6E7F7F transparent;
-    display: block;
-    width: 0;
-    z-index: 0;
-    top: -22px;
-    left: 108px;
-}
-
-.downBubble:after 
-{
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 15px 20px 0;
-border-color: #B0C1CC transparent;
-display: block;
-width: 0;
-z-index: 1;
-bottom: -15px;
-left: 111px;
-}
-
-.downBubble:before 
-{
-content: '';
-position: absolute;
-border-style: solid;
-border-width: 18px 23px 0;
-border-color: #6E7F7F transparent;
-display: block;
-width: 0;
-z-index: 0;
-bottom: -22px;
-left: 108px;
-}
-
-
-/* Stuff to for slider styling */
-
-input[type=range] {
-  -webkit-appearance: none;
-  margin: 10px 0;
-}
-input[type=range]:focus {
-  outline: none;
-}
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
-  border-radius: 1.3px;
-  border: 0.2px solid #010101;
-}
-input[type=range]::-webkit-slider-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -14px;
-}
-input[type=range]:focus::-webkit-slider-runnable-track {
-  background: #367ebd;
-}
-input[type=range]::-moz-range-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
-  animate: 0.2s;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  background: #3071a9;
-  border-radius: 1.3px;
-  border: 0.2px solid #010101;
-}
-input[type=range]::-moz-range-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
-  cursor: pointer;
-}
-input[type=range]::-ms-track {
-  width: 100%;
-  height: 8.4px;
-  cursor: pointer;
-  animate: 0.2s;
-  background: transparent;
-  border-color: transparent;
-  border-width: 16px 0;
-  color: transparent;
-}
-input[type=range]::-ms-fill-lower {
-  background: #2a6495;
-  border: 0.2px solid #010101;
-  border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-}
-input[type=range]::-ms-fill-upper {
-  background: #3071a9;
-  border: 0.2px solid #010101;
-  border-radius: 2.6px;
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-}
-input[type=range]::-ms-thumb {
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #ffffff;
-  cursor: pointer;
-}
-input[type=range]:focus::-ms-fill-lower {
-  background: #3071a9;
-}
-input[type=range]:focus::-ms-fill-upper {
-  background: #367ebd;
-}
