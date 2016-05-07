@@ -170,8 +170,9 @@ function timeFromVal(value) {
 }
 
 function getPath() {
-    var startTime = timeFromVal($("#startTime").val());
-    var endTime = timeFromVal($("#endTime").val());
+    var sliderVals = $("#slider").slider("getValue");
+    var startTime = sliderValToTime(sliderVals[0]);
+    var endTime = sliderValToTime(sliderVals[1]);
     var home = getHomeLatLng();
     var params = {
         startHours: startTime.hour,
@@ -186,6 +187,7 @@ function getPath() {
         params.endHours = 23;
         params.endMinutes = 59;
     }
+    console.log(params);
     $.post("/path", params, function (responseJSON) {
         path = JSON.parse(responseJSON);
         directions();
