@@ -35,7 +35,8 @@ public class ProfitEstimator {
   }
 
   public static int estimateTimeDriving(LatLng latlng, Job job) {
-    return (int) (60 * 1.5 * haversineDistance(latlng.get_lat(),
-        latlng.get_lng(), job.lat, job.lng));
+    return 0;
+//    return (int) (60 * 1.5 * haversineDistance(latlng.get_lat(),
+//        latlng.get_lng(), job.lat, job.lng));
   }
 }
