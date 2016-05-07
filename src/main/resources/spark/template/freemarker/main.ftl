@@ -57,7 +57,8 @@
     		<button type="button" class="btn btn-primary btn-lg btn-block" id="dayofjobs-btn" onclick="this.blur();getPath();">Day of Jobs from 8:00 AM to 12:00 AM</button>
     	</div>
     	<div class="row" id="map-row">
-    		<div id="map"></div>
+            <div id="map"></div>
+            <div id="profit-box"><h3>Profit: $194</h3></div>
     	</div>
     	
     	<div class="row" id="categories-row">
