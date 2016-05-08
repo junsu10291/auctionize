@@ -14,6 +14,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="js/timeline.js"></script>
     <script src="js/updateInclude.js"></script>
+    <script src="js/uber.js"></script>
     
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
@@ -63,29 +64,28 @@
     	
     	<div class="row" id="categories-row">
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col1"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="ACT" onclick="this.blur();" data-toggle="button" aria-pressed="true">SURVEY</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="HANDY" onclick="this.blur();" data-toggle="button" aria-pressed="true">HANDYWORK</button>
-    			
+    			<button type="button" class="btn btn-success btn-block category-btn" id="ACT" onclick="this.blur();toggleCategory('ACT');">SURVEY</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="HANDY" onclick="this.blur();toggleCategory('HANDY');">HANDYWORK</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col2"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="ASSEMBLE" onclick="this.blur();" data-toggle="button" aria-pressed="true">ASSEMBLE</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="MISC" onclick="this.blur();" data-toggle="button" aria-pressed="true">MISCELLANEOUS</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="ASSEMBLE" onclick="this.blur();toggleCategory('ASSEMBLE');">ASSEMBLE</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="MISC" onclick="this.blur();toggleCategory('MISC');">MISCELLANEOUS</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col3"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="CLEAN" onclick="this.blur();" data-toggle="button" aria-pressed="true">CLEANING</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="MOVE" onclick="this.blur();" data-toggle="button" aria-pressed="true">MOVING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="CLEAN" onclick="this.blur();toggleCategory('CLEAN');">CLEANING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="MOVE" onclick="this.blur();toggleCategory('MOVE');">MOVING</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col4"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="CONSTRUCT" onclick="this.blur();" data-toggle="button" aria-pressed="true">CONSTRUCTION</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="PAINT" onclick="this.blur();" data-toggle="button" aria-pressed="true">PAINTING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="CONSTRUCT" onclick="this.blur();toggleCategory('CONSTRUCT');">CONSTRUCTION</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="PAINT" onclick="this.blur();toggleCategory('PAINT');">PAINTING</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col5"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="COURIER" onclick="this.blur();" data-toggle="button" aria-pressed="true">COURIER</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="PET" onclick="this.blur();" data-toggle="button" aria-pressed="true">PETS</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="COURIER" onclick="this.blur();toggleCategory('COURIER');">COURIER</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="PET" onclick="this.blur();toggleCategory('PET');">PETS</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col6"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="DRIVE" onclick="this.blur();" data-toggle="button" aria-pressed="true">DRIVING</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="YARD" onclick="this.blur();" data-toggle="button" aria-pressed="true">YARDWORK</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="DRIVE" onclick="this.blur();toggleCategory('DRIVE');">DRIVING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="YARD" onclick="this.blur();toggleCategory('YARD');">YARDWORK</button>
     		</div>
     	</div>
     	
