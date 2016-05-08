@@ -14,6 +14,8 @@ var include = {};
 // an array of job ids that represent the path for the day of jobs
 var path = [];
 
+var profitBox;
+
 var loc = {
     lat: 41.826130,
     lng: -71.403
@@ -189,8 +191,8 @@ function timeFromVal(value) {
 
 function getPath() {
     var sliderVals = $("#slider").slider("getValue");
-    var startTime = sliderValToTime(sliderVals[0]);
-    var endTime = sliderValToTime(sliderVals[1]);
+    var startTime = getStartTime();
+    var endTime = getEndTime();
     var home = getHomeLatLng();
     var params = {
         startHours: startTime.hour,
@@ -206,11 +208,21 @@ function getPath() {
         params.endMinutes = 59;
     }
     console.log(params);
-    $.post("/path", params, function (responseJSON) {
-        path = JSON.parse(responseJSON);
-        directions();
-        drawChart();
-    });
+    console.log(getIncluded());
+    if (getIncluded().length == 0) {
+      alert("There are no profitable jobs! Please select a different time range or different categories.");
+    } else {
+      $.post("/path", params, function (responseJSON) {
+          path = JSON.parse(responseJSON);
+          if (path.length == 0) {
+            alert("There are no profitable jobs! Please select a different time range or different categories.");
+          } else {
+            directions();
+            drawChart();
+            drawProfitBox();
+          }
+      });
+    }
 }
 
 function directions() {
@@ -258,6 +270,9 @@ function inArray(item, array) {
 }
 
 function clearDirections() {
+    if (profitBox != undefined) {
+      profitBox.parentNode.removeChild(profitBox);
+    }
     if (directionsDisplay != undefined) {
       // if directions are already being displayed, get rid of them
       directionsDisplay.setMap(null);
@@ -342,4 +357,18 @@ function jobInfoHTML(job) {
       + "<p>Start: " + startTimeString + "</p>"
       + "<p>End: " + endTimeString + "</p>"
       + "<p>Profit: $" + job.profit + "</p>";
+}
+
+function drawProfitBox() {
+  var span = document.createElement('span');
+  span.className = "label label-success";
+  span.innerHTML = "Profit: $123";
+  
+  var h2 = document.createElement('h2');
+  h2.appendChild(span);
+  
+  profitBox = document.createElement('div');
+  profitBox.appendChild(h2);
+
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(profitBox);
 }
