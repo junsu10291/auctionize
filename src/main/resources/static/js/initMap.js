@@ -190,6 +190,7 @@ function timeFromVal(value) {
 }
 
 function getPath() {
+    clearDirections();
     var sliderVals = $("#slider").slider("getValue");
     var startTime = getStartTime();
     var endTime = getEndTime();
