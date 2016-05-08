@@ -270,7 +270,7 @@ function inArray(item, array) {
 }
 
 function clearDirections() {
-    if (profitBox != undefined) {
+    if ((profitBox != undefined) && (profitBox.parentNode != null)) {
       profitBox.parentNode.removeChild(profitBox);
     }
     if (directionsDisplay != undefined) {
