@@ -171,8 +171,8 @@ function timeFromVal(value) {
 
 function getPath() {
     var sliderVals = $("#slider").slider("getValue");
-    var startTime = sliderValToTime(sliderVals[0]);
-    var endTime = sliderValToTime(sliderVals[1]);
+    var startTime = getStartTime();
+    var endTime = getEndTime();
     var home = getHomeLatLng();
     var params = {
         startHours: startTime.hour,
@@ -188,11 +188,20 @@ function getPath() {
         params.endMinutes = 59;
     }
     console.log(params);
-    $.post("/path", params, function (responseJSON) {
-        path = JSON.parse(responseJSON);
-        directions();
-        drawChart();
-    });
+    console.log(getIncluded());
+    if (getIncluded().length == 0) {
+      alert("There are no profitable jobs! Please select a different time range or different categories.");
+    } else {
+      $.post("/path", params, function (responseJSON) {
+          path = JSON.parse(responseJSON);
+          if (path.length == 0) {
+            alert("There are no profitable jobs! Please select a different time range or different categories.");
+          } else {
+            directions();
+            drawChart();
+          }
+      });
+    }
 }
 
 function directions() {
