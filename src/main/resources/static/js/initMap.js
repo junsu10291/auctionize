@@ -362,7 +362,7 @@ function jobInfoHTML(job) {
 function drawProfitBox() {
   var span = document.createElement('span');
   span.className = "label label-success";
-  span.innerHTML = "Profit: $123";
+  span.innerHTML = "Profit: $" + getProfit();
   
   var h2 = document.createElement('h2');
   h2.appendChild(span);
@@ -371,4 +371,12 @@ function drawProfitBox() {
   profitBox.appendChild(h2);
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(profitBox);
+}
+
+function getProfit() {
+  var profit = 0;
+  for (var i = 0; i < path.length; i++) {
+    profit += jobs[path[i]].profit;
+  }
+  return profit;
 }
