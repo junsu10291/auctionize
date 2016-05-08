@@ -66,9 +66,9 @@
         </div>
         <div class="form-group" id="location">
           <label for="lat">Latitude</label>
-          <p id="lat"></p>
-          <label for "lon">Longitude</label>
-          <p id="lon"></p>
+          <input id="lat" type="text" class="form-control">
+          <label for="lon">Longitude</label>
+          <input id="lon" type="text" class="form-control">
         </div>
         <div class="form-group" id="times">
           <label for="startTime">Start</label>

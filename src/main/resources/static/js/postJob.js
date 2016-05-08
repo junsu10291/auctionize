@@ -49,8 +49,8 @@ function checkAndPost(){
   var postParams = {
     title : $("#title").val(),
     type : $('select[id=categories]').val(),
-    lat : $("#lat").text(),
-    lon : $("#lon").text(),
+    lat : $("#lat").val(),
+    lon : $("#lon").val(),
     start : $('select[id=startTime]').val(),
     end : $('select[id=endTime]').val(),
     pay : $('#pay').val()
@@ -64,8 +64,6 @@ function checkAndPost(){
       location.reload();
     }
   });
-  
-
 }
 
 function mylocation() {
@@ -77,8 +75,8 @@ function mylocation() {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      $("#lat").text(loc.lat);
-      $("#lon").text(loc.lng);
+      $("#lat").val(loc.lat);
+      $("#lon").val(loc.lng);
     }, function() {});
   }
 }
