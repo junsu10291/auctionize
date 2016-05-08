@@ -1,21 +1,27 @@
-$("#startTime").on("change", function() {
-  updateInclude();
-});
-
-$("#endTime").on("change", function() {
-  updateInclude();
-});
+var categories = {
+    "YARD": true,
+    "CLEAN": true,
+    "COURIER": true, 
+    "PAINT": true,
+    "ACT": true, 
+    "MOVE": true,
+    "CONSTRUCT": true,
+    "HANDY": true, 
+    "DRIVE": true, 
+    "PET": true, 
+    "ASSEMBLE": true, 
+    "MISC": true
+}
 
 function updateInclude() {
   clearDirections();
   resetInclude();
-  var startTime = timeFromVal($("#startTime").val());
-  var endTime = timeFromVal($("#endTime").val());
-
-  var selectedCategories = $(".chzn-select").children("input:checked").map(function(){return this.value;});
+  var startTime = getStartTime();
+  var endTime = getEndTime();
+  
   for (var key in include) {
     var job = jobs[key];
-    if (jobWithinRange(job, startTime, endTime) && inArray(job.category, selectedCategories)) {
+    if (jobWithinRange(job, startTime, endTime) && categories[job.category]) {
       include[key] = true;
     }
   }
@@ -48,4 +54,12 @@ function compareTimes(time1, time2) {
       return 0;
     }
   }
+}
+
+function toggleCategory(category) {
+  categories[category] = !categories[category];
+  var button = $("#" + category);
+  button.toggleClass("btn-success");
+  button.toggleClass("btn-secondary");
+  updateInclude();
 }

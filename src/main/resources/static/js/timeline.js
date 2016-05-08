@@ -35,7 +35,6 @@ function drawChart() {
             rows.push(row);
         }
     }
-    console.log(rows);
     var fixedRow = ["Fixed", "Available Hours", "", new Date(0, 0, 0, 8, 0, 0), new Date(0, 0, 0, 24, 0, 0)];
     rows.push(fixedRow);
     dataTable.addRows(rows);

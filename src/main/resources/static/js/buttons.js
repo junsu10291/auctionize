@@ -1,5 +1,4 @@
-var categories = ["YARD", "CLEAN", "COURIER", "PAINT", "ACT", "MOVE",
-                  "CONSTRUCT", "HANDY", "DRIVE", "PET", "BABY", "ASSEMBLE", "MISC"];
+
 
 $(document).ready(function () {
     $("#slider").slider({
@@ -12,9 +11,15 @@ $(document).ready(function () {
 
     $("#slider").slider().on("change", function (slideEvent) {
         var sliderVals = $("#slider").slider("getValue");
-        var startTime = timeToString(sliderValToTime(sliderVals[0]));
-        var endTime = timeToString(sliderValToTime(sliderVals[1]));
+        var startTime = timeToString(getStartTime());
+        var endTime = timeToString(getEndTime());
         $("#dayofjobs-btn").text("Day of Jobs from " + startTime + " to " + endTime);
+        
+        
+    });
+    
+    $("#slider").slider().on("slideStop", function (slideEvent) {
+      updateInclude();
     });
 });
 
@@ -48,4 +53,14 @@ function timeToString(hourMinuteObject) {
         toReturn += " AM";
     }
     return toReturn;
+}
+
+function getStartTime() {
+  var sliderVals = $("#slider").slider("getValue");
+  return sliderValToTime(sliderVals[0]);
+}
+
+function getEndTime() {
+  var sliderVals = $("#slider").slider("getValue");
+  return sliderValToTime(sliderVals[1]);
 }
