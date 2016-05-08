@@ -270,6 +270,7 @@ function inArray(item, array) {
 }
 
 function clearDirections() {
+    clearTimeline();
     if ((profitBox != undefined) && (profitBox.parentNode != null)) {
       profitBox.parentNode.removeChild(profitBox);
     }
@@ -394,4 +395,9 @@ function getProfit() {
     profit += jobs[path[i]].profit;
   }
   return profit;
+}
+
+function clearTimeline() {
+  path = [];
+  drawChart();
 }
