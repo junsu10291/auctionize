@@ -33,6 +33,21 @@ var regionDrawable = true;
 var regionNorthWestBound = [];
 var regionSouthEastBound = [];
 var markerJobDict = {};
+var logos = 
+{
+    ASSEMBLE : "http://i.imgur.com/vgycjR0.png",
+    CLEAN : "http://i.imgur.com/mgWcPYZ.png",
+    CONSTRUCT : "http://i.imgur.com/9jpCbQp.png",
+    COURIER : "http://i.imgur.com/u4glEXX.png",
+    DRIVE : "http://i.imgur.com/FFV0Qk0.png",
+    HANDY : "http://i.imgur.com/HXY6Ygz.png",
+    MISC : "http://i.imgur.com/tGKgs5a.png",
+    MOVE : "http://i.imgur.com/VIAXfH8.png",
+    PAINT : "http://i.imgur.com/PNMjfkT.png",
+    PET : "http://i.imgur.com/aKEengg.png",
+    ACT : "http://i.imgur.com/9XPdGLa.png",
+    YARD : "http://i.imgur.com/tRrZ0hx.png"
+}
 
 function initMap() {
     if (navigator.geolocation) {
@@ -116,7 +131,10 @@ function removeJob(id) {
     include[id] = false;
 }
 
+
+
 function newMarker(job, opacity, drop) {
+    var myURL = logos[job.category];
     var oldMarker = markers[job.id];
     if (oldMarker != undefined) {
         oldMarker.setMap(null);
@@ -128,13 +146,13 @@ function newMarker(job, opacity, drop) {
             lng: job.lng
         },
         map: map,
-        //    icon: {
-        //      url: "https://lh4.googleusercontent.com/-Dr4TCurbw-Q/AAAAAAAAAAI/AAAAAAAAC9U/t_1ZEww4REQ/photo.jpg",
-        //      size: new google.maps.Size(job.profit*2, job.profit*2),
-        //      origin: new google.maps.Point(0, 0),
-        //      anchor: new google.maps.Point(0, 0),
-        //      scaledSize: new google.maps.Size(job.profit*2, job.profit*2),
-        //    }
+           icon: {
+             url: myURL,
+             size: new google.maps.Size(25, 25),
+             origin: new google.maps.Point(0, 0),
+             anchor: new google.maps.Point(0, 0),
+             scaledSize: new google.maps.Size(25, 25),
+           }
     });
     markers[job.id] = marker;
     if (drop) {

@@ -65,7 +65,6 @@
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col1"> 
     			<button type="button" class="btn btn-success btn-block category-btn" id="ACT" onclick="this.blur();toggleCategory('ACT');">SURVEY</button>
     			<button type="button" class="btn btn-success btn-block category-btn" id="HANDY" onclick="this.blur();toggleCategory('HANDY');">HANDYWORK</button>
-    			
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col2"> 
     			<button type="button" class="btn btn-success btn-block category-btn" id="ASSEMBLE" onclick="this.blur();toggleCategory('ASSEMBLE');">ASSEMBLE</button>
