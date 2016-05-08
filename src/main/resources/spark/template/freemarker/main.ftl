@@ -63,32 +63,33 @@
     	</div>
     	<div class="row" id="map-row">
             <div id="map"></div>
+            <div id="profit-box"><h3>Profit: $194</h3></div>
     	</div>
     	
     	<div class="row" id="categories-row">
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col1"> 
-    			<button type="button" class="btn btn-success btn-block category-btn" id="ASSEMBLE" onclick="this.blur();toggleCategory('ASSEMBLE');">ASSEMBLE</button>
-    			<button type="button" class="btn btn-success btn-block category-btn" id="MISC" onclick="this.blur();toggleCategory('MISC');">MISCELLANEOUS</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="ASSEMBLE" onclick="this.blur();toggleCategory('ASSEMBLE');">ASSEMBLE <img class="logoToken" src="http://i.imgur.com/vgycjR0.png" height="30" width="20"></button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="MISC" onclick="this.blur();toggleCategory('MISC');">MISC <img class="logoToken" src="http://i.imgur.com/tGKgs5a.png" height="30" width="30"></button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col2"> 
-    			<button type="button" class="btn btn-success btn-block category-btn" id="CLEAN" onclick="this.blur();toggleCategory('CLEAN');">CLEANING</button>
-    			<button type="button" class="btn btn-success btn-block category-btn" id="MOVE" onclick="this.blur();toggleCategory('MOVE');">MOVING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="CLEAN" onclick="this.blur();toggleCategory('CLEAN');">CLEANING <img class="logoToken" src="http://i.imgur.com/aOr8D3s.png" height="30" width="25"></button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="MOVE" onclick="this.blur();toggleCategory('MOVE');">MOVING <img class="logoToken" src="http://i.imgur.com/VIAXfH8.png" height="30" width="40"></button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col3"> 
-    			<button type="button" class="btn btn-success btn-block category-btn" id="CONSTRUCT" onclick="this.blur();toggleCategory('CONSTRUCT');">CONSTRUCTION</button>
-    			<button type="button" class="btn btn-success btn-block category-btn" id="PAINT" onclick="this.blur();toggleCategory('PAINT');">PAINTING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="CONSTRUCT" onclick="this.blur();toggleCategory('CONSTRUCT');">CONSTRUCT <img class="logoToken" src="http://i.imgur.com/9jpCbQp.png" height="30" width="30">.</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="PAINT" onclick="this.blur();toggleCategory('PAINT');">PAINTING <img class="logoToken" src="http://i.imgur.com/PNMjfkT.png" height="30" width="20"></button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col4"> 
-    			<button type="button" class="btn btn-success btn-block category-btn" id="COURIER" onclick="this.blur();toggleCategory('COURIER');">COURIER</button>
-    			<button type="button" class="btn btn-success btn-block category-btn" id="PET" onclick="this.blur();toggleCategory('PET');">PETS</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="COURIER" onclick="this.blur();toggleCategory('COURIER');">COURIER <img class="logoToken" src="http://i.imgur.com/u4glEXX.png" height="30" width="35"></button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="PET" onclick="this.blur();toggleCategory('PET');">PETS <img class="logoToken" src="http://i.imgur.com/aKEengg.png" height="30" width="30"></button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col5"> 
-    			<button type="button" class="btn btn-success btn-block category-btn" id="DRIVE" onclick="this.blur();toggleCategory('DRIVE');">DRIVING</button>
-    			<button type="button" class="btn btn-success btn-block category-btn" id="ACT" onclick="this.blur();toggleCategory('ACT');">SURVEY</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="DRIVE" onclick="this.blur();toggleCategory('DRIVE');">DRIVING <img class="logoToken" src="http://i.imgur.com/FFV0Qk0.png" height="30" width="40"></button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="ACT" onclick="this.blur();toggleCategory('ACT');">SURVEY <img class="logoToken" src="http://i.imgur.com/9XPdGLa.png" height="30" width="30"></button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col6"> 
-    			<button type="button" class="btn btn-success btn-block category-btn" id="HANDY" onclick="this.blur();toggleCategory('HANDY');">HANDYWORK</button>
-    			<button type="button" class="btn btn-success btn-block category-btn" id="YARD" onclick="this.blur();toggleCategory('YARD');">YARDWORK</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="HANDY" onclick="this.blur();toggleCategory('HANDY');">HANDYWORK <img class="logoToken" src="http://i.imgur.com/HXY6Ygz.png" height="30" width="20"></button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="YARD" onclick="this.blur();toggleCategory('YARD');">YARDWORK <img class="logoToken" src="http://i.imgur.com/tRrZ0hx.png"height="30" width="20"></button>
     		</div>
     	</div>
     	
