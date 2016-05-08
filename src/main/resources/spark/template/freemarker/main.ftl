@@ -55,7 +55,7 @@
     		<input id="slider" type="text" data-slider-tooltip="hide"/><br>
     	</div>
     	<div class="row" id="dayofjobs-row">
-    		<button type="button" class="btn btn-primary btn-lg btn-block" id="dayofjobs-btn" onclick="this.blur();getPath();">Day of Jobs from 8:00 AM to 12:00 AM</button>
+    		<button type="button" class="btn btn-primary btn-lg btn-block" id="dayofjobs-btn" onclick="this.blur();getPath();">Workday from 8:00 AM to 12:00 AM</button>
     	</div>
     	<div class="row" id="map-row">
             <div id="map"></div>
