@@ -5,6 +5,8 @@ var jobs = {};
 
 // map of id to marker
 var markers = {};
+var colors = ["blue", "red", "yellow", "green", "purple"];
+var circles = [];
 
 // map of id to boolean (whether or not the given job should be displayed
 //   on the map and included in the day of jobs algorithm
@@ -248,6 +250,7 @@ function directions() {
         travelMode: google.maps.TravelMode.WALKING,
         unitSystem: google.maps.UnitSystem.IMPERIAL
     }
+
     directionsService.route(directionsRequest, function (result, status) {
         if (status == google.maps.DirectionsStatus.OK) {
             directionsDisplay = new google.maps.DirectionsRenderer({
@@ -258,7 +261,25 @@ function directions() {
             });
         }
     });
+
     showMarkers(path);
+    circlePathMarkers(path);
+}
+
+function circlePathMarkers() {
+    for (i = 0; i < path.length; i++) {
+        var circle = new google.maps.Circle({
+          strokeColor: colors[i],
+          strokeOpacity: 0.8,
+          strokeWeight: 2,
+          fillColor: colors[i],
+          map: map,
+          center: {lat: jobs[path[i]].lat, lng: jobs[path[i]].lng},
+          radius: 2000
+        });
+
+        circles.push(circle);
+    }
 }
 
 function inArray(item, array) {
@@ -272,6 +293,11 @@ function inArray(item, array) {
 
 function clearDirections() {
     clearTimeline();
+
+    for(i = 0; i < circles.length; i++) {
+        circles[i].setMap(null);
+    }
+
     if ((profitBox != undefined) && (profitBox.parentNode != null)) {
       profitBox.parentNode.removeChild(profitBox);
     }
@@ -279,6 +305,7 @@ function clearDirections() {
       // if directions are already being displayed, get rid of them
       directionsDisplay.setMap(null);
     }
+    
     showMarkers(getIncluded());
 }
 
