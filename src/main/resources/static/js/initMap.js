@@ -36,7 +36,7 @@ var markerJobDict = {};
 var logos = 
 {
     ASSEMBLE : "http://i.imgur.com/vgycjR0.png",
-    CLEAN : "http://i.imgur.com/mgWcPYZ.png",
+    CLEAN : "http://i.imgur.com/aOr8D3s.png",
     CONSTRUCT : "http://i.imgur.com/9jpCbQp.png",
     COURIER : "http://i.imgur.com/u4glEXX.png",
     DRIVE : "http://i.imgur.com/FFV0Qk0.png",
