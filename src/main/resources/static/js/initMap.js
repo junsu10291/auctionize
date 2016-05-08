@@ -356,7 +356,22 @@ function jobInfoHTML(job) {
       + "<p>Category: " + job.category + "</p>"
       + "<p>Start: " + startTimeString + "</p>"
       + "<p>End: " + endTimeString + "</p>"
-      + "<p>Profit: $" + job.profit + "</p>";
+      + "<p>Profit: $" + job.profit + "</p>"
+      + "<p>Contact: " + generateRandomPhoneNumber() + "</p>";
+}
+
+function generateRandomPhoneNumber(){
+    var number = "(401) ";
+    number += pad((Math.floor(Math.random() * 999) + 1), 3);
+    number += "-";
+    number += pad((Math.floor(Math.random() * 9999) + 1), 4);
+    return number;
+}
+
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
 }
 
 function drawProfitBox() {
