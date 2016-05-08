@@ -59,7 +59,6 @@
     	</div>
     	<div class="row" id="map-row">
             <div id="map"></div>
-            <div id="profit-box"><h3>Profit: $194</h3></div>
     	</div>
     	
     	<div class="row" id="categories-row">

@@ -14,6 +14,8 @@ var include = {};
 // an array of job ids that represent the path for the day of jobs
 var path = [];
 
+var profitBox;
+
 var loc = {
     lat: 41.826130,
     lng: -71.403
@@ -199,6 +201,7 @@ function getPath() {
           } else {
             directions();
             drawChart();
+            drawProfitBox();
           }
       });
     }
@@ -249,6 +252,9 @@ function inArray(item, array) {
 }
 
 function clearDirections() {
+    if (profitBox != undefined) {
+      profitBox.parentNode.removeChild(profitBox);
+    }
     if (directionsDisplay != undefined) {
       // if directions are already being displayed, get rid of them
       directionsDisplay.setMap(null);
@@ -333,4 +339,18 @@ function jobInfoHTML(job) {
       + "<p>Start: " + startTimeString + "</p>"
       + "<p>End: " + endTimeString + "</p>"
       + "<p>Profit: $" + job.profit + "</p>";
+}
+
+function drawProfitBox() {
+  var span = document.createElement('span');
+  span.className = "label label-success";
+  span.innerHTML = "Profit: $123";
+  
+  var h2 = document.createElement('h2');
+  h2.appendChild(span);
+  
+  profitBox = document.createElement('div');
+  profitBox.appendChild(h2);
+
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(profitBox);
 }
