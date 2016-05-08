@@ -55,7 +55,12 @@
     		<input id="slider" type="text" data-slider-tooltip="hide"/><br>
     	</div>
     	<div class="row" id="dayofjobs-row">
-    		<button type="button" class="btn btn-primary btn-lg btn-block" id="dayofjobs-btn" onclick="this.blur();getPath();">Day of Jobs from 8:00 AM to 12:00 AM</button>
+    		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 btn-col" id="dayofjobs-col"> 
+    			<button type="button" class="btn btn-primary btn-lg btn-block" id="dayofjobs-btn" onclick="this.blur();getPath();">Day of Jobs from 8:00 AM to 12:00 AM</button>
+    		</div>
+    		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="clear-col"> 
+    			<button type="button" class="btn btn-danger btn-lg btn-block" id="dayofjobs-btn" onclick="this.blur();clearDirections();">Clear</button>
+    		</div>
     	</div>
     	<div class="row" id="map-row">
             <div id="map"></div>
