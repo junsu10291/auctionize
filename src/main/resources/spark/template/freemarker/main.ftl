@@ -63,29 +63,29 @@
     	
     	<div class="row" id="categories-row">
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col1"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="ACT" onclick="this.blur();" data-toggle="button" aria-pressed="true">ACT</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="DRIVE" onclick="this.blur();" data-toggle="button" aria-pressed="true">DRIVE</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="YARD" onclick="this.blur();" data-toggle="button" aria-pressed="true">YARD</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="ACT" onclick="this.blur();" data-toggle="button" aria-pressed="true">SURVEY</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="HANDY" onclick="this.blur();" data-toggle="button" aria-pressed="true">HANDYWORK</button>
+    			
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col2"> 
     			<button type="button" class="btn btn-success btn-block category-btn active" id="ASSEMBLE" onclick="this.blur();" data-toggle="button" aria-pressed="true">ASSEMBLE</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="HANDY" onclick="this.blur();" data-toggle="button" aria-pressed="true">HANDY</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="MISC" onclick="this.blur();" data-toggle="button" aria-pressed="true">MISCELLANEOUS</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col3"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="BABY" onclick="this.blur();" data-toggle="button" aria-pressed="true">BABY</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="MISC" onclick="this.blur();" data-toggle="button" aria-pressed="true">MISC</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="CLEAN" onclick="this.blur();" data-toggle="button" aria-pressed="true">CLEANING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="MOVE" onclick="this.blur();" data-toggle="button" aria-pressed="true">MOVING</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col4"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="CLEAN" onclick="this.blur();" data-toggle="button" aria-pressed="true">CLEAN</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="MOVE" onclick="this.blur();" data-toggle="button" aria-pressed="true">MOVE</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="CONSTRUCT" onclick="this.blur();" data-toggle="button" aria-pressed="true">CONSTRUCTION</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="PAINT" onclick="this.blur();" data-toggle="button" aria-pressed="true">PAINTING</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col5"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="CONSTRUCT" onclick="this.blur();" data-toggle="button" aria-pressed="true">CONSTRUCT</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="PAINT" onclick="this.blur();" data-toggle="button" aria-pressed="true">PAINT</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="COURIER" onclick="this.blur();" data-toggle="button" aria-pressed="true">COURIER</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="PET" onclick="this.blur();" data-toggle="button" aria-pressed="true">PETS</button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col6"> 
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="COURIER" onclick="this.blur();" data-toggle="button" aria-pressed="true">COURIER</button>
-    			<button type="button" class="btn btn-success btn-block category-btn active" id="PET" onclick="this.blur();" data-toggle="button" aria-pressed="true">PET</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="DRIVE" onclick="this.blur();" data-toggle="button" aria-pressed="true">DRIVING</button>
+    			<button type="button" class="btn btn-success btn-block category-btn active" id="YARD" onclick="this.blur();" data-toggle="button" aria-pressed="true">YARDWORK</button>
     		</div>
     	</div>
     	
