@@ -61,6 +61,10 @@ body {
     width: 100%;
 }
 
+.google-visualization-tooltip{
+    z-index: 99;
+}
+
 .btn-col {
     padding: 10px;
 }
