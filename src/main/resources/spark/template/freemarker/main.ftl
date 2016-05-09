@@ -76,7 +76,7 @@
     			<button type="button" class="btn btn-success btn-block category-btn" id="MOVE" onclick="this.blur();toggleCategory('MOVE');">MOVING <img class="logoToken" src="http://i.imgur.com/VIAXfH8.png" height="30" width="40"></button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col3"> 
-    			<button type="button" class="btn btn-success btn-block category-btn" id="CONSTRUCT" onclick="this.blur();toggleCategory('CONSTRUCT');">CONSTRUCT <img class="logoToken" src="http://i.imgur.com/9jpCbQp.png" height="30" width="30">.</button>
+    			<button type="button" class="btn btn-success btn-block category-btn" id="CONSTRUCT" onclick="this.blur();toggleCategory('CONSTRUCT');">CONSTRUCT <img class="logoToken" src="http://i.imgur.com/9jpCbQp.png" height="30" width="30"></button>
     			<button type="button" class="btn btn-success btn-block category-btn" id="PAINT" onclick="this.blur();toggleCategory('PAINT');">PAINTING <img class="logoToken" src="http://i.imgur.com/PNMjfkT.png" height="30" width="20"></button>
     		</div>
     		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 btn-col" id="btn-col4"> 
