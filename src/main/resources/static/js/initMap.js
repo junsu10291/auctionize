@@ -78,6 +78,8 @@ function initMap() {
             homeMarker.addListener('click', function () {
                 info.open(map, homeMarker);
             });
+            google.maps.event.addListener(homeMarker, 'dragend', function() { $("#pac-input").val("") } );
+
             $.post("/jobs", {}, function (responseJSON) {
                 jobs = JSON.parse(responseJSON);
                 for (var key in jobs) {
@@ -89,8 +91,50 @@ function initMap() {
                 });
                 google.charts.setOnLoadCallback(drawChart);
             });
+            drawSearchBox();
         }, function () {});
     }
+}
+
+function drawSearchBox() {
+    console.log("beeing called");
+    // Create the search box and link it to the UI element.
+    var input = document.getElementById('pac-input');
+    console.log("!!!!!!!!!!!!!!!!!FEFefwafeafwfaefa");
+    console.log(input);
+    var searchBox = new google.maps.places.SearchBox(input);
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
+
+    // Bias the SearchBox results towards current map's viewport.    
+    map.addListener('bounds_changed', function() {
+      searchBox.setBounds(map.getBounds());
+    });
+
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+    var place = places[0];
+    if (places.length == 0) {
+      return;
+    }
+
+    console.log(places);
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+
+    homeMarker.setPosition(new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng()));
+
+    if (place.geometry.viewport) {
+        bounds.union(place.geometry.viewport);
+    } else {
+        bounds.extend(place.geometry.location);
+    }
+    map.fitBounds(bounds);
+    });
+
+    
 }
 
 function removeRegion() {

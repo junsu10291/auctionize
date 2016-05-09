@@ -9,7 +9,7 @@
     
     <script src="js/jquery-2.1.1.js"></script>
     <script src="js/buttons.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP_cgI8zBhAlb5qicByyn9vNjHzU0puYY&libraries=drawing&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP_cgI8zBhAlb5qicByyn9vNjHzU0puYY&libraries=drawing,places&callback=initMap" async defer></script>
     <script src="js/initMap.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="js/timeline.js"></script>
@@ -62,8 +62,8 @@
     		</div>
     	</div>
     	<div class="row" id="map-row">
+            <input id="pac-input" class="controls" type="text" placeholder="Set home location">
             <div id="map"></div>
-            <div id="profit-box"><h3>Profit: $194</h3></div>
     	</div>
     	
     	<div class="row" id="categories-row">
