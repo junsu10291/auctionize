@@ -186,6 +186,11 @@ function newMarker(job, opacity, drop) {
         oldMarker.setMap(null);
     }
     var size = (5 / 7) * job.profit + 50;
+    var img = new Image();
+    img.src = myURL;
+    var scaleFactor = Math.sqrt(625/(img.width*img.height));
+    var w = img.width*scaleFactor;
+    var h = img.height*scaleFactor;
     var marker = new google.maps.Marker({
         position: {
             lat: job.lat,
@@ -194,10 +199,10 @@ function newMarker(job, opacity, drop) {
         map: map,
            icon: {
              url: myURL,
-             size: new google.maps.Size(25, 25),
+             size: new google.maps.Size(w, h),
              origin: new google.maps.Point(0, 0),
-             anchor: new google.maps.Point(0, 0),
-             scaledSize: new google.maps.Size(25, 25),
+             anchor: new google.maps.Point(w/2, h/2),
+             scaledSize: new google.maps.Size(w, h)
            }
     });
     markers[job.id] = marker;
@@ -319,7 +324,7 @@ function circlePathMarkers() {
           fillColor: colors[i],
           map: map,
           center: {lat: jobs[path[i]].lat, lng: jobs[path[i]].lng},
-          radius: 2000
+          radius: 500
         });
 
         circles.push(circle);
